@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.compose.buttons
+package com.mzaragozaserrano.compose.composables.buttons
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -67,6 +67,6 @@ fun ButtonImage(
 @Composable
 fun ButtonImageTextPrev() {
     ButtonImage(textId = R.string.button_text_message, imageId = R.drawable.ic_cloud) {
-        //TODO("Here the code that is intended to run after the button click will be implemented.")
+        //Here will go the action when clicking on the button
     }
 }

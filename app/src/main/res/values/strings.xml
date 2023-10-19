@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">mzs-presentation-app</string>
+
+    //----- CATEGORIES ----------/
+    <string name="category_buttons">Botones</string>
+    <string name="category_texts">Textos</string>
+    <string name="category_utils">Utilidades</string>
+
+    //----- COMPONENTS ----------/
+    //---------- BUTTONS ---------------/
+    <string name="button_image">ButtonImage</string>
+    <string name="button_image_text">Esto es un botón con imagen</string>
 </resources>
