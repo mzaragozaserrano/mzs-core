@@ -15,7 +15,7 @@ import com.mzaragozaserrano.presentation.R
 fun Line(
     modifier: Modifier = Modifier,
     height: Dp = 1.dp,
-    @ColorRes color: Int = R.color.grey,
+    @ColorRes color: Int = R.color.black,
 ) {
     Divider(
         modifier = modifier

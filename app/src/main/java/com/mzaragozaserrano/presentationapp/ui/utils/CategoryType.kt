@@ -2,6 +2,7 @@ package com.mzaragozaserrano.presentationapp.ui.utils
 
 import androidx.annotation.StringRes
 import com.mzaragozaserrano.compose.composables.buttons.ButtonImage
+import com.mzaragozaserrano.compose.composables.utils.Line
 import com.mzaragozaserrano.presentationapp.R
 import com.mzaragozaserrano.presentationapp.ui.vo.ComponentVO
 
@@ -49,6 +50,6 @@ fun CategoryType.createComponentList(): List<ComponentVO> = when (this) {
     }
 
     is CategoryType.Utils -> {
-        listOf()
+        listOf(ComponentVO(nameId = R.string.line, item = { Line() }))
     }
 }
