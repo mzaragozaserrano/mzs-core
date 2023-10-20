@@ -1,6 +1,8 @@
 <resources>
 
-    <string name="app_name">mzs-presentation-app</string>
+    //----- APP ----------/
+    <string name="app_name">mzs-core-app</string>
+    <string name="title_categories">Categorias</string>
 
     //----- CATEGORIES ----------/
     <string name="category_buttons">Botones</string>
@@ -9,8 +11,8 @@
 
     //----- COMPONENTS ----------/
     //---------- BUTTONS ---------------/
-    <string name="button_image">ButtonImage</string>
-    <string name="button_image_text">Púlsame</string>
+    <string name="wavy_button">Wavy Button</string>
+    <string name="button_text">Púlsame</string>
     //---------- UTILS ---------------/
     <string name="line">Line</string>
 
