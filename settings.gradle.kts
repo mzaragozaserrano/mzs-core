@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "mzs-presentation"
+rootProject.name = "mzs-core"
 include(":app")
 include(":presentation")
