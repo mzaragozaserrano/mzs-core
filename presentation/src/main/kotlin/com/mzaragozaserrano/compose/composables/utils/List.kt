@@ -7,30 +7,30 @@ import androidx.compose.ui.Modifier
 import com.mzaragozaserrano.compose.utils.ObjectOrientation
 
 @Composable
-fun <T> Adapter(
+fun <T> List(
     modifier: Modifier = Modifier,
+    hasLine: Boolean = true,
+    items: List<T>,
     lineModifier: Modifier = Modifier,
     orientation: ObjectOrientation = ObjectOrientation.Vertical,
-    list: List<T>,
-    hasLine: Boolean = true,
     contentItem: @Composable (T) -> Unit
 ) {
 
     val content: @Composable () -> Unit = {
-        list.forEach { item ->
+        items.forEach { item ->
             contentItem(item)
-            if (hasLine && list.last() != item) {
+            if (hasLine && items.last() != item) {
                 Line(modifier = lineModifier)
             }
         }
     }
     when (orientation) {
         is ObjectOrientation.Horizontal -> {
-            HorizontalAdapter(modifier, content)
+            HorizontalAdapter(modifier = modifier, content = content)
         }
 
         is ObjectOrientation.Vertical -> {
-            VerticalAdapter(modifier, content)
+            VerticalAdapter(modifier = modifier, content = content)
         }
     }
 }
