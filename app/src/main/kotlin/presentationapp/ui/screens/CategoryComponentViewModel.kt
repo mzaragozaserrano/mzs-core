@@ -1,15 +1,15 @@
-package com.mzaragozaserrano.presentationapp.ui.screens
+package presentationapp.ui.screens
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mzaragozaserrano.presentationapp.ui.utils.CategoryType
-import com.mzaragozaserrano.presentationapp.ui.utils.getSerializableCategory
-import com.mzaragozaserrano.presentationapp.ui.utils.navigation.NavArg
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import presentationapp.ui.utils.CategoryType
+import presentationapp.ui.utils.getSerializableCategory
+import presentationapp.ui.utils.navigation.NavArg
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,8 +26,5 @@ class CategoryComponentViewModel @Inject constructor(savedStateHandle: SavedStat
         }
     }
 
-    data class UiState(
-        val loading: Boolean = false,
-        val category: CategoryType? = null,
-    )
+    data class UiState(val category: CategoryType? = null)
 }

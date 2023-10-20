@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.presentationapp.ui.vo
+package presentationapp.ui.vo
 
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable

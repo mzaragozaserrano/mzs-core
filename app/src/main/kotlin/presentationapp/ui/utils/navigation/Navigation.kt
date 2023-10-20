@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.presentationapp.ui.utils.navigation
+package presentationapp.ui.utils.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -8,9 +8,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.mzaragozaserrano.presentationapp.ui.screens.CategoryComponentScreen
-import com.mzaragozaserrano.presentationapp.ui.screens.CategoryListScreen
-import com.mzaragozaserrano.presentationapp.ui.utils.serializableCategory
+import presentationapp.ui.screens.CategoryComponentScreen
+import presentationapp.ui.screens.CategoryListScreen
+import presentationapp.ui.utils.serializableCategory
 
 @Composable
 fun Navigation(
@@ -30,12 +30,12 @@ private fun NavGraphBuilder.presentationApp(
     navController: NavHostController,
 ) {
     navigation(
-        startDestination = NavCommand.CategoryList.route,
-        route = Feature.Categories.route
+        route = Feature.Categories.route,
+        startDestination = NavCommand.CategoryList.route
     ) {
         composable(navItem = NavCommand.CategoryList) {
             CategoryListScreen(modifier = modifier) { category ->
-                navController.navigate(NavCommand.CategoryComponent.createRoute(categoryName = category.serializableCategory()))
+                navController.navigate(route = NavCommand.CategoryComponent.createRoute(categoryName = category.serializableCategory()))
             }
         }
         composable(navItem = NavCommand.CategoryComponent) {

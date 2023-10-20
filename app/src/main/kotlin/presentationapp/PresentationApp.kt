@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.presentationapp
+package presentationapp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

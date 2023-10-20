@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.presentationapp.ui.utils.navigation
+package presentationapp.ui.utils.navigation
 
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
@@ -8,13 +8,17 @@ sealed class NavCommand(
     internal val subRoute: String = "home",
     private val navArgs: List<NavArg> = emptyList(),
 ) {
-    object CategoryList : NavCommand(feature = Feature.Categories)
     object CategoryComponent : NavCommand(
         feature = Feature.Categories,
         subRoute = "id",
         navArgs = listOf(NavArg.Category)
     ) {
         fun createRoute(categoryName: Int) = "${feature.route}/$subRoute/$categoryName"
+    }
+    object CategoryList : NavCommand(feature = Feature.Categories)
+
+    val args = navArgs.map {
+        navArgument(it.key) { type = it.navType }
     }
 
     val route = run {
@@ -25,9 +29,6 @@ sealed class NavCommand(
             .joinToString("/")
     }
 
-    val args = navArgs.map {
-        navArgument(it.key) { type = it.navType }
-    }
 }
 
 sealed class NavArg(val key: String, val navType: NavType<*>) {
