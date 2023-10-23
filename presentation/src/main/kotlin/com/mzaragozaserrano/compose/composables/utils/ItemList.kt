@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import com.mzaragozaserrano.compose.utils.ObjectOrientation
 
 @Composable
-fun <T> List(
+fun <T> ItemList(
     modifier: Modifier = Modifier,
     hasLine: Boolean = true,
     items: List<T>,
@@ -26,17 +26,17 @@ fun <T> List(
     }
     when (orientation) {
         is ObjectOrientation.Horizontal -> {
-            HorizontalAdapter(modifier = modifier, content = content)
+            HorizontalList(modifier = modifier, content = content)
         }
 
         is ObjectOrientation.Vertical -> {
-            VerticalAdapter(modifier = modifier, content = content)
+            VerticalList(modifier = modifier, content = content)
         }
     }
 }
 
 @Composable
-private fun HorizontalAdapter(
+private fun HorizontalList(
     modifier: Modifier,
     content: @Composable () -> Unit
 ) {
@@ -46,7 +46,7 @@ private fun HorizontalAdapter(
 }
 
 @Composable
-private fun VerticalAdapter(
+private fun VerticalList(
     modifier: Modifier,
     content: @Composable () -> Unit
 ) {
