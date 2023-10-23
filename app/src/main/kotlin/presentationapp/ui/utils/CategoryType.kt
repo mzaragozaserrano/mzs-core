@@ -2,10 +2,8 @@ package presentationapp.ui.utils
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.layout.padding
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import androidx.compose.material3.MaterialTheme
+import com.mzaragozaserrano.compose.composables.buttons.PushedButton
 import com.mzaragozaserrano.compose.composables.buttons.WavyButton
 import com.mzaragozaserrano.compose.composables.utils.Line
 import com.mzaragozaserrano.presentationapp.R
@@ -56,15 +54,83 @@ fun CategoryType.createComponentList(): List<ComponentVO> = when (this) {
         listOf(
             ComponentVO(
                 nameId = R.string.wavy_button,
-                item = {
-                    WavyButton(
-                        modifier = Modifier.padding(all = 8.dp),
-                        buttonBackgroundColor = Color(0xFFAEDFF7),
-                        iconId = R.drawable.ic_category_buttons,
-                        isAnimationEnabled = true,
-                        textId = R.string.button_text
-                    ) {}
-                }
+                listItems = listOf(
+                    {
+                        WavyButton(
+                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+                            iconId = R.drawable.ic_category_buttons,
+                            iconTint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            isAnimationEnabled = true,
+                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textId = R.string.button_text
+                        ) {}
+                    },
+                    {
+                        WavyButton(
+                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+                            isAnimationEnabled = true,
+                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textId = R.string.button_text
+                        ) {}
+                    },
+                    {
+                        WavyButton(
+                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+                            iconId = R.drawable.ic_category_buttons,
+                            iconTint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textId = R.string.button_text
+                        ) {}
+                    },
+                    {
+                        WavyButton(
+                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textId = R.string.button_text
+                        ) {}
+                    }
+                )
+            ),
+            ComponentVO(
+                nameId = R.string.pushed_button,
+                listItems = listOf(
+                    {
+                        PushedButton(
+                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+                            iconBackgroundColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            iconId = R.drawable.ic_category_buttons,
+                            iconTint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            isAnimationEnabled = true,
+                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textId = R.string.button_text
+                        ) {}
+                    },
+                    {
+                        PushedButton(
+                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+                            isAnimationEnabled = true,
+                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textId = R.string.button_text
+                        ) {}
+                    },
+                    {
+                        PushedButton(
+                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+                            iconBackgroundColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            iconId = R.drawable.ic_category_buttons,
+                            iconTint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textId = R.string.button_text
+                        ) {}
+                    },
+                    {
+                        PushedButton(
+                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
+                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textId = R.string.button_text
+                        ) {}
+                    }
+                )
             )
         )
     }
@@ -74,6 +140,6 @@ fun CategoryType.createComponentList(): List<ComponentVO> = when (this) {
     }
 
     is CategoryType.Utils -> {
-        listOf(ComponentVO(nameId = R.string.line, item = { Line() }))
+        listOf(ComponentVO(nameId = R.string.line, listItems = listOf { Line() }))
     }
 }
