@@ -9,6 +9,7 @@
 
     //----- CATEGORIES ----------/
     <string name="category_buttons">Botones</string>
+    <string name="category_labels">Etiquetas</string>
     <string name="category_texts">Textos</string>
     <string name="category_utils">Utilidades</string>
 
@@ -16,7 +17,15 @@
     //---------- BUTTONS ---------------/
     <string name="button_text">Púlsame</string>
     <string name="pushed_button">Pushed Button</string>
-    <string name="wavy_button">Wavy Button</string>
+    //---------- LABELS ---------------/
+    <string name="label_text">Esto es una etiqueta</string>
+    <string name="wavy_label">Wavy Label</string>
+    //---------- TEXTS ---------------/
+    <string name="extra_large_medium_text">ExtraLargeMediumText</string>
+    <string name="hello_world">Hola, mundo!</string>
+    <string name="large_bold_text">LargeBoldText</string>
+    <string name="normal_text">NormalText</string>
+    <string name="small_text">SmallText</string>
     //---------- UTILS ---------------/
     <string name="line">Line</string>
 
