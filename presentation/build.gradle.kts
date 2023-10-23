@@ -38,6 +38,9 @@ android {
 
 dependencies {
 
+    //----- ANDROID X ----------/
+    implementation("androidx.core:core-ktx:1.12.0")
+
     //----- COMPOSE ----------/
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
