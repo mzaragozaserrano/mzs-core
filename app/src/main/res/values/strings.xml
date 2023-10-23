@@ -2,7 +2,10 @@
 
     //----- APP ----------/
     <string name="app_name">mzs-core-app</string>
+    <string name="title_buttons">Botones</string>
     <string name="title_categories">Categorias</string>
+    <string name="title_texts">Textos</string>
+    <string name="title_utils">Utilidades</string>
 
     //----- CATEGORIES ----------/
     <string name="category_buttons">Botones</string>
@@ -11,8 +14,9 @@
 
     //----- COMPONENTS ----------/
     //---------- BUTTONS ---------------/
-    <string name="wavy_button">Wavy Button</string>
     <string name="button_text">Púlsame</string>
+    <string name="pushed_button">Pushed Button</string>
+    <string name="wavy_button">Wavy Button</string>
     //---------- UTILS ---------------/
     <string name="line">Line</string>
 
