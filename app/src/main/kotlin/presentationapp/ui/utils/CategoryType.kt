@@ -2,9 +2,18 @@ package presentationapp.ui.utils
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.mzaragozaserrano.compose.composables.buttons.PushedButton
-import com.mzaragozaserrano.compose.composables.buttons.WavyButton
+import com.mzaragozaserrano.compose.composables.labels.WavyLabel
+import com.mzaragozaserrano.compose.composables.texts.ExtraLargeMediumText
+import com.mzaragozaserrano.compose.composables.texts.LargeBoldText
+import com.mzaragozaserrano.compose.composables.texts.NormalText
+import com.mzaragozaserrano.compose.composables.texts.SmallText
 import com.mzaragozaserrano.compose.composables.utils.Line
 import com.mzaragozaserrano.presentationapp.R
 import presentationapp.ui.vo.ComponentVO
@@ -13,6 +22,11 @@ sealed class CategoryType(@StringRes val textId: Int, @DrawableRes val imageId: 
     object Buttons : CategoryType(
         textId = R.string.category_buttons,
         imageId = R.drawable.ic_category_buttons
+    )
+
+    object Labels : CategoryType(
+        textId = R.string.category_labels,
+        imageId = R.drawable.ic_category_labels
     )
 
     object Texts : CategoryType(
@@ -29,6 +43,7 @@ sealed class CategoryType(@StringRes val textId: Int, @DrawableRes val imageId: 
 fun CategoryType.serializableCategory(): Int {
     return when (this) {
         is CategoryType.Buttons -> R.string.category_buttons
+        is CategoryType.Labels -> R.string.category_labels
         is CategoryType.Texts -> R.string.category_texts
         is CategoryType.Utils -> R.string.category_utils
     }
@@ -37,6 +52,7 @@ fun CategoryType.serializableCategory(): Int {
 fun Int.getSerializableCategory(): CategoryType {
     return when (this) {
         R.string.category_buttons -> CategoryType.Buttons
+        R.string.category_labels -> CategoryType.Labels
         R.string.category_texts -> CategoryType.Texts
         R.string.category_utils -> CategoryType.Utils
         else -> throw IllegalArgumentException("Invalid data string: $this")
@@ -45,6 +61,7 @@ fun Int.getSerializableCategory(): CategoryType {
 
 fun createCategoryList(): List<CategoryType> = listOf(
     CategoryType.Buttons,
+    CategoryType.Labels,
     CategoryType.Texts,
     CategoryType.Utils
 )
@@ -53,80 +70,20 @@ fun CategoryType.createComponentList(): List<ComponentVO> = when (this) {
     is CategoryType.Buttons -> {
         listOf(
             ComponentVO(
-                nameId = R.string.wavy_button,
-                listItems = listOf(
-                    {
-                        WavyButton(
-                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
-                            iconId = R.drawable.ic_category_buttons,
-                            iconTint = MaterialTheme.colorScheme.onSecondaryContainer,
-                            isAnimationEnabled = true,
-                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                            textId = R.string.button_text
-                        ) {}
-                    },
-                    {
-                        WavyButton(
-                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
-                            isAnimationEnabled = true,
-                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                            textId = R.string.button_text
-                        ) {}
-                    },
-                    {
-                        WavyButton(
-                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
-                            iconId = R.drawable.ic_category_buttons,
-                            iconTint = MaterialTheme.colorScheme.onSecondaryContainer,
-                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                            textId = R.string.button_text
-                        ) {}
-                    },
-                    {
-                        WavyButton(
-                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
-                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                            textId = R.string.button_text
-                        ) {}
-                    }
-                )
-            ),
-            ComponentVO(
                 nameId = R.string.pushed_button,
                 listItems = listOf(
                     {
                         PushedButton(
-                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
-                            iconBackgroundColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                            iconId = R.drawable.ic_category_buttons,
-                            iconTint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            buttonBackgroundColor = MaterialTheme.colorScheme.primary,
                             isAnimationEnabled = true,
-                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            textColor = MaterialTheme.colorScheme.onPrimary,
                             textId = R.string.button_text
                         ) {}
                     },
                     {
                         PushedButton(
-                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
-                            isAnimationEnabled = true,
-                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                            textId = R.string.button_text
-                        ) {}
-                    },
-                    {
-                        PushedButton(
-                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
-                            iconBackgroundColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                            iconId = R.drawable.ic_category_buttons,
-                            iconTint = MaterialTheme.colorScheme.onSecondaryContainer,
-                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                            textId = R.string.button_text
-                        ) {}
-                    },
-                    {
-                        PushedButton(
-                            buttonBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
-                            textColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                            buttonBackgroundColor = MaterialTheme.colorScheme.primary,
+                            textColor = MaterialTheme.colorScheme.onPrimary,
                             textId = R.string.button_text
                         ) {}
                     }
@@ -135,11 +92,52 @@ fun CategoryType.createComponentList(): List<ComponentVO> = when (this) {
         )
     }
 
+    is CategoryType.Labels -> {
+        listOf(
+            ComponentVO(
+                nameId = R.string.wavy_label,
+                listItems = listOf {
+                    WavyLabel(
+                        modifier = Modifier.fillMaxWidth(),
+                        buttonBackgroundColor = MaterialTheme.colorScheme.background,
+                        iconBackgroundColor = MaterialTheme.colorScheme.primary,
+                        iconId = R.drawable.ic_category_buttons,
+                        iconTint = MaterialTheme.colorScheme.onPrimary,
+                        textColor = MaterialTheme.colorScheme.onBackground,
+                        textId = R.string.label_text
+                    )
+                }
+            )
+        )
+    }
+
     is CategoryType.Texts -> {
-        listOf()
+        listOf(
+            ComponentVO(
+                nameId = R.string.extra_large_medium_text,
+                listItems = listOf { ExtraLargeMediumText(text = stringResource(id = R.string.hello_world)) }),
+            ComponentVO(
+                nameId = R.string.large_bold_text,
+                listItems = listOf { LargeBoldText(text = stringResource(id = R.string.hello_world)) }),
+            ComponentVO(
+                nameId = R.string.normal_text,
+                listItems = listOf { NormalText(text = stringResource(id = R.string.hello_world)) }),
+            ComponentVO(
+                nameId = R.string.small_text,
+                listItems = listOf { SmallText(text = stringResource(id = R.string.hello_world)) })
+        )
     }
 
     is CategoryType.Utils -> {
-        listOf(ComponentVO(nameId = R.string.line, listItems = listOf { Line() }))
+        listOf(
+            ComponentVO(
+                nameId = R.string.line,
+                listItems = listOf {
+                    Line(
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                    )
+                })
+        )
     }
 }

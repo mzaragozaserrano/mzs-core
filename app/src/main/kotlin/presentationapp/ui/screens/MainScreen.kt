@@ -61,6 +61,10 @@ fun MainScreen() {
                         R.string.title_buttons
                     }
 
+                    is CategoryType.Labels -> {
+                        R.string.category_labels
+                    }
+
                     is CategoryType.Texts -> {
                         R.string.title_texts
                     }
@@ -68,6 +72,7 @@ fun MainScreen() {
                     is CategoryType.Utils -> {
                         R.string.title_utils
                     }
+
                 }
             }
         }
