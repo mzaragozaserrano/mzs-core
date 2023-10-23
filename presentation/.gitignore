@@ -1,4 +1,4 @@
 /build
-vcs.xml
 gradle.xml
-misc.xml
+/.idea/misc.xml
+/.idea/gradle.xml
