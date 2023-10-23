@@ -73,7 +73,7 @@ fun NormalText(
     )
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 private fun NormalTextPrev() {
     NormalText(text = stringResource(id = R.string.hello_world))
