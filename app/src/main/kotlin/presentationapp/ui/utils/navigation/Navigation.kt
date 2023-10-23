@@ -10,24 +10,27 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import presentationapp.ui.screens.CategoryComponentScreen
 import presentationapp.ui.screens.CategoryListScreen
+import presentationapp.ui.utils.CategoryType
 import presentationapp.ui.utils.serializableCategory
 
 @Composable
 fun Navigation(
     modifier: Modifier = Modifier,
     navController: NavHostController,
+    onCategoryClicked: (CategoryType) -> Unit
 ) {
     NavHost(
         navController = navController,
         startDestination = Feature.Categories.route
     ) {
-        presentationApp(modifier = modifier, navController = navController)
+        presentationApp(modifier = modifier, navController = navController, onCategoryClicked = onCategoryClicked)
     }
 }
 
 private fun NavGraphBuilder.presentationApp(
     modifier: Modifier = Modifier,
     navController: NavHostController,
+    onCategoryClicked: (CategoryType) -> Unit,
 ) {
     navigation(
         route = Feature.Categories.route,
@@ -35,6 +38,7 @@ private fun NavGraphBuilder.presentationApp(
     ) {
         composable(navItem = NavCommand.CategoryList) {
             CategoryListScreen(modifier = modifier) { category ->
+                onCategoryClicked(category)
                 navController.navigate(route = NavCommand.CategoryComponent.createRoute(categoryName = category.serializableCategory()))
             }
         }
