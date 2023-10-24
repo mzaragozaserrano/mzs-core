@@ -30,6 +30,7 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
@@ -40,13 +41,21 @@ dependencies {
 
     //----- ANDROID X ----------/
     implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
     //----- COMPOSE ----------/
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui-tooling-preview")
     implementation(platform("androidx.compose:compose-bom:2023.10.00"))
     debugImplementation("androidx.compose.ui:ui-tooling")
+
+    //----- GOOGLE ----------/
+    implementation("com.google.android.material:material:1.10.0")
+
+    //----- LOTTIE ----------/
+    implementation("com.airbnb.android:lottie:5.0.3")
 
 }
