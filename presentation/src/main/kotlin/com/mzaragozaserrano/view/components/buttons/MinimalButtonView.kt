@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.compose.runtime.Composable
 import com.mzaragozaserrano.compose.components.buttons.MinimalButton
-import com.mzaragozaserrano.view.utils.BaseComposeView
+import com.mzaragozaserrano.view.base.BaseComposeView
 import com.mzaragozaserrano.view.vo.MinimalButtonVO
 
 class MinimalButtonView @JvmOverloads constructor(

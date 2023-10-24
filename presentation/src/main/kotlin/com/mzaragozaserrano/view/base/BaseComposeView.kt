@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.view.utils
+package com.mzaragozaserrano.view.base
 
 import android.content.Context
 import android.util.AttributeSet
