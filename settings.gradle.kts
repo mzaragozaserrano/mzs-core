@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "mzs-core"
 include(":app")
 include(":presentation")
+include(":domain")
