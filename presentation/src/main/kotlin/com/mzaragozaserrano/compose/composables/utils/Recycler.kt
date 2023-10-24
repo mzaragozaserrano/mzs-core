@@ -85,9 +85,11 @@ private fun <T> HorizontalGridRecycler(
 ) {
     LazyHorizontalGrid(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(spaceBetween),
-        rows = if(itemMinSize != null) GridCells.Adaptive(itemMinSize) else GridCells.Fixed(numberCells),
-        verticalArrangement = Arrangement.spacedBy(spaceBetween)
+        horizontalArrangement = Arrangement.spacedBy(space = spaceBetween),
+        rows = if (itemMinSize != null) GridCells.Adaptive(minSize = itemMinSize) else GridCells.Fixed(
+            count = numberCells
+        ),
+        verticalArrangement = Arrangement.spacedBy(space = spaceBetween)
     ) {
         items(list) { item ->
             contentItem(item)
@@ -104,7 +106,10 @@ private fun <T> HorizontalRecycler(
     spaceBetween: Dp,
     contentItem: @Composable (T) -> Unit,
 ) {
-    LazyRow(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(spaceBetween)) {
+    LazyRow(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(space = spaceBetween)
+    ) {
         items(list) { item ->
             contentItem(item)
             if (hasLine && list.last() != item) {
@@ -125,9 +130,11 @@ private fun <T> VerticalGridRecycler(
 ) {
     LazyVerticalGrid(
         modifier = modifier,
-        columns = if(itemMinSize != null) GridCells.Adaptive(itemMinSize) else GridCells.Fixed(numberCells),
-        horizontalArrangement = Arrangement.spacedBy(spaceBetween),
-        verticalArrangement = Arrangement.spacedBy(spaceBetween)
+        columns = if (itemMinSize != null) GridCells.Adaptive(minSize = itemMinSize) else GridCells.Fixed(
+            count = numberCells
+        ),
+        horizontalArrangement = Arrangement.spacedBy(space = spaceBetween),
+        verticalArrangement = Arrangement.spacedBy(space = spaceBetween)
     ) {
         items(list) { item ->
             contentItem(item)
@@ -144,7 +151,10 @@ private fun <T> VerticalRecycler(
     spaceBetween: Dp,
     contentItem: @Composable (T) -> Unit,
 ) {
-    LazyColumn(modifier = modifier, verticalArrangement = Arrangement.spacedBy(spaceBetween)) {
+    LazyColumn(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(space = spaceBetween)
+    ) {
         items(list) { item ->
             contentItem(item)
             if (hasLine && list.last() != item) {

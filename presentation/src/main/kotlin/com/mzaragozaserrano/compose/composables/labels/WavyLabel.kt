@@ -49,12 +49,12 @@ fun WavyLabel(
         )
     ) {
         Row(
-            modifier = Modifier.height(IntrinsicSize.Max),
+            modifier = Modifier.height(intrinsicSize = IntrinsicSize.Max),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = CenterVertically
         ) {
             Card(
-                modifier = Modifier.aspectRatio(1f),
+                modifier = Modifier.aspectRatio(ratio = 1f),
                 colors = CardDefaults.cardColors(containerColor = iconBackgroundColor),
                 shape = RoundedCornerShape(
                     bottomEnd = imageSize,

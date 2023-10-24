@@ -20,7 +20,7 @@ fun Line(
     Divider(
         modifier = modifier
             .fillMaxWidth()
-            .height(height),
+            .height(height = height),
         color = color
     )
 }

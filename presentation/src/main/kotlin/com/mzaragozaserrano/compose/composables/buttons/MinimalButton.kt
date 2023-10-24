@@ -34,7 +34,7 @@ fun MinimalButton(
 ) {
     RoundedBackground(
         modifier = modifier
-            .aspectRatio(1f)
+            .aspectRatio(ratio = 1f)
             .clickable(
                 indication = rememberRipple(
                     color = MaterialTheme.colorScheme.background.copy(alpha = 0.2f)
@@ -51,7 +51,10 @@ fun MinimalButton(
                 .fillMaxSize()
                 .padding(all = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterVertically)
+            verticalArrangement = Arrangement.spacedBy(
+                space = 8.dp,
+                alignment = Alignment.CenterVertically
+            )
         ) {
             ResourceImage(
                 iconId = iconId,

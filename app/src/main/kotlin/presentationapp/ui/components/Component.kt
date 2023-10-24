@@ -25,7 +25,7 @@ fun Component(modifier: Modifier = Modifier, component: ComponentVO) {
                 .fillMaxWidth()
                 .padding(all = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(space = 16.dp)
         ) {
             LargeBoldText(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
