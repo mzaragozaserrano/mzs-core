@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.compose.composables.buttons
+package com.mzaragozaserrano.compose.components.buttons
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -18,9 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mzaragozaserrano.compose.composables.backgrounds.RoundedBackground
-import com.mzaragozaserrano.compose.composables.images.ResourceImage
-import com.mzaragozaserrano.compose.composables.texts.SmallText
+import com.mzaragozaserrano.compose.components.backgrounds.RoundedBackground
+import com.mzaragozaserrano.compose.components.images.ResourceImage
+import com.mzaragozaserrano.compose.components.texts.SmallText
 import com.mzaragozaserrano.presentation.R
 
 @Composable

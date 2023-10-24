@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.compose.composables.utils
+package com.mzaragozaserrano.compose.components.utils
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn

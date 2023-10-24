@@ -1,12 +1,12 @@
-package com.mzaragozaserrano.compose.composables.texts
+package com.mzaragozaserrano.compose.components.texts
 
+import androidx.annotation.StringRes
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.mzaragozaserrano.compose.utils.FontSize
@@ -14,19 +14,18 @@ import com.mzaragozaserrano.compose.utils.TextType
 import com.mzaragozaserrano.presentation.R
 
 @Composable
-fun LargeBoldText(
+fun NormalText(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.onPrimary,
     maxLines: Int = 1,
     text: String,
     textAlign: TextAlign = TextAlign.Start,
-    textType: TextType = TextType.Adjust(FontSize.Large.size),
+    textType: TextType = TextType.Adjust(FontSize.Normal.size),
 ) {
     BaseText(
         modifier = modifier,
         color = color,
-        fontSize = FontSize.Large.size,
-        fontWeight = FontWeight.Bold,
+        fontSize = FontSize.Normal.size,
         maxLines = maxLines,
         text = text,
         textAlign = textAlign,
@@ -35,19 +34,38 @@ fun LargeBoldText(
 }
 
 @Composable
-fun LargeBoldText(
+fun NormalText(
+    modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.onPrimary,
+    maxLines: Int = 1,
+    @StringRes textId: Int,
+    textAlign: TextAlign = TextAlign.Start,
+    textType: TextType = TextType.Adjust(FontSize.Normal.size),
+) {
+    BaseText(
+        modifier = modifier,
+        color = color,
+        fontSize = FontSize.Normal.size,
+        maxLines = maxLines,
+        text = stringResource(id = textId),
+        textAlign = textAlign,
+        textType = textType
+    )
+}
+
+@Composable
+fun NormalText(
     modifier: Modifier = Modifier,
     color: Color = MaterialTheme.colorScheme.onPrimary,
     maxLines: Int = 1,
     text: AnnotatedString,
     textAlign: TextAlign = TextAlign.Start,
-    textType: TextType = TextType.Adjust(FontSize.Large.size),
+    textType: TextType = TextType.Adjust(FontSize.Normal.size),
 ) {
     BaseText(
         modifier = modifier,
         color = color,
-        fontSize = FontSize.Large.size,
-        fontWeight = FontWeight.Bold,
+        fontSize = FontSize.Normal.size,
         maxLines = maxLines,
         text = text,
         textAlign = textAlign,
@@ -57,6 +75,6 @@ fun LargeBoldText(
 
 @Preview
 @Composable
-private fun LargeBoldTextPrev() {
-    LargeBoldText(text = stringResource(id = R.string.hello_world))
+private fun NormalTextPrev() {
+    NormalText(text = stringResource(id = R.string.hello_world))
 }

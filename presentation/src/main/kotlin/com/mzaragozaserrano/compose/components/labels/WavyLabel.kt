@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.compose.composables.labels
+package com.mzaragozaserrano.compose.components.labels
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -23,8 +23,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.mzaragozaserrano.compose.composables.images.ResourceImage
-import com.mzaragozaserrano.compose.composables.texts.NormalText
+import com.mzaragozaserrano.compose.components.images.ResourceImage
+import com.mzaragozaserrano.compose.components.texts.NormalText
 import com.mzaragozaserrano.presentation.R
 
 @Composable

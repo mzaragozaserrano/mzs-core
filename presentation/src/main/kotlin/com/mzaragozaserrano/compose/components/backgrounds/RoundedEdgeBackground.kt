@@ -1,5 +1,6 @@
-package com.mzaragozaserrano.compose.composables.backgrounds
+package com.mzaragozaserrano.compose.components.backgrounds
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -11,20 +12,23 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.mzaragozaserrano.compose.composables.texts.NormalText
+import com.mzaragozaserrano.compose.components.texts.NormalText
 import com.mzaragozaserrano.presentation.R
 
 @Composable
-fun RoundedBackground(
+fun RoundedEdgeBackground(
     modifier: Modifier = Modifier,
-    cornerRadius: Dp = 12.dp,
     backgroundColor: Color = Color.White,
+    borderColor: Color = Color.Black,
+    cornerRadius: Dp = 12.dp,
+    strokeBorder: Dp = 1.dp,
     content: @Composable () -> Unit,
 ) {
     Card(
-        modifier = modifier,
+        shape = RoundedCornerShape(size = cornerRadius),
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
-        shape = RoundedCornerShape(size = cornerRadius)
+        border = BorderStroke(color = borderColor, width = strokeBorder),
+        modifier = modifier
     ) {
         content()
     }
@@ -32,8 +36,8 @@ fun RoundedBackground(
 
 @Preview
 @Composable
-private fun RoundedBackgroundPrev() {
-    RoundedBackground(modifier = Modifier.padding(all = 16.dp)) {
+private fun RoundedEdgeBackgroundPrev() {
+    RoundedEdgeBackground(modifier = Modifier.padding(all = 16.dp)) {
         NormalText(
             modifier = Modifier.padding(all = 16.dp),
             color = Color.Black,

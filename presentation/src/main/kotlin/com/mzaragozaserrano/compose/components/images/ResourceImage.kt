@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.compose.composables.images
+package com.mzaragozaserrano.compose.components.images
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image

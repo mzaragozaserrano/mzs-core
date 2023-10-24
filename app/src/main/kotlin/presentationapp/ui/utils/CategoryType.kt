@@ -8,13 +8,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.mzaragozaserrano.compose.composables.buttons.PushedButton
-import com.mzaragozaserrano.compose.composables.labels.WavyLabel
-import com.mzaragozaserrano.compose.composables.texts.ExtraLargeMediumText
-import com.mzaragozaserrano.compose.composables.texts.LargeBoldText
-import com.mzaragozaserrano.compose.composables.texts.NormalText
-import com.mzaragozaserrano.compose.composables.texts.SmallText
-import com.mzaragozaserrano.compose.composables.utils.Line
+import com.mzaragozaserrano.compose.components.buttons.PushedButton
+import com.mzaragozaserrano.compose.components.labels.WavyLabel
+import com.mzaragozaserrano.compose.components.texts.ExtraLargeMediumText
+import com.mzaragozaserrano.compose.components.texts.LargeBoldText
+import com.mzaragozaserrano.compose.components.texts.NormalText
+import com.mzaragozaserrano.compose.components.texts.SmallText
+import com.mzaragozaserrano.compose.components.utils.Line
 import com.mzaragozaserrano.presentationapp.R
 import presentationapp.ui.vo.ComponentVO
 

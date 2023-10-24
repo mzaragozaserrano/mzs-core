@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.compose.composables.cards
+package com.mzaragozaserrano.compose.components.cards
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.mzaragozaserrano.compose.composables.backgrounds.RoundedBackground
+import com.mzaragozaserrano.compose.components.backgrounds.RoundedBackground
 
 @Composable
 fun RoundedCard(
