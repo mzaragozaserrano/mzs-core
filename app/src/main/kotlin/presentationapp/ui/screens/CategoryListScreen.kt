@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mzaragozaserrano.compose.components.buttons.MinimalButton
-import com.mzaragozaserrano.compose.components.utils.Recycler
+import com.mzaragozaserrano.presentation.compose.components.buttons.MinimalButton
+import com.mzaragozaserrano.presentation.compose.components.utils.Recycler
 import presentationapp.ui.utils.CategoryType
 import presentationapp.ui.utils.createCategoryList
 

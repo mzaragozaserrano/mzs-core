@@ -10,7 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.mzaragozaserrano.compose.components.utils.Recycler
+import com.mzaragozaserrano.presentation.compose.components.utils.Recycler
 import presentationapp.ui.components.Component
 import presentationapp.ui.utils.createComponentList
 

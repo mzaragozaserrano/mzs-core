@@ -8,13 +8,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.mzaragozaserrano.compose.components.buttons.PushedButton
-import com.mzaragozaserrano.compose.components.labels.WavyLabel
-import com.mzaragozaserrano.compose.components.texts.ExtraLargeMediumText
-import com.mzaragozaserrano.compose.components.texts.LargeBoldText
-import com.mzaragozaserrano.compose.components.texts.NormalText
-import com.mzaragozaserrano.compose.components.texts.SmallText
-import com.mzaragozaserrano.compose.components.utils.Line
+import com.mzaragozaserrano.presentation.compose.components.buttons.PushedButton
+import com.mzaragozaserrano.presentation.compose.components.labels.WavyLabel
+import com.mzaragozaserrano.presentation.compose.components.texts.ExtraLargeMediumText
+import com.mzaragozaserrano.presentation.compose.components.texts.LargeBoldText
+import com.mzaragozaserrano.presentation.compose.components.texts.NormalText
+import com.mzaragozaserrano.presentation.compose.components.texts.SmallText
+import com.mzaragozaserrano.presentation.compose.components.utils.Line
 import com.mzaragozaserrano.presentationapp.R
 import presentationapp.ui.vo.ComponentVO
 
@@ -137,7 +137,8 @@ fun CategoryType.createComponentList(): List<ComponentVO> = when (this) {
                         modifier = Modifier.padding(horizontal = 12.dp),
                         color = MaterialTheme.colorScheme.onPrimaryContainer
                     )
-                })
+                }
+            )
         )
     }
 }
