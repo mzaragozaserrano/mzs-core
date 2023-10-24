@@ -2,6 +2,14 @@
     @androidx.compose.runtime.Composable *;
 }
 
+-keep class com.mzaragozaserrano.view.base.** {
+   *;
+}
+
 -keep class com.mzaragozaserrano.view.components.** {
+   *;
+}
+
+-keep class com.mzaragozaserrano.view.utils.ConstantsKt {
    *;
 }
