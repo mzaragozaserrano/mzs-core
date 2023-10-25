@@ -8,6 +8,5 @@ data class MinimalButtonVO(
     @DrawableRes val iconId: Int,
     val iconTint: Color = Color.Black,
     val textColor: Color = Color.Black,
-    @StringRes val textId: Int,
-    val onButtonClicked: () -> Unit,
+    @StringRes val textId: Int
 )

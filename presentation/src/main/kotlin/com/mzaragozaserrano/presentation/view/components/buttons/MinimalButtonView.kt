@@ -16,6 +16,9 @@ class MinimalButtonView @JvmOverloads constructor(
     attrs = attrs,
     defStyleAttr = defStyleAttr
 ) {
+
+    private var onButtonClicked: () -> Unit = {}
+
     override var content: @Composable () -> Unit = {
         with(item) {
             MinimalButton(
@@ -28,4 +31,9 @@ class MinimalButtonView @JvmOverloads constructor(
             }
         }
     }
+
+    fun setOnButtonClicked(onButtonClicked: () -> Unit) {
+        this.onButtonClicked = onButtonClicked
+    }
+    
 }

@@ -27,8 +27,8 @@ import com.mzaragozaserrano.presentation.compose.components.texts.SmallText
 fun MinimalButton(
     modifier: Modifier = Modifier,
     @DrawableRes iconId: Int,
-    iconTint: Color = Color.Black,
-    textColor: Color = Color.Black,
+    iconTint: Color? = null,
+    textColor: Color? = null,
     @StringRes textId: Int,
     onButtonClicked: () -> Unit,
 ) {
@@ -61,7 +61,7 @@ fun MinimalButton(
                 iconTint = iconTint,
                 size = 36.dp
             )
-            SmallText(color = textColor, textId = textId)
+            SmallText(color = textColor ?: MaterialTheme.colorScheme.onPrimary, textId = textId)
         }
     }
 }
