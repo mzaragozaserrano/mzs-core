@@ -10,6 +10,10 @@
    *;
 }
 
+-keep class com.mzaragozaserrano.presentation.view.vo.** {
+   *;
+}
+
 -keep class com.mzaragozaserrano.presentation.view.utils.ConstantsKt {
    *;
 }
