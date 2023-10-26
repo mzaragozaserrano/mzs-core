@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 abstract class BaseFragment<S, I, VB : ViewBinding, VM : BaseViewModel<S, I>>(
-    @LayoutRes val layout: Int,
+    @LayoutRes open val layout: Int,
 ) : Fragment(), CoroutineScope by MainScope() {
 
     private var callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
