@@ -1,6 +1,7 @@
 package com.mzaragozaserrano.presentation.view.base
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -55,6 +56,13 @@ abstract class BaseActivity<S, I, VB : ViewBinding, VM : BaseViewModel<S, I>> :
         val imm: InputMethodManager =
             applicationContext?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(window.decorView.rootView.windowToken, 0)
+    }
+
+    open fun <T> clearAndNavigateToNewActivity(className: Class<T>, bundle: Bundle? = null) {
+        val intent = Intent(this, className)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        bundle?.let { extras -> intent.putExtras(extras) }
+        startActivity(intent)
     }
 
 }
