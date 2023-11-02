@@ -17,3 +17,4 @@ rootProject.name = "mzs-core"
 include(":app")
 include(":presentation")
 include(":domain")
+include(":data")
