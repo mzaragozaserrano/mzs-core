@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.mzaragozaserrano.presentationapp"
+    namespace = "com.mzaragozaserrano.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mzaragozaserrano.presentationapp"
+        applicationId = "com.mzaragozaserrano.app"
         minSdk = 24
         versionCode = 1
         versionName = "1.0"
