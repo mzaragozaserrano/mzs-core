@@ -36,5 +36,8 @@ dependencies {
 
     //----- JETBRAINS ----------/
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+
+    //------------  JSON PARSER  --------------------------------//
+    implementation("com.squareup.moshi:moshi-kotlin:1.14.0")
     
 }
