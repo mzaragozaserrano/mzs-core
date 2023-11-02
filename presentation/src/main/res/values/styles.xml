@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CoreTextMedium">
+        <item name="android:fontFamily">@font/nunito_medium</item>
+    </style>
+
+    <style name="Toolbar.Title" parent="CoreTextMedium" >
+        <item name="android:textSize">20sp</item>
+    </style>
+
+</resources>
