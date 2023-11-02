@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.mzaragozaserrano.app.R
 import com.mzaragozaserrano.presentation.compose.components.buttons.PushedButton
 import com.mzaragozaserrano.presentation.compose.components.labels.WavyLabel
 import com.mzaragozaserrano.presentation.compose.components.texts.ExtraLargeMediumText
@@ -15,7 +16,6 @@ import com.mzaragozaserrano.presentation.compose.components.texts.LargeBoldText
 import com.mzaragozaserrano.presentation.compose.components.texts.NormalText
 import com.mzaragozaserrano.presentation.compose.components.texts.SmallText
 import com.mzaragozaserrano.presentation.compose.components.utils.Line
-import com.mzaragozaserrano.presentationapp.R
 import presentationapp.ui.vo.ComponentVO
 
 sealed class CategoryType(@StringRes val textId: Int, @DrawableRes val imageId: Int) {
@@ -115,16 +115,16 @@ fun CategoryType.createComponentList(): List<ComponentVO> = when (this) {
         listOf(
             ComponentVO(
                 nameId = R.string.extra_large_medium_text,
-                listItems = listOf { ExtraLargeMediumText(text = stringResource(id = R.string.hello_world)) }),
+                listItems = listOf { ExtraLargeMediumText(text = stringResource(id = com.mzaragozaserrano.presentation.R.string.core_hello_world)) }),
             ComponentVO(
                 nameId = R.string.large_bold_text,
-                listItems = listOf { LargeBoldText(text = stringResource(id = R.string.hello_world)) }),
+                listItems = listOf { LargeBoldText(text = stringResource(id = com.mzaragozaserrano.presentation.R.string.core_hello_world)) }),
             ComponentVO(
                 nameId = R.string.normal_text,
-                listItems = listOf { NormalText(text = stringResource(id = R.string.hello_world)) }),
+                listItems = listOf { NormalText(text = stringResource(id = com.mzaragozaserrano.presentation.R.string.core_hello_world)) }),
             ComponentVO(
                 nameId = R.string.small_text,
-                listItems = listOf { SmallText(text = stringResource(id = R.string.hello_world)) })
+                listItems = listOf { SmallText(text = stringResource(id = com.mzaragozaserrano.presentation.R.string.core_hello_world)) })
         )
     }
 

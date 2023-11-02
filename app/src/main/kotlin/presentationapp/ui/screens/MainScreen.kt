@@ -27,8 +27,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.mzaragozaserrano.app.R
 import com.mzaragozaserrano.presentation.compose.components.texts.ExtraLargeMediumText
-import com.mzaragozaserrano.presentationapp.R
 import presentationapp.ui.utils.CategoryType
 import presentationapp.ui.utils.navigation.NavCommand
 import presentationapp.ui.utils.navigation.Navigation

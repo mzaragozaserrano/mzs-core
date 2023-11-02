@@ -88,7 +88,7 @@ fun PushedButton(
 @Preview
 @Composable
 fun PushedButtonPrev() {
-    PushedButton(textId = R.string.button_text_message, isAnimationEnabled = true) {
+    PushedButton(textId = R.string.core_button_text_message, isAnimationEnabled = true) {
         //Here will go the action when clicking on the button
     }
 }
@@ -96,7 +96,7 @@ fun PushedButtonPrev() {
 @Preview
 @Composable
 fun PushedButtonNoAnimationPrev() {
-    PushedButton(textId = R.string.button_text_message) {
+    PushedButton(textId = R.string.core_button_text_message) {
         //Here will go the action when clicking on the button
     }
 }

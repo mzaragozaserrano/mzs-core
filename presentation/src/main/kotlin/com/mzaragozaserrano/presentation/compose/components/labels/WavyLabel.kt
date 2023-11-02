@@ -85,7 +85,7 @@ fun WavyLabel(
 @Composable
 fun WavyLabelPrev() {
     WavyLabel(
-        iconId = R.drawable.ic_cloud,
-        textId = R.string.button_text_message
+        iconId = R.drawable.core_ic_cloud,
+        textId = R.string.core_button_text_message
     )
 }

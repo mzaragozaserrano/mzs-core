@@ -37,7 +37,7 @@ private fun RoundedBackgroundPrev() {
         NormalText(
             modifier = Modifier.padding(all = 16.dp),
             color = Color.Black,
-            text = stringResource(id = R.string.hello_world)
+            text = stringResource(id = R.string.core_hello_world)
         )
     }
 }

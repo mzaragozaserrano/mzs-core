@@ -58,5 +58,5 @@ fun LargeBoldText(
 @Preview
 @Composable
 private fun LargeBoldTextPrev() {
-    LargeBoldText(text = stringResource(id = R.string.hello_world))
+    LargeBoldText(text = stringResource(id = R.string.core_hello_world))
 }

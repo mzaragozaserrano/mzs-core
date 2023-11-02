@@ -11,10 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mzaragozaserrano.app.R
 import com.mzaragozaserrano.presentation.compose.components.cards.RoundedCard
 import com.mzaragozaserrano.presentation.compose.components.labels.WavyLabel
 import com.mzaragozaserrano.presentation.compose.components.texts.LargeBoldText
-import com.mzaragozaserrano.presentationapp.R
 import presentationapp.ui.vo.ComponentVO
 
 @Composable
