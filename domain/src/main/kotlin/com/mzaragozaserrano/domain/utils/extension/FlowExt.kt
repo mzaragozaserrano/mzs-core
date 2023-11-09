@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.domain.utils
+package com.mzaragozaserrano.domain.utils.extension
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

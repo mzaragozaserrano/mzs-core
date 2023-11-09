@@ -8,6 +8,14 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.mzaragozaserrano.presentation.view.base.BaseActivity
 
+fun Fragment.hideProgressDialog() {
+    (activity as BaseActivity<*, *, *, *>).hideProgressDialog()
+}
+
+fun Fragment.showProgressDialog() {
+    (activity as BaseActivity<*, *, *, *>).showProgressDialog()
+}
+
 fun Fragment.setUpMenuToolbar(
     allowGoBack: Boolean = false,
     drawerLayout: DrawerLayout,

@@ -50,7 +50,7 @@ abstract class BaseFragment<S, I, VB : ViewBinding, VM : BaseViewModel<S, I>>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initSetup()
+        binding.initSetup()
         onBackPressedDispatcher(this)
     }
 
@@ -58,11 +58,11 @@ abstract class BaseFragment<S, I, VB : ViewBinding, VM : BaseViewModel<S, I>>(
         requireActivity().onBackPressedDispatcher.addCallback(lifecycleOwner, callback)
     }
 
-    private fun initSetup() {
+    private fun VB.initSetup() {
         setUpListeners()
     }
 
-    open fun setUpListeners() {}
+    open fun VB.setUpListeners() {}
 
     open fun onBackPressed() {}
 
