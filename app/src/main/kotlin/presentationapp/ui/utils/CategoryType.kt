@@ -71,23 +71,13 @@ fun CategoryType.createComponentList(): List<ComponentVO> = when (this) {
         listOf(
             ComponentVO(
                 nameId = R.string.pushed_button,
-                listItems = listOf(
-                    {
-                        PushedButton(
-                            buttonBackgroundColor = MaterialTheme.colorScheme.primary,
-                            isAnimationEnabled = true,
-                            textColor = MaterialTheme.colorScheme.onPrimary,
-                            textId = R.string.button_text
-                        ) {}
-                    },
-                    {
-                        PushedButton(
-                            buttonBackgroundColor = MaterialTheme.colorScheme.primary,
-                            textColor = MaterialTheme.colorScheme.onPrimary,
-                            textId = R.string.button_text
-                        ) {}
-                    }
-                )
+                listItems = listOf {
+                    PushedButton(
+                        buttonBackgroundColor = MaterialTheme.colorScheme.primary,
+                        textColor = MaterialTheme.colorScheme.onPrimary,
+                        textId = R.string.button_text
+                    ) {}
+                }
             )
         )
     }
