@@ -1,12 +1,15 @@
 package com.mzaragozaserrano.presentation.view.base
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -20,12 +23,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mzaragozaserrano.presentation.R
 import com.mzaragozaserrano.presentation.view.utils.emptyText
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-abstract class BaseActivity<S, I, VB : ViewBinding, VM : BaseViewModel<S, I>> :
+abstract class BaseActivity<S, I, VB : ViewBinding, VM : MVIViewModel<S, I>> :
     AppCompatActivity() {
 
     open var loadingRaw: Int? = null
@@ -155,6 +159,60 @@ abstract class BaseActivity<S, I, VB : ViewBinding, VM : BaseViewModel<S, I>> :
             animation.playAnimation()
             progressDialog.show()
         }
+    }
+
+    fun showAlertDialog(
+        @ColorRes backgroundColorId: Int,
+        @StringRes messageId: Int,
+        @ColorRes messageTextColorId: Int,
+        @StringRes titleId: Int,
+        @ColorRes titleTextColorId: Int,
+        @StringRes positiveButtonId: Int,
+        @DrawableRes positiveButtonTextBackgroundId: Int,
+        @ColorRes positiveButtonTextColorId: Int,
+        onPositiveButtonClicked: () -> Unit,
+    ) {
+        val dialog = MaterialAlertDialogBuilder(applicationContext)
+            .setTitle(getString(titleId))
+            .setMessage(getString(messageId))
+            .setPositiveButton(getString(positiveButtonId)) { dialog, _ ->
+                onPositiveButtonClicked()
+                dialog.dismiss()
+            }.create()
+        val dialogView = dialog.window?.decorView
+        dialogView?.setBackgroundColor(
+            ContextCompat.getColor(
+                applicationContext,
+                backgroundColorId
+            )
+        )
+
+        val titleTextView =
+            dialogView?.findViewById<TextView>(com.google.android.material.R.id.alertTitle)
+        titleTextView?.setTextColor(ContextCompat.getColor(applicationContext, titleTextColorId))
+
+        val messageTextView =
+            dialogView?.findViewById<TextView>(com.google.android.material.R.id.confirm_button)
+        messageTextView?.setTextColor(
+            ContextCompat.getColor(
+                applicationContext,
+                messageTextColorId
+            )
+        )
+
+        dialog.setOnShowListener { dialogInterface ->
+            val positiveButton =
+                (dialogInterface as AlertDialog).getButton(DialogInterface.BUTTON_POSITIVE)
+            positiveButton.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext,
+                    positiveButtonTextColorId
+                )
+            )
+            positiveButton.setBackgroundResource(positiveButtonTextBackgroundId)
+        }
+
+        dialog.show()
     }
 
     fun toastLong(message: String) {

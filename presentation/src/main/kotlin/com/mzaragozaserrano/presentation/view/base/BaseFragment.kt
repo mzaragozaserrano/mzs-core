@@ -17,7 +17,7 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-abstract class BaseFragment<S, I, VB : ViewBinding, VM : BaseViewModel<S, I>>(
+abstract class BaseFragment<S, I, VB : ViewBinding, VM : MVIViewModel<S, I>>(
     @LayoutRes open val layout: Int,
 ) : Fragment(), CoroutineScope by MainScope() {
 
@@ -50,7 +50,7 @@ abstract class BaseFragment<S, I, VB : ViewBinding, VM : BaseViewModel<S, I>>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.initSetup()
+        binding.initSetUp()
         onBackPressedDispatcher(this)
     }
 
@@ -58,7 +58,7 @@ abstract class BaseFragment<S, I, VB : ViewBinding, VM : BaseViewModel<S, I>>(
         requireActivity().onBackPressedDispatcher.addCallback(lifecycleOwner, callback)
     }
 
-    private fun VB.initSetup() {
+    private fun VB.initSetUp() {
         setUpListeners()
     }
 
