@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-abstract class BaseViewModel<S, I> : ViewModel() {
+abstract class MVIViewModel<S, I> : ViewModel() {
 
     private val initialState: S by lazy { createInitialState() }
     abstract fun createInitialState(): S
