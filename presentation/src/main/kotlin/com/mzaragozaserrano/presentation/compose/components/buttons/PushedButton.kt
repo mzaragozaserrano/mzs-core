@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
@@ -77,7 +78,9 @@ fun PushedButton(
         shape = CircleShape
     ) {
         SmallText(
-            modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
+            modifier = Modifier
+                .padding(horizontal = 24.dp, vertical = 16.dp)
+                .align(Alignment.CenterHorizontally),
             color = textColor,
             text = stringResource(id = textId).uppercase(),
             textAlign = TextAlign.Center
@@ -87,7 +90,7 @@ fun PushedButton(
 
 @Preview
 @Composable
-fun PushedButtonPrev() {
+private fun PushedButtonPrev() {
     PushedButton(textId = R.string.core_button_text_message, isAnimationEnabled = true) {
         //Here will go the action when clicking on the button
     }
@@ -95,7 +98,7 @@ fun PushedButtonPrev() {
 
 @Preview
 @Composable
-fun PushedButtonNoAnimationPrev() {
+private fun PushedButtonNoAnimationPrev() {
     PushedButton(textId = R.string.core_button_text_message) {
         //Here will go the action when clicking on the button
     }
