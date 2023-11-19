@@ -22,6 +22,7 @@ fun NormalText(
     textAlign: TextAlign = TextAlign.Start,
     textType: TextType = TextType.Adjust(FontSize.Normal.size),
 ) {
+
     BaseText(
         modifier = modifier,
         color = color,
@@ -31,6 +32,7 @@ fun NormalText(
         textAlign = textAlign,
         textType = textType
     )
+
 }
 
 @Composable
@@ -42,6 +44,7 @@ fun NormalText(
     textAlign: TextAlign = TextAlign.Start,
     textType: TextType = TextType.Adjust(FontSize.Normal.size),
 ) {
+
     BaseText(
         modifier = modifier,
         color = color,
@@ -51,6 +54,7 @@ fun NormalText(
         textAlign = textAlign,
         textType = textType
     )
+
 }
 
 @Composable

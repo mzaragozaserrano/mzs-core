@@ -18,7 +18,6 @@ object CustomTextModule {
 }
 
 object DefaultFontProvider : FontProvider {
-
     override val fontFamily: FontFamily = FontFamily(
         Font(R.font.nunito_black, FontWeight.Black),
         Font(R.font.nunito_bold, FontWeight.Bold),
@@ -29,5 +28,4 @@ object DefaultFontProvider : FontProvider {
         Font(R.font.nunito_regular, FontWeight.Normal),
         Font(R.font.nunito_semi_bold, FontWeight.SemiBold)
     )
-
 }

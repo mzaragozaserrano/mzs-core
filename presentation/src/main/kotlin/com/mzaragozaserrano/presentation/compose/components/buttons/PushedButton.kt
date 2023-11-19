@@ -35,12 +35,14 @@ fun PushedButton(
     @StringRes textId: Int,
     onButtonClicked: () -> Unit,
 ) {
-    var isPressed by remember { mutableStateOf(false) }
-    val scale = animateFloatAsState(if (isPressed) 0.93f else 1f, label = "")
+
+    var isPressed by remember { mutableStateOf(value = false) }
+    val scale = animateFloatAsState(targetValue = if (isPressed) 0.93f else 1f, label = "")
+
     Card(
         modifier = modifier
             .scale(scale = scale.value)
-            .clip(shape = RoundedCornerShape(8.dp))
+            .clip(shape = RoundedCornerShape(size = 8.dp))
             .pointerInteropFilter {
                 when (it.action) {
                     MotionEvent.ACTION_DOWN -> {
@@ -55,17 +57,18 @@ fun PushedButton(
                 true
             },
         colors = CardDefaults.cardColors(containerColor = buttonBackgroundColor),
-        shape = RoundedCornerShape(8.dp)
+        shape = RoundedCornerShape(size = 8.dp)
     ) {
         SmallMediumText(
             modifier = Modifier
                 .padding(horizontal = 24.dp, vertical = 16.dp)
-                .align(Alignment.CenterHorizontally),
+                .align(alignment = Alignment.CenterHorizontally),
             color = textColor,
             text = stringResource(id = textId).uppercase(),
             textAlign = TextAlign.Center
         )
     }
+
 }
 
 @Preview

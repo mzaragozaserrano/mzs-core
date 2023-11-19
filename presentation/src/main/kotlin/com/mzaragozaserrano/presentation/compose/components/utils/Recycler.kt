@@ -72,6 +72,7 @@ fun <T> Recycler(
             }
         }
     }
+
 }
 
 @Composable
@@ -83,6 +84,7 @@ private fun <T> HorizontalGridRecycler(
     spaceBetween: Dp,
     contentItem: @Composable (T) -> Unit,
 ) {
+
     LazyHorizontalGrid(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(space = spaceBetween),
@@ -95,6 +97,7 @@ private fun <T> HorizontalGridRecycler(
             contentItem(item)
         }
     }
+
 }
 
 @Composable
@@ -106,6 +109,7 @@ private fun <T> HorizontalRecycler(
     spaceBetween: Dp,
     contentItem: @Composable (T) -> Unit,
 ) {
+
     LazyRow(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(space = spaceBetween)
@@ -117,6 +121,7 @@ private fun <T> HorizontalRecycler(
             }
         }
     }
+
 }
 
 @Composable
@@ -128,6 +133,7 @@ private fun <T> VerticalGridRecycler(
     spaceBetween: Dp,
     contentItem: @Composable (T) -> Unit,
 ) {
+
     LazyVerticalGrid(
         modifier = modifier,
         columns = if (itemMinSize != null) GridCells.Adaptive(minSize = itemMinSize) else GridCells.Fixed(
@@ -140,6 +146,7 @@ private fun <T> VerticalGridRecycler(
             contentItem(item)
         }
     }
+
 }
 
 @Composable
@@ -151,6 +158,7 @@ private fun <T> VerticalRecycler(
     spaceBetween: Dp,
     contentItem: @Composable (T) -> Unit,
 ) {
+
     LazyColumn(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(space = spaceBetween)
@@ -162,4 +170,5 @@ private fun <T> VerticalRecycler(
             }
         }
     }
+    
 }

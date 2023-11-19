@@ -18,12 +18,13 @@ import com.mzaragozaserrano.presentation.compose.components.texts.NormalText
 @Composable
 fun RoundedEdgeBackground(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = Color.White,
-    borderColor: Color = Color.Black,
-    cornerRadius: Dp = 12.dp,
-    strokeBorder: Dp = 1.dp,
+    backgroundColor: Color,
+    borderColor: Color,
+    cornerRadius: Dp,
+    strokeBorder: Dp,
     content: @Composable () -> Unit,
 ) {
+
     Card(
         shape = RoundedCornerShape(size = cornerRadius),
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
@@ -32,12 +33,19 @@ fun RoundedEdgeBackground(
     ) {
         content()
     }
+
 }
 
 @Preview
 @Composable
 private fun RoundedEdgeBackgroundPrev() {
-    RoundedEdgeBackground(modifier = Modifier.padding(all = 16.dp)) {
+    RoundedEdgeBackground(
+        modifier = Modifier.padding(all = 16.dp),
+        backgroundColor = Color.White,
+        borderColor = Color.Black,
+        cornerRadius = 12.dp,
+        strokeBorder = 1.dp
+    ) {
         NormalText(
             modifier = Modifier.padding(all = 16.dp),
             color = Color.Black,

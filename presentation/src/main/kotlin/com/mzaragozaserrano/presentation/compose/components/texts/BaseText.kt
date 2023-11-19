@@ -76,6 +76,7 @@ fun BaseText(
         },
         overflow = TextOverflow.Ellipsis
     )
+
 }
 
 @Composable
@@ -136,4 +137,5 @@ fun BaseText(
         },
         overflow = TextOverflow.Ellipsis
     )
+
 }

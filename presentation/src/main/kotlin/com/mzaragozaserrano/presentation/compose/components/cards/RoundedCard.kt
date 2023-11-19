@@ -22,10 +22,11 @@ fun RoundedCard(
     shadowElevation: Dp = 10.dp,
     content: @Composable () -> Unit,
 ) {
+
     Surface(
         modifier = modifier,
         shadowElevation = shadowElevation,
-        shape = RoundedCornerShape(cornerRadius)
+        shape = RoundedCornerShape(size = cornerRadius)
     ) {
         RoundedBackground(
             backgroundColor = backgroundColor,
@@ -34,12 +35,16 @@ fun RoundedCard(
             content()
         }
     }
+
 }
 
-@Preview(showBackground = true, backgroundColor = 0xFFFFFFFF)
+@Preview(showBackground = true)
 @Composable
 private fun RoundedCardPrev() {
     RoundedCard(modifier = Modifier.padding(all = 16.dp)) {
-        Text(modifier = Modifier.padding(all = 16.dp), text = stringResource(id = R.string.core_hello_world))
+        Text(
+            modifier = Modifier.padding(all = 16.dp),
+            text = stringResource(id = R.string.core_hello_world)
+        )
     }
 }

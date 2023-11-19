@@ -1,4 +1,4 @@
-package com.mzaragozaserrano.presentation.common.utils.extensions
+package com.mzaragozaserrano.presentation.utils
 
 import android.content.Intent
 import android.os.Build

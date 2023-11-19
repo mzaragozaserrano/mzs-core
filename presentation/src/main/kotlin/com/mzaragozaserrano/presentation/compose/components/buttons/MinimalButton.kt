@@ -32,6 +32,7 @@ fun MinimalButton(
     @StringRes textId: Int,
     onButtonClicked: () -> Unit,
 ) {
+
     RoundedBackground(
         modifier = modifier
             .aspectRatio(ratio = 1f)
@@ -44,7 +45,8 @@ fun MinimalButton(
                     onButtonClicked()
                 }
             ),
-        backgroundColor = Color.Transparent
+        backgroundColor = Color.Transparent,
+        cornerRadius = 12.dp
     ) {
         Column(
             modifier = Modifier
@@ -64,6 +66,7 @@ fun MinimalButton(
             SmallText(color = textColor ?: MaterialTheme.colorScheme.onPrimary, textId = textId)
         }
     }
+
 }
 
 @Preview

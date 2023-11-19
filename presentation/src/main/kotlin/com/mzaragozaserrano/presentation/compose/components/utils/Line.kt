@@ -17,12 +17,14 @@ fun Line(
     color: Color = Color.Black,
     height: Dp = 1.dp,
 ) {
+
     Divider(
         modifier = modifier
             .fillMaxWidth()
             .height(height = height),
         color = color
     )
+
 }
 
 @Preview

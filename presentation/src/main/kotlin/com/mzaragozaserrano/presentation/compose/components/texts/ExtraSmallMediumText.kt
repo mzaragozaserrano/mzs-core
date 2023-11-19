@@ -22,6 +22,7 @@ fun ExtraSmallMediumText(
     textAlign: TextAlign = TextAlign.Start,
     textType: TextType = TextType.Adjust(FontSize.ExtraSmall.size),
 ) {
+
     BaseText(
         modifier = modifier,
         color = color,
@@ -32,6 +33,7 @@ fun ExtraSmallMediumText(
         textAlign = textAlign,
         textType = textType
     )
+
 }
 
 @Composable
@@ -43,6 +45,7 @@ fun ExtraSmallMediumText(
     textAlign: TextAlign = TextAlign.Start,
     textType: TextType = TextType.Adjust(FontSize.ExtraSmall.size),
 ) {
+
     BaseText(
         modifier = modifier,
         color = color,
@@ -53,6 +56,7 @@ fun ExtraSmallMediumText(
         textAlign = textAlign,
         textType = textType
     )
+
 }
 
 @Preview

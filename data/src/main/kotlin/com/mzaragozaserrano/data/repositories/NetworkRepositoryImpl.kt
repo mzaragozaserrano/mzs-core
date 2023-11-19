@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 class NetworkRepositoryImpl @Inject constructor(@ApplicationContext private val context: Context) :
     NetworkRepository {
+
     override fun isConnected(): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -15,4 +16,5 @@ class NetworkRepositoryImpl @Inject constructor(@ApplicationContext private val 
             connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
         return capabilities != null
     }
+
 }

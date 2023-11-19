@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -19,12 +20,14 @@ import com.mzaragozaserrano.presentation.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LottieProgressDialog(@RawRes animation: Int) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(animation))
+fun LottieProgressDialog(@RawRes animation: Int, height: Dp, width: Dp) {
+
+    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(animation))
+
     AlertDialog(
         modifier = Modifier
-            .width(260.dp)
-            .height(260.dp),
+            .height(height = height)
+            .width(width = width),
         onDismissRequest = {}
     ) {
         LottieAnimation(
@@ -33,10 +36,11 @@ fun LottieProgressDialog(@RawRes animation: Int) {
             iterations = LottieConstants.IterateForever
         )
     }
+
 }
 
 @Preview
 @Composable
 private fun LottieProgressDialogPrev() {
-    LottieProgressDialog(R.raw.loading)
+    LottieProgressDialog(animation = R.raw.loading, height = 500.dp, width = 500.dp)
 }

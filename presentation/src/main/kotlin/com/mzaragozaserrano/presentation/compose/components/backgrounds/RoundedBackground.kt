@@ -17,10 +17,11 @@ import com.mzaragozaserrano.presentation.compose.components.texts.NormalText
 @Composable
 fun RoundedBackground(
     modifier: Modifier = Modifier,
-    cornerRadius: Dp = 12.dp,
-    backgroundColor: Color = Color.White,
+    backgroundColor: Color,
+    cornerRadius: Dp,
     content: @Composable () -> Unit,
 ) {
+
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
@@ -28,12 +29,17 @@ fun RoundedBackground(
     ) {
         content()
     }
+
 }
 
 @Preview
 @Composable
 private fun RoundedBackgroundPrev() {
-    RoundedBackground(modifier = Modifier.padding(all = 16.dp)) {
+    RoundedBackground(
+        modifier = Modifier.padding(all = 16.dp),
+        backgroundColor = Color.White,
+        cornerRadius = 12.dp
+    ) {
         NormalText(
             modifier = Modifier.padding(all = 16.dp),
             color = Color.Black,

@@ -30,11 +30,11 @@ import com.mzaragozaserrano.presentation.compose.components.texts.NormalText
 @Composable
 fun WavyLabel(
     modifier: Modifier = Modifier,
-    buttonBackgroundColor: Color = Color.LightGray,
-    iconBackgroundColor: Color = Color.White,
+    buttonBackgroundColor: Color,
+    iconBackgroundColor: Color,
     @DrawableRes iconId: Int,
-    iconTint: Color = Color.Black,
-    textColor: Color = Color.Black,
+    iconTint: Color,
+    textColor: Color,
     @StringRes textId: Int,
 ) {
 
@@ -66,7 +66,8 @@ fun WavyLabel(
                     ResourceImage(
                         modifier = Modifier.padding(all = 12.dp),
                         iconTint = iconTint,
-                        iconId = iconId
+                        iconId = iconId,
+                        size = 24.dp
                     )
                 }
             }
@@ -85,7 +86,11 @@ fun WavyLabel(
 @Composable
 private fun WavyLabelPrev() {
     WavyLabel(
+        buttonBackgroundColor = Color.LightGray,
+        iconBackgroundColor = Color.White,
         iconId = R.drawable.core_ic_cloud,
+        iconTint = Color.Black,
+        textColor = Color.Black,
         textId = R.string.core_button_text_message
     )
 }

@@ -21,10 +21,11 @@ fun UrlImage(
     url: String,
     contentScale: ContentScale = ContentScale.Crop,
 ) {
+
     AsyncImage(
-        model = ImageRequest.Builder(LocalContext.current)
+        model = ImageRequest.Builder(context = LocalContext.current)
             .data(url)
-            .crossfade(true)
+            .crossfade(enable = true)
             .transformations(cornerRadius?.let { RoundedCornersTransformation(radius = LocalDensity.current.density * cornerRadius.value) }
                 ?: RoundedCornersTransformation(radius = 0f))
             .build(),
@@ -33,4 +34,5 @@ fun UrlImage(
         contentScale = contentScale,
         modifier = modifier
     )
+
 }

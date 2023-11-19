@@ -12,6 +12,7 @@ abstract class FlowUseCase<in P, out R, out E>(
     private val networkError: E,
     private val networkRepository: NetworkRepository,
 ) where R : Any {
+
     abstract suspend fun run(params: P): Flow<R>
 
     suspend operator fun invoke(params: P): Flow<R> =
@@ -28,6 +29,7 @@ abstract class FlowUseCaseNoParams<out R, out E>(
     private val networkError: E,
     private val networkRepository: NetworkRepository,
 ) where R : Any {
+
     abstract suspend fun run(): Flow<R>
 
     suspend operator fun invoke(): Flow<R> =

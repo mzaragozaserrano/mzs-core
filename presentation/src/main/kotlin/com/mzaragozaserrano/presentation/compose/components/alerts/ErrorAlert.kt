@@ -28,6 +28,7 @@ fun ErrorAlert(
     @StringRes titleTextId: Int,
     onRetryButtonClicked: () -> Unit,
 ) {
+
     AlertDialog(
         confirmButton = {
             PushedButton(
@@ -39,15 +40,6 @@ fun ErrorAlert(
             }
         },
         containerColor = alertBackgroundColor,
-        title = {
-            LargeBoldText(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
-                color = titleTextColor,
-                text = stringResource(id = titleTextId).uppercase()
-            )
-        },
         text = {
             NormalMediumText(
                 modifier = Modifier
@@ -58,8 +50,18 @@ fun ErrorAlert(
                 text = stringResource(id = messageTextId),
             )
         },
+        title = {
+            LargeBoldText(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp),
+                color = titleTextColor,
+                text = stringResource(id = titleTextId).uppercase()
+            )
+        },
         onDismissRequest = { /*TODO*/ }
     )
+
 }
 
 @Preview

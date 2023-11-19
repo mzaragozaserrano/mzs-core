@@ -24,6 +24,7 @@ fun <T> ItemList(
             }
         }
     }
+
     when (orientation) {
         is ObjectOrientation.Horizontal -> {
             HorizontalList(modifier = modifier, content = content)
@@ -33,6 +34,7 @@ fun <T> ItemList(
             VerticalList(modifier = modifier, content = content)
         }
     }
+
 }
 
 @Composable
@@ -40,9 +42,11 @@ private fun HorizontalList(
     modifier: Modifier,
     content: @Composable () -> Unit,
 ) {
+
     Row(modifier = modifier) {
         content()
     }
+
 }
 
 @Composable
@@ -50,7 +54,9 @@ private fun VerticalList(
     modifier: Modifier,
     content: @Composable () -> Unit,
 ) {
+
     Column(modifier = modifier) {
         content()
     }
+
 }

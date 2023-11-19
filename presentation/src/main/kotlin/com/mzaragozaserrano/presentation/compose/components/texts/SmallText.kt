@@ -22,6 +22,7 @@ fun SmallText(
     textAlign: TextAlign = TextAlign.Start,
     textType: TextType = TextType.Adjust(FontSize.Small.size),
 ) {
+
     BaseText(
         modifier = modifier,
         color = color,
@@ -31,6 +32,7 @@ fun SmallText(
         textAlign = textAlign,
         textType = textType
     )
+
 }
 
 @Composable
@@ -42,6 +44,7 @@ fun SmallText(
     textAlign: TextAlign = TextAlign.Start,
     textType: TextType = TextType.Adjust(FontSize.Small.size),
 ) {
+
     BaseText(
         modifier = modifier,
         color = color,
@@ -51,6 +54,7 @@ fun SmallText(
         textAlign = textAlign,
         textType = textType
     )
+
 }
 
 @Composable

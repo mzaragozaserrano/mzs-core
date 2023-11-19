@@ -9,9 +9,10 @@ import kotlinx.coroutines.flow.asStateFlow
 abstract class MVIViewModel<S, I> : ViewModel() {
 
     private val initialState: S by lazy { createInitialState() }
+    private val _mutableViewState = MutableStateFlow(initialState)
+
     abstract fun createInitialState(): S
 
-    private val _mutableViewState = MutableStateFlow(initialState)
     val mutableViewState: StateFlow<S> get() = _mutableViewState.asStateFlow()
 
     val intentFlow = MutableSharedFlow<I>()
