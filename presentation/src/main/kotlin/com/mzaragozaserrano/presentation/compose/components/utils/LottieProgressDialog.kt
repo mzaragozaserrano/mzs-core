@@ -42,5 +42,5 @@ fun LottieProgressDialog(@RawRes animation: Int, height: Dp, width: Dp) {
 @Preview
 @Composable
 private fun LottieProgressDialogPrev() {
-    LottieProgressDialog(animation = R.raw.loading, height = 500.dp, width = 500.dp)
+    LottieProgressDialog(animation = R.raw.core_loading, height = 500.dp, width = 500.dp)
 }
