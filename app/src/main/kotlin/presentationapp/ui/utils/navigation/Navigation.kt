@@ -8,8 +8,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import presentationapp.ui.screens.CategoryComponentScreen
-import presentationapp.ui.screens.CategoryListScreen
+import presentationapp.ui.screens.category.CategoryComponentScreen
+import presentationapp.ui.screens.category.CategoryListScreen
 import presentationapp.ui.utils.CategoryType
 import presentationapp.ui.utils.serializableCategory
 

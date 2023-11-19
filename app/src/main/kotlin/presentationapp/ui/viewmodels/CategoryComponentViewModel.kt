@@ -1,4 +1,4 @@
-package presentationapp.ui.screens
+package presentationapp.ui.viewmodels
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CategoryComponentViewModel @Inject constructor(savedStateHandle: SavedStateHandle) : ViewModel() {
 
-    private val id = savedStateHandle.get<Int>(NavArg.Category.key) ?: 0
+    private val id = savedStateHandle.get<Int>(key = NavArg.Category.key) ?: 0
 
     private val _state = MutableStateFlow(UiState())
     val state = _state.asStateFlow()
@@ -27,4 +27,5 @@ class CategoryComponentViewModel @Inject constructor(savedStateHandle: SavedStat
     }
 
     data class UiState(val category: CategoryType? = null)
+
 }

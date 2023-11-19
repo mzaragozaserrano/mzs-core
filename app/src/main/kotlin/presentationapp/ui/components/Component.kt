@@ -19,6 +19,7 @@ import presentationapp.ui.vo.ComponentVO
 
 @Composable
 fun Component(modifier: Modifier = Modifier, component: ComponentVO) {
+
     RoundedCard(modifier = modifier, backgroundColor = MaterialTheme.colorScheme.surfaceVariant) {
         Column(
             modifier = Modifier
@@ -36,6 +37,7 @@ fun Component(modifier: Modifier = Modifier, component: ComponentVO) {
             }
         }
     }
+
 }
 
 @Preview(showBackground = true)

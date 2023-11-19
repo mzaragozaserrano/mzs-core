@@ -1,4 +1,4 @@
-package presentationapp.ui.screens
+package presentationapp.ui.screens.category
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,9 +15,10 @@ import presentationapp.ui.utils.createCategoryList
 
 @Composable
 fun CategoryListScreen(modifier: Modifier = Modifier, onCategoryClicked: (CategoryType) -> Unit) {
+
     Recycler(
         modifier = modifier
-            .background(MaterialTheme.colorScheme.background)
+            .background(color = MaterialTheme.colorScheme.background)
             .padding(all = 16.dp),
         hasLine = false,
         list = createCategoryList(),
@@ -34,6 +35,7 @@ fun CategoryListScreen(modifier: Modifier = Modifier, onCategoryClicked: (Catego
             onCategoryClicked(category)
         }
     }
+
 }
 
 @Preview

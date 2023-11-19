@@ -1,4 +1,4 @@
-package presentationapp.ui.screens
+package presentationapp.ui.screens.category
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,12 +13,14 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.mzaragozaserrano.presentation.compose.components.utils.Recycler
 import presentationapp.ui.components.Component
 import presentationapp.ui.utils.createComponentList
+import presentationapp.ui.viewmodels.CategoryComponentViewModel
 
 @Composable
 fun CategoryComponentScreen(
     modifier: Modifier = Modifier,
     viewModel: CategoryComponentViewModel = hiltViewModel(),
 ) {
+
     val state by viewModel.state.collectAsState()
     state.category?.let { category ->
         Recycler(
@@ -33,4 +35,5 @@ fun CategoryComponentScreen(
             )
         }
     }
+
 }
