@@ -20,7 +20,6 @@ fun CategoryListScreen(modifier: Modifier = Modifier, onCategoryClicked: (Catego
         modifier = modifier
             .background(color = MaterialTheme.colorScheme.background)
             .padding(all = 16.dp),
-        hasLine = false,
         list = createCategoryList(),
         numberCells = 3,
         spaceBetween = 16.dp
@@ -41,5 +40,7 @@ fun CategoryListScreen(modifier: Modifier = Modifier, onCategoryClicked: (Catego
 @Preview
 @Composable
 private fun CategoryListScreenPrev() {
+
     CategoryListScreen(onCategoryClicked = {})
+
 }

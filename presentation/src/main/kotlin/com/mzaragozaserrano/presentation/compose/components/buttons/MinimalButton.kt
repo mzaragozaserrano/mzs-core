@@ -72,7 +72,9 @@ fun MinimalButton(
 @Preview
 @Composable
 private fun MinimalButtonPrev() {
+
     MinimalButton(iconId = R.drawable.core_ic_cloud, textId = R.string.core_button_text_message) {
         //Here will go the action when clicking on the button
     }
+
 }

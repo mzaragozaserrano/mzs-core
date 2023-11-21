@@ -62,5 +62,7 @@ fun ExtraLargeBlackText(
 @Preview
 @Composable
 private fun ExtraLargeBlackTextPrev() {
+
     ExtraLargeBlackText(text = stringResource(id = R.string.core_hello_world))
+
 }

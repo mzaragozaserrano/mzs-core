@@ -62,5 +62,7 @@ fun NormalMediumText(
 @Preview
 @Composable
 private fun NormalMediumTextPrev() {
+
     NormalMediumText(text = stringResource(id = R.string.core_hello_world))
+
 }

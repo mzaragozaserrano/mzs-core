@@ -35,6 +35,7 @@ fun RoundedBackground(
 @Preview
 @Composable
 private fun RoundedBackgroundPrev() {
+
     RoundedBackground(
         modifier = Modifier.padding(all = 16.dp),
         backgroundColor = Color.White,
@@ -46,4 +47,5 @@ private fun RoundedBackgroundPrev() {
             text = stringResource(id = R.string.core_hello_world)
         )
     }
+
 }

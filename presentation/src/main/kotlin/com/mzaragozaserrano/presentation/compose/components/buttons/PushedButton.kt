@@ -74,7 +74,9 @@ fun PushedButton(
 @Preview
 @Composable
 private fun PushedButtonPrev() {
+
     PushedButton(textId = R.string.core_button_text_message) {
         //Here will go the action when clicking on the button
     }
+
 }

@@ -210,4 +210,5 @@ class EncryptedPreferences @Inject constructor(
             context.getSharedPreferences(APPLICATION_PREFERENCE_TAG, Context.MODE_PRIVATE)
         return preferences.edit()
     }
+
 }

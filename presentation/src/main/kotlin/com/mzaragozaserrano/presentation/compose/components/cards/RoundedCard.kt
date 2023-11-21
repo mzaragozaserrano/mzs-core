@@ -41,10 +41,12 @@ fun RoundedCard(
 @Preview(showBackground = true)
 @Composable
 private fun RoundedCardPrev() {
+
     RoundedCard(modifier = Modifier.padding(all = 16.dp)) {
         Text(
             modifier = Modifier.padding(all = 16.dp),
             text = stringResource(id = R.string.core_hello_world)
         )
     }
+
 }

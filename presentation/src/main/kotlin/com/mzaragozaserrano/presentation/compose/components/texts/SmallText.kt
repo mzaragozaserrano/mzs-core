@@ -80,5 +80,7 @@ fun SmallText(
 @Preview
 @Composable
 private fun SmallTextPrev() {
+
     SmallText(text = stringResource(id = R.string.core_hello_world))
+
 }

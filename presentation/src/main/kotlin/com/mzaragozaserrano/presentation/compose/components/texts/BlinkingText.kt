@@ -98,5 +98,7 @@ fun BlinkingText(modifier: Modifier = Modifier, color: Color = Color.Black, font
 @Preview(showBackground = true)
 @Composable
 private fun PreviewBlinkingText() {
+
     BlinkingText(text = stringResource(id = R.string.core_hello_world))
+
 }

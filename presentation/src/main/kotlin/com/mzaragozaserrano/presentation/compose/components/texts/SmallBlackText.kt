@@ -62,5 +62,7 @@ fun SmallBlackText(
 @Preview
 @Composable
 private fun SmallBlackTextPrev() {
+
     SmallBlackText(text = stringResource(id = R.string.core_hello_world))
+
 }

@@ -62,5 +62,7 @@ fun NormalBlackText(
 @Preview
 @Composable
 private fun NormalBlackTextPrev() {
+
     NormalBlackText(text = stringResource(id = R.string.core_hello_world))
+
 }

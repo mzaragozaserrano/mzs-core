@@ -62,5 +62,7 @@ fun SmallMediumText(
 @Preview
 @Composable
 private fun SmallMediumTextPrev() {
+
     SmallMediumText(text = stringResource(id = R.string.core_hello_world))
+
 }

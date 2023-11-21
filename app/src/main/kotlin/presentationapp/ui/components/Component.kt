@@ -44,6 +44,7 @@ fun Component(modifier: Modifier = Modifier, component: ComponentVO) {
 @Preview(showBackground = true)
 @Composable
 private fun ComponentPrev() {
+
     Component(
         component = ComponentVO(
             nameId = R.string.wavy_label,
@@ -59,4 +60,5 @@ private fun ComponentPrev() {
             }
         )
     )
+
 }

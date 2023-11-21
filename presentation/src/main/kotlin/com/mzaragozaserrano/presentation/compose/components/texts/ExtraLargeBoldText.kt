@@ -62,5 +62,7 @@ fun ExtraLargeBoldText(
 @Preview
 @Composable
 private fun ExtraLargeBoldTextPrev() {
+
     ExtraLargeBoldText(text = stringResource(id = R.string.core_hello_world))
+
 }

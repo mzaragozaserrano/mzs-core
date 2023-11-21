@@ -85,6 +85,7 @@ fun WavyLabel(
 @Preview
 @Composable
 private fun WavyLabelPrev() {
+
     WavyLabel(
         buttonBackgroundColor = Color.LightGray,
         iconBackgroundColor = Color.White,
@@ -93,4 +94,5 @@ private fun WavyLabelPrev() {
         textColor = Color.Black,
         textId = R.string.core_button_text_message
     )
+
 }

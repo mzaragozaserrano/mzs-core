@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Line(
     modifier: Modifier = Modifier,
-    color: Color = Color.Black,
-    height: Dp = 1.dp,
+    color: Color,
+    height: Dp,
 ) {
 
     Divider(
@@ -30,5 +30,7 @@ fun Line(
 @Preview
 @Composable
 private fun LinePrev() {
-    Line(modifier = Modifier.padding(all = 16.dp))
+
+    Line(modifier = Modifier.padding(all = 16.dp), color = Color.Black, height = 1.dp)
+
 }

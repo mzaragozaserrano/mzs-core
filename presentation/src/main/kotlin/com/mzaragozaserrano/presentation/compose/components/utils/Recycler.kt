@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mzaragozaserrano.presentation.compose.utils.ObjectOrientation
@@ -17,8 +18,9 @@ import com.mzaragozaserrano.presentation.compose.utils.ObjectOrientation
 @Composable
 fun <T> Recycler(
     modifier: Modifier = Modifier,
-    hasLine: Boolean = false,
     itemMinSize: Dp? = null,
+    lineColor: Color? = null,
+    lineHeight: Dp = 1.dp,
     lineModifier: Modifier = Modifier,
     list: List<T>,
     numberCells: Int? = null,
@@ -41,7 +43,8 @@ fun <T> Recycler(
             } else {
                 HorizontalRecycler(
                     modifier = modifier,
-                    hasLine = hasLine,
+                    lineColor = lineColor,
+                    lineHeight = lineHeight,
                     lineModifier = lineModifier,
                     list = list,
                     spaceBetween = spaceBetween,
@@ -63,7 +66,8 @@ fun <T> Recycler(
             } else {
                 VerticalRecycler(
                     modifier = modifier,
-                    hasLine = hasLine,
+                    lineColor = lineColor,
+                    lineHeight = lineHeight,
                     lineModifier = lineModifier,
                     list = list,
                     spaceBetween = spaceBetween,
@@ -103,7 +107,8 @@ private fun <T> HorizontalGridRecycler(
 @Composable
 private fun <T> HorizontalRecycler(
     modifier: Modifier,
-    hasLine: Boolean = true,
+    lineColor: Color? = null,
+    lineHeight: Dp = 1.dp,
     lineModifier: Modifier = Modifier,
     list: List<T>,
     spaceBetween: Dp,
@@ -116,8 +121,8 @@ private fun <T> HorizontalRecycler(
     ) {
         items(list) { item ->
             contentItem(item)
-            if (hasLine && list.last() != item) {
-                Line(modifier = lineModifier)
+            if (lineColor != null && list.last() != item) {
+                Line(modifier = lineModifier, color = lineColor, height = lineHeight)
             }
         }
     }
@@ -152,7 +157,8 @@ private fun <T> VerticalGridRecycler(
 @Composable
 private fun <T> VerticalRecycler(
     modifier: Modifier,
-    hasLine: Boolean = true,
+    lineColor: Color? = null,
+    lineHeight: Dp = 1.dp,
     lineModifier: Modifier = Modifier,
     list: List<T>,
     spaceBetween: Dp,
@@ -165,10 +171,10 @@ private fun <T> VerticalRecycler(
     ) {
         items(list) { item ->
             contentItem(item)
-            if (hasLine && list.last() != item) {
-                Line(modifier = lineModifier)
+            if (lineColor != null && list.last() != item) {
+                Line(modifier = lineModifier, color = lineColor, height = lineHeight)
             }
         }
     }
-    
+
 }
