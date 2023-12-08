@@ -30,14 +30,14 @@ import com.mzaragozaserrano.presentation.compose.components.texts.SmallMediumTex
 @Composable
 fun PushedButton(
     modifier: Modifier = Modifier,
-    buttonBackgroundColor: Color = Color.LightGray,
-    textColor: Color = Color.Black,
+    buttonBackgroundColor: Color,
+    textColor: Color,
     @StringRes textId: Int,
     onButtonClicked: () -> Unit,
 ) {
 
     var isPressed by remember { mutableStateOf(value = false) }
-    val scale = animateFloatAsState(targetValue = if (isPressed) 0.93f else 1f, label = "")
+    val scale = animateFloatAsState( targetValue = if (isPressed) 0.93f else 1f, label = "")
 
     Card(
         modifier = modifier
@@ -74,9 +74,11 @@ fun PushedButton(
 @Preview
 @Composable
 private fun PushedButtonPrev() {
-
-    PushedButton(textId = R.string.core_button_text_message) {
+    PushedButton(
+        buttonBackgroundColor = Color.LightGray,
+        textColor = Color.Black,
+        textId = R.string.core_button_text_message
+    ) {
         //Here will go the action when clicking on the button
     }
-
 }
