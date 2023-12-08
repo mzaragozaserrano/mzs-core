@@ -15,7 +15,7 @@ import com.mzaragozaserrano.presentation.compose.components.texts.LargeBoldText
 import com.mzaragozaserrano.presentation.compose.components.texts.NormalMediumText
 
 @Composable
-fun ErrorAlert(
+fun CardAlert(
     alertBackgroundColor: Color,
     buttonBackgroundColor: Color,
     buttonTextColor: Color,
@@ -61,9 +61,8 @@ fun ErrorAlert(
 
 @Preview
 @Composable
-private fun ErrorAlertPrev() {
-
-    ErrorAlert(
+private fun CardAlertPrev() {
+    CardAlert(
         alertBackgroundColor = MaterialTheme.colorScheme.background,
         buttonBackgroundColor = MaterialTheme.colorScheme.errorContainer,
         buttonTextColor = MaterialTheme.colorScheme.background,
@@ -75,5 +74,4 @@ private fun ErrorAlertPrev() {
     ) {
         //Here will go the action when clicking on the button
     }
-
 }

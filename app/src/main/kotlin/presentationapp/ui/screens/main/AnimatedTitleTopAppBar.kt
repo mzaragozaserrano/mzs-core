@@ -16,45 +16,48 @@ import com.mzaragozaserrano.presentation.compose.components.texts.ExtraLargeMedi
 
 @Composable
 fun AnimatedTitleTopAppBar(isFirstTime: Boolean, titleId: Int) {
-    AnimatedContent(targetState = titleId, transitionSpec = {
-        when {
-            isFirstTime -> {
-                slideInVertically(
-                    initialOffsetY = { it },
-                    animationSpec = tween(1250)
-                ).togetherWith(
-                    slideOutVertically(
-                        targetOffsetY = { -it },
+    AnimatedContent(
+        targetState = titleId, transitionSpec = {
+            when {
+                isFirstTime -> {
+                    slideInVertically(
+                        initialOffsetY = { it },
                         animationSpec = tween(1250)
+                    ).togetherWith(
+                        slideOutVertically(
+                            targetOffsetY = { -it },
+                            animationSpec = tween(1250)
+                        )
                     )
-                )
-            }
+                }
 
-            titleId != R.string.title_categories -> {
-                slideInHorizontally(
-                    initialOffsetX = { it },
-                    animationSpec = tween(600)
-                ).togetherWith(
-                    slideOutHorizontally(
-                        targetOffsetX = { -it },
+                titleId != R.string.title_categories -> {
+                    slideInHorizontally(
+                        initialOffsetX = { it },
                         animationSpec = tween(600)
+                    ).togetherWith(
+                        slideOutHorizontally(
+                            targetOffsetX = { -it },
+                            animationSpec = tween(600)
+                        )
                     )
-                )
-            }
+                }
 
-            else -> {
-                slideInHorizontally(
-                    initialOffsetX = { -it },
-                    animationSpec = tween(600)
-                ).togetherWith(
-                    slideOutHorizontally(
-                        targetOffsetX = { it },
+                else -> {
+                    slideInHorizontally(
+                        initialOffsetX = { -it },
                         animationSpec = tween(600)
+                    ).togetherWith(
+                        slideOutHorizontally(
+                            targetOffsetX = { it },
+                            animationSpec = tween(600)
+                        )
                     )
-                )
+                }
             }
-        }
-    }, label = "") {
+        },
+        label = ""
+    ) {
         ExtraLargeMediumText(
             modifier = Modifier.fillMaxWidth(),
             text = stringResource(id = it).uppercase()

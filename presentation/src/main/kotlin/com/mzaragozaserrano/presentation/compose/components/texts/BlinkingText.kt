@@ -31,8 +31,8 @@ fun BlinkingText(modifier: Modifier = Modifier, color: Color = Color.Black, font
             repeatMode = RepeatMode.Reverse
         ),
         initialValue = 1f,
-        label = "",
         targetValue = if (isBlinking) 0.3f else 1f,
+        label = "",
     )
 
     val scale by infiniteTransition.animateFloat(
@@ -41,8 +41,8 @@ fun BlinkingText(modifier: Modifier = Modifier, color: Color = Color.Black, font
             repeatMode = RepeatMode.Reverse
         ),
         initialValue = 1f,
-        label = "",
         targetValue = if (isBlinking) 0.95f else 1f,
+        label = "",
     )
 
     when(fontSize) {

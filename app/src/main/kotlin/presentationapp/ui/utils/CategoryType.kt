@@ -125,7 +125,8 @@ fun CategoryType.createComponentList(): List<ComponentVO> = when (this) {
                 listItems = listOf {
                     Line(
                         modifier = Modifier.padding(horizontal = 12.dp),
-                        color = MaterialTheme.colorScheme.onPrimaryContainer
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        height = 1.dp
                     )
                 }
             )
