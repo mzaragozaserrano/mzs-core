@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mzaragozaserrano.presentation.R
 import com.mzaragozaserrano.presentation.compose.components.images.ResourceImage
-import com.mzaragozaserrano.presentation.compose.components.texts.NormalText
+import com.mzaragozaserrano.presentation.compose.components.texts.ExtraSmallLightText
 
 @Composable
 fun WavyLabel(
@@ -38,7 +38,7 @@ fun WavyLabel(
     @StringRes textId: Int,
 ) {
 
-    val imageSize: Dp = 24.dp
+    val imageSize: Dp = 12.dp
 
     Card(
         modifier = modifier.clip(RoundedCornerShape(bottomEnd = imageSize, topStart = imageSize)),
@@ -64,17 +64,72 @@ fun WavyLabel(
             ) {
                 Box(contentAlignment = Center) {
                     ResourceImage(
-                        modifier = Modifier.padding(all = 12.dp),
+                        modifier = Modifier.padding(all = 6.dp),
                         iconTint = iconTint,
                         iconId = iconId,
-                        size = 24.dp
+                        size = imageSize
                     )
                 }
             }
-            NormalText(
+            ExtraSmallLightText(
                 modifier = Modifier.padding(horizontal = 12.dp),
                 color = textColor,
-                text = stringResource(id = textId).uppercase(),
+                text = stringResource(id = textId),
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+
+}
+
+@Composable
+fun WavyLabel(
+    modifier: Modifier = Modifier,
+    buttonBackgroundColor: Color,
+    iconBackgroundColor: Color,
+    @DrawableRes iconId: Int,
+    iconTint: Color,
+    text: String,
+    textColor: Color
+) {
+
+    val imageSize: Dp = 12.dp
+
+    Card(
+        modifier = modifier.clip(RoundedCornerShape(bottomEnd = imageSize, topStart = imageSize)),
+        colors = CardDefaults.cardColors(containerColor = buttonBackgroundColor),
+        shape = RoundedCornerShape(
+            bottomEnd = imageSize,
+            topStart = imageSize
+        )
+    ) {
+        Row(
+            modifier = Modifier.height(intrinsicSize = IntrinsicSize.Max),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = CenterVertically
+        ) {
+            Card(
+                modifier = Modifier.aspectRatio(ratio = 1f),
+                colors = CardDefaults.cardColors(containerColor = iconBackgroundColor),
+                shape = RoundedCornerShape(
+                    bottomEnd = imageSize,
+                    topEnd = imageSize,
+                    topStart = imageSize
+                )
+            ) {
+                Box(contentAlignment = Center) {
+                    ResourceImage(
+                        modifier = Modifier.padding(all = 6.dp),
+                        iconTint = iconTint,
+                        iconId = iconId,
+                        size = imageSize
+                    )
+                }
+            }
+            ExtraSmallLightText(
+                modifier = Modifier.padding(horizontal = 12.dp),
+                color = textColor,
+                text = text,
                 textAlign = TextAlign.Center
             )
         }
