@@ -77,8 +77,11 @@ fun FallButton(
             shape = RoundedCornerShape(bottomEnd = 8.dp, bottomStart = 8.dp)
         ) {
             Row(
-                modifier = Modifier.padding(horizontal = 12.dp).align(Alignment.CenterHorizontally),
-                horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+                modifier = Modifier.padding(horizontal = 12.dp).align(alignment = Alignment.CenterHorizontally),
+                horizontalArrangement = Arrangement.spacedBy(
+                    space = 12.dp,
+                    alignment = Alignment.CenterHorizontally
+                ),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 ResourceImage(
