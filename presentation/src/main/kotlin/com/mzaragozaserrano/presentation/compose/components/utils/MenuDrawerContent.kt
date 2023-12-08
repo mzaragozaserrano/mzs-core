@@ -26,18 +26,18 @@ import androidx.compose.ui.unit.dp
 import com.mzaragozaserrano.presentation.R
 import com.mzaragozaserrano.presentation.compose.components.texts.ExtraSmallLightText
 import com.mzaragozaserrano.presentation.compose.components.texts.NormalBoldText
-import com.mzaragozaserrano.presentation.vo.AppDrawerItemInfo
 import com.mzaragozaserrano.presentation.vo.FakeItem
+import com.mzaragozaserrano.presentation.vo.MenuDrawerItemVO
 import kotlinx.coroutines.launch
 
 @Composable
-fun <T> AppDrawerContent(
+fun <T> MenuDrawerContent(
     defaultPick: T,
     drawerState: DrawerState,
     greetingTextColor: Color,
     @StringRes greetingTextId: Int,
     iconTint: Color,
-    menuItems: List<AppDrawerItemInfo<T>>,
+    menuItems: List<MenuDrawerItemVO<T>>,
     textColor: Color,
     timeTextColor: Color,
     @StringRes timeTextId: Int,
@@ -66,7 +66,7 @@ fun <T> AppDrawerContent(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     items(items = menuItems) { item ->
-                        AppDrawerItem(
+                        MenuDrawerItem(
                             iconTint = iconTint,
                             item = item,
                             textColor = textColor
@@ -89,8 +89,8 @@ fun <T> AppDrawerContent(
 
 @Preview
 @Composable
-private fun AppDrawerContentPrev() {
-    AppDrawerContent(
+private fun MenuDrawerContentPrev() {
+    MenuDrawerContent(
         defaultPick = FakeItem.HOME,
         drawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
         greetingTextColor = MaterialTheme.colorScheme.error,

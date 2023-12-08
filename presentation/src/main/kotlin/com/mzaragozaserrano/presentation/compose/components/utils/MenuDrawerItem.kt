@@ -16,13 +16,13 @@ import androidx.compose.ui.unit.dp
 import com.mzaragozaserrano.presentation.R
 import com.mzaragozaserrano.presentation.compose.components.images.ResourceImage
 import com.mzaragozaserrano.presentation.compose.components.texts.SmallMediumText
-import com.mzaragozaserrano.presentation.vo.AppDrawerItemInfo
 import com.mzaragozaserrano.presentation.vo.FakeItem
+import com.mzaragozaserrano.presentation.vo.MenuDrawerItemVO
 
 @Composable
-fun <T> AppDrawerItem(
+fun <T> MenuDrawerItem(
     iconTint: Color,
-    item: AppDrawerItemInfo<T>,
+    item: MenuDrawerItemVO<T>,
     textColor: Color,
     onClick: (options: T) -> Unit,
 ) {
@@ -41,10 +41,10 @@ fun <T> AppDrawerItem(
 
 @Preview
 @Composable
-private fun AppDrawerItemPrev() {
-    AppDrawerItem(
+private fun MenuDrawerItemPrev() {
+    MenuDrawerItem(
         iconTint = MaterialTheme.colorScheme.onPrimary,
-        item = AppDrawerItemInfo(
+        item = MenuDrawerItemVO(
             FakeItem.HOME,
             R.drawable.core_ic_menu,
             R.string.core_hello_world
