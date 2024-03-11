@@ -7,7 +7,7 @@ plugins {
 
 android {
 
-    namespace = "com.mzs.core"
+    namespace = "com.thecocktailapp.core"
     compileSdk = 34
 
     defaultConfig {
@@ -63,6 +63,9 @@ dependencies {
     //----- ANDROIDX ----------/
     implementation(libs.androidx.navigation.fragment.ktx)
 
+    //----- COIL ----------/
+    implementation(libs.coil.kt.compose)
+
     //----- COMPOSE ----------/
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.material3)
@@ -76,5 +79,16 @@ dependencies {
     //----- DAGGER ----------/
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    //----- GLIDE ----------/
+    implementation(libs.glide)
+    implementation(libs.glide.compiler)
+
+    //-----  LOTTIE ----------/
+    implementation(libs.lottie)
+    implementation(libs.lottie.compose)
+
+    //----- MATERIAL ----------/
+    implementation(libs.material3)
 
 }
