@@ -6,7 +6,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class ResourcesDataSourceImpl @Inject constructor(@ApplicationContext private val context: Context) :
-    com.thecocktailapp.core.data.datasources.local.ResourcesDataSource {
+    ResourcesDataSource {
 
     override fun getStringFromResource(@StringRes resId: Int): String = context.getString(resId)
 
