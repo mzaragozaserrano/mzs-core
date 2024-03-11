@@ -32,6 +32,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun <T> MenuDrawerContent(
+    date: String,
+    dateTextColor: Color,
     defaultPick: T,
     drawerState: DrawerState,
     greetingTextColor: Color,
@@ -39,8 +41,6 @@ fun <T> MenuDrawerContent(
     iconTint: Color,
     menuItems: List<MenuDrawerItemVO<T>>,
     textColor: Color,
-    timeTextColor: Color,
-    @StringRes timeTextId: Int,
     onClick: (T) -> Unit,
 ) {
     var currentPick by remember { mutableStateOf(defaultPick) }
@@ -58,8 +58,8 @@ fun <T> MenuDrawerContent(
                 )
                 ExtraSmallLightText(
                     modifier = Modifier.padding(horizontal = 16.dp),
-                    color = timeTextColor,
-                    text = stringResource(id = timeTextId)
+                    color = dateTextColor,
+                    text = date
                 )
                 LazyColumn(
                     modifier = Modifier.padding(top = 16.dp),
@@ -84,22 +84,21 @@ fun <T> MenuDrawerContent(
             }
         }
     }
-
 }
 
 @Preview
 @Composable
 private fun MenuDrawerContentPrev() {
     MenuDrawerContent(
+        date = stringResource(id = R.string.core_hello_world),
+        dateTextColor = MaterialTheme.colorScheme.errorContainer,
         defaultPick = FakeItem.HOME,
         drawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
         greetingTextColor = MaterialTheme.colorScheme.error,
         greetingTextId = R.string.core_message_alert_error,
         iconTint = MaterialTheme.colorScheme.onPrimary,
         menuItems = listOf(),
-        textColor = MaterialTheme.colorScheme.onPrimary,
-        timeTextColor = MaterialTheme.colorScheme.errorContainer,
-        timeTextId = R.string.core_hello_world
+        textColor = MaterialTheme.colorScheme.onPrimary
     ) {
         //Here will go the action when clicking on the button
     }

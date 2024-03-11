@@ -40,7 +40,5 @@ fun CategoryListScreen(modifier: Modifier = Modifier, onCategoryClicked: (Catego
 @Preview
 @Composable
 private fun CategoryListScreenPrev() {
-
     CategoryListScreen(onCategoryClicked = {})
-
 }
