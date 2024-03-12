@@ -61,34 +61,34 @@ android {
 dependencies {
 
     //----- ANDROIDX ----------/
-    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
 
     //----- COIL ----------/
-    implementation(libs.coil.kt.compose)
+    implementation("io.coil-kt:coil-compose:2.5.0")
 
     //----- COMPOSE ----------/
-    implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.ui.tooling)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.ui.util)
+    implementation(platform("androidx.compose:compose-bom:2023.10.01"))
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui-tooling")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.ui:ui-util")
 
     //----- COROUTINES ----------/
-    implementation(libs.kotlinx.coroutines.android)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     //----- DAGGER ----------/
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    implementation("com.google.dagger:hilt-android:2.48.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.48.1")
 
     //----- GLIDE ----------/
-    implementation(libs.glide)
-    implementation(libs.glide.compiler)
+    implementation("com.github.bumptech.glide:glide:4.11.0")
+    kapt("com.github.bumptech.glide:compiler:4.11.0")
 
     //-----  LOTTIE ----------/
-    implementation(libs.lottie)
-    implementation(libs.lottie.compose)
+    implementation("com.airbnb.android:lottie:6.1.0")
+    implementation("com.airbnb.android:lottie-compose:6.1.0")
 
     //----- MATERIAL ----------/
-    implementation(libs.material3)
+    implementation("com.google.android.material:material:1.10.0")
 
 }

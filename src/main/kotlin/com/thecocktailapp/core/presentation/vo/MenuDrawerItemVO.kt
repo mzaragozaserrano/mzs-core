@@ -1,4 +1,4 @@
-package presentation.vo
+package com.thecocktailapp.core.presentation.vo
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
