@@ -1,5 +1,6 @@
 package com.thecocktailapp.core.presentation.compose.components.backgrounds
 
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -19,14 +20,14 @@ fun RoundedBackground(
     modifier: Modifier = Modifier,
     backgroundColor: Color,
     cornerRadius: Dp,
-    content: @Composable () -> Unit,
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
         shape = RoundedCornerShape(size = cornerRadius)
     ) {
-        content()
+        content(this)
     }
 }
 
