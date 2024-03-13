@@ -1,5 +1,6 @@
 package com.thecocktailapp.core.presentation.compose.components.texts
 
+import androidx.annotation.StringRes
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,7 +23,6 @@ fun NormalMediumText(
     textAlign: TextAlign = TextAlign.Start,
     textType: TextType = TextType.Adjust(FontSize.Normal.size),
 ) {
-
     BaseText(
         modifier = modifier,
         color = color,
@@ -33,7 +33,27 @@ fun NormalMediumText(
         textAlign = textAlign,
         textType = textType
     )
+}
 
+@Composable
+fun NormalMediumText(
+    modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colorScheme.onPrimary,
+    maxLines: Int = 1,
+    @StringRes textId: Int,
+    textAlign: TextAlign = TextAlign.Start,
+    textType: TextType = TextType.Adjust(FontSize.Normal.size),
+) {
+    BaseText(
+        modifier = modifier,
+        color = color,
+        fontSize = FontSize.Normal.size,
+        fontWeight = FontWeight.Medium,
+        maxLines = maxLines,
+        text = stringResource(id = textId),
+        textAlign = textAlign,
+        textType = textType
+    )
 }
 
 @Composable
@@ -45,7 +65,6 @@ fun NormalMediumText(
     textAlign: TextAlign = TextAlign.Start,
     textType: TextType = TextType.Adjust(FontSize.Normal.size),
 ) {
-
     BaseText(
         modifier = modifier,
         color = color,
@@ -56,13 +75,10 @@ fun NormalMediumText(
         textAlign = textAlign,
         textType = textType
     )
-
 }
 
 @Preview
 @Composable
 private fun NormalMediumTextPrev() {
-
     NormalMediumText(text = stringResource(id = R.string.core_hello_world))
-
 }
