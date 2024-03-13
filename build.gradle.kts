@@ -44,18 +44,6 @@ android {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
 
-    flavorDimensions += "architecture"
-
-    productFlavors {
-        create("mvi") {
-            dimension = "architecture"
-        }
-
-        create("mvvm") {
-            dimension = "architecture"
-        }
-    }
-
 }
 
 dependencies {
