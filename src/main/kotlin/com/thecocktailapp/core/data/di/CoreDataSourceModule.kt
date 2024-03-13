@@ -1,5 +1,6 @@
 package com.thecocktailapp.core.data.di
 
+import com.thecocktailapp.core.data.datasources.local.ResourcesDataSource
 import com.thecocktailapp.core.data.datasources.local.ResourcesDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -11,6 +12,6 @@ import dagger.hilt.components.SingletonComponent
 interface CoreDataSourceModule {
 
     @Binds
-    fun bindResourcesDataSource(dataSourceImpl: ResourcesDataSourceImpl): com.thecocktailapp.core.data.datasources.local.ResourcesDataSource
+    fun bindResourcesDataSource(dataSourceImpl: ResourcesDataSourceImpl): ResourcesDataSource
 
 }
