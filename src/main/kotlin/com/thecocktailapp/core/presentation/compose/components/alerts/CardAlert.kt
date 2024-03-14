@@ -5,10 +5,15 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.thecocktailapp.core.R
 import com.thecocktailapp.core.presentation.compose.components.buttons.PushedButton
 import com.thecocktailapp.core.presentation.compose.components.texts.LargeBoldText
@@ -24,38 +29,44 @@ fun CardAlert(
     @StringRes messageTextId: Int,
     titleTextColor: Color,
     @StringRes titleTextId: Int,
-    onRetryButtonClicked: () -> Unit,
+    onButtonClicked: () -> Unit,
 ) {
 
-    AlertDialog(
-        confirmButton = {
-            PushedButton(
-                modifier = Modifier.fillMaxWidth(),
-                buttonBackgroundColor = buttonBackgroundColor,
-                textColor = buttonTextColor,
-                textId = buttonTextId
-            ) {
-                onRetryButtonClicked()
-            }
-        },
-        containerColor = alertBackgroundColor,
-        text = {
-            NormalMediumText(
-                modifier = Modifier.fillMaxWidth(),
-                color = messageTextColor,
-                maxLines = 5,
-                text = stringResource(id = messageTextId),
-            )
-        },
-        title = {
-            LargeBoldText(
-                modifier = Modifier.fillMaxWidth(),
-                color = titleTextColor,
-                text = stringResource(id = titleTextId).uppercase()
-            )
-        },
-        onDismissRequest = { /*TODO*/ }
-    )
+    var showDialog by remember { mutableStateOf(value = true) }
+
+    if (showDialog) {
+        AlertDialog(
+            confirmButton = {
+                PushedButton(
+                    modifier = Modifier.fillMaxWidth(),
+                    buttonBackgroundColor = buttonBackgroundColor,
+                    textColor = buttonTextColor,
+                    textId = buttonTextId,
+                    textPaddingVertical = 12.dp
+                ) {
+                    showDialog = false
+                    onButtonClicked()
+                }
+            },
+            containerColor = alertBackgroundColor,
+            text = {
+                NormalMediumText(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = messageTextColor,
+                    maxLines = 5,
+                    text = stringResource(id = messageTextId),
+                )
+            },
+            title = {
+                LargeBoldText(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = titleTextColor,
+                    text = stringResource(id = titleTextId).uppercase()
+                )
+            },
+            onDismissRequest = { }
+        )
+    }
 
 }
 
