@@ -22,7 +22,7 @@ import com.thecocktailapp.core.presentation.compose.utils.Text
 @Composable
 fun BlinkingText(modifier: Modifier = Modifier, color: Color = Color.Black, fontSize: Text = FontSize.ExtraLarge, text: String) {
 
-    val isBlinking by remember { mutableStateOf(true) }
+    val isBlinking by remember { mutableStateOf(value = true) }
 
     val infiniteTransition = rememberInfiniteTransition(label = "")
     val alpha by infiniteTransition.animateFloat(

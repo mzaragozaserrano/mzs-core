@@ -65,7 +65,7 @@ fun <T> MenuDrawerContent(
                         item = item,
                         textColor = textColor
                     ) { navOption ->
-                        if (currentPick != navOption) {
+                        if (currentPick != navOption || currentPick == defaultPick) {
                             currentPick = navOption
                             onClick(navOption)
                         }
