@@ -18,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -38,6 +39,7 @@ fun <T> MenuDrawerContent(
     @StringRes greetingTextId: Int,
     iconTint: Color,
     menuItems: List<MenuDrawerItemVO<T>>,
+    testTag: String = "",
     textColor: Color,
     onClick: (T) -> Unit,
 ) {
@@ -59,7 +61,12 @@ fun <T> MenuDrawerContent(
                     color = dateTextColor,
                     text = date
                 )
-                Recycler(modifier = Modifier.padding(top = 16.dp), list = menuItems) { item ->
+                Recycler(
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .testTag(tag = testTag),
+                    list = menuItems
+                ) { item ->
                     MenuDrawerItem(
                         iconTint = iconTint,
                         item = item,
