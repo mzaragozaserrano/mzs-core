@@ -21,6 +21,7 @@ import com.thecocktailapp.core.presentation.compose.components.texts.NormalMediu
 
 @Composable
 fun CardAlert(
+    modifier: Modifier = Modifier,
     alertBackgroundColor: Color,
     buttonBackgroundColor: Color,
     buttonTextColor: Color,
@@ -36,6 +37,7 @@ fun CardAlert(
 
     if (showDialog) {
         AlertDialog(
+            modifier = modifier,
             confirmButton = {
                 PushedButton(
                     modifier = Modifier.fillMaxWidth(),

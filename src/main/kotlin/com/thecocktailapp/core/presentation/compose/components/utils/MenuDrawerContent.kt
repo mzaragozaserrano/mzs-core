@@ -18,7 +18,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,6 +30,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun <T> MenuDrawerContent(
+    modifier: Modifier = Modifier,
+    modifierItem: Modifier = Modifier,
     date: String,
     dateTextColor: Color,
     defaultPick: T,
@@ -46,7 +47,7 @@ fun <T> MenuDrawerContent(
     var currentPick by remember { mutableStateOf(defaultPick) }
     val coroutineScope = rememberCoroutineScope()
 
-    ModalDrawerSheet {
+    ModalDrawerSheet(modifier = modifier) {
         Surface(color = MaterialTheme.colorScheme.background) {
             Column(
                 horizontalAlignment = Alignment.Start
@@ -62,14 +63,15 @@ fun <T> MenuDrawerContent(
                     text = date
                 )
                 Recycler(
-                    modifier = Modifier
-                        .padding(top = 16.dp)
-                        .testTag(tag = testTag),
+                    modifier = Modifier.padding(top = 16.dp),
                     list = menuItems
                 ) { item ->
                     MenuDrawerItem(
+                        modifier = modifierItem,
                         iconTint = iconTint,
+                        isSecondItem = menuItems.indexOf(item) == 1,
                         item = item,
+                        testTag = testTag,
                         textColor = textColor
                     ) { navOption ->
                         if (currentPick != navOption || currentPick == defaultPick) {

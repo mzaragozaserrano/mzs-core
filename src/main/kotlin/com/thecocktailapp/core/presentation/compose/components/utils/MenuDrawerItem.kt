@@ -10,27 +10,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.thecocktailapp.core.R
 import com.thecocktailapp.core.presentation.compose.components.images.ResourceImage
 import com.thecocktailapp.core.presentation.compose.components.texts.SmallMediumText
+import com.thecocktailapp.core.presentation.utils.conditional
 import com.thecocktailapp.core.presentation.vo.FakeItem
 import com.thecocktailapp.core.presentation.vo.MenuDrawerItemVO
 
 @Composable
 fun <T> MenuDrawerItem(
+    modifier: Modifier = Modifier,
     iconTint: Color,
+    isSecondItem: Boolean = false,
     item: MenuDrawerItemVO<T>,
+    testTag: String = "",
     textColor: Color,
     onClick: (options: T) -> Unit,
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clickable { onClick(item.drawerOption) }
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .conditional(isSecondItem, { testTag(tag = testTag) }),
         horizontalArrangement = Arrangement.spacedBy(space = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
