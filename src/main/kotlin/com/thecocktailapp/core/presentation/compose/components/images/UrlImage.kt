@@ -29,7 +29,7 @@ fun UrlImage(
         loading = {
             LottieImage(
                 modifier = Modifier.padding(all = 120.dp),
-                animation = R.raw.core_image_loading
+                animationId = R.raw.core_image_loading
             )
         },
         model = ImageRequest.Builder(context = LocalContext.current)
@@ -45,7 +45,5 @@ fun UrlImage(
 @Preview
 @Composable
 private fun UrlImagePrev() {
-
     UrlImage(url = "https://picsum.photos/200")
-
 }

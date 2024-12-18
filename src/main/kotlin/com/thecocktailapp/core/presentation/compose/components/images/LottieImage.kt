@@ -13,25 +13,20 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.thecocktailapp.core.R
 
 @Composable
-fun LottieImage(modifier: Modifier = Modifier, @RawRes animation: Int) {
-
-    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(animation))
-
+fun LottieImage(modifier: Modifier = Modifier, @RawRes animationId: Int) {
+    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(animationId))
     LottieAnimation(
         modifier = modifier,
         composition = composition,
         iterations = LottieConstants.IterateForever
     )
-
 }
 
 @Preview
 @Composable
 private fun LottieImagePrev() {
-
     LottieImage(
         modifier = Modifier.fillMaxSize(),
-        animation = R.raw.core_image_loading
+        animationId = R.raw.core_image_loading
     )
-
 }

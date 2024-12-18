@@ -9,8 +9,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -32,12 +32,11 @@ fun MinimalButton(
     @StringRes textId: Int,
     onButtonClicked: () -> Unit,
 ) {
-
     RoundedBackground(
         modifier = modifier
             .aspectRatio(ratio = 1f)
             .clickable(
-                indication = rememberRipple(
+                indication = ripple(
                     color = MaterialTheme.colorScheme.background.copy(alpha = 0.2f)
                 ),
                 interactionSource = remember { MutableInteractionSource() },
@@ -66,15 +65,12 @@ fun MinimalButton(
             SmallText(color = textColor ?: MaterialTheme.colorScheme.onPrimary, textId = textId)
         }
     }
-
 }
 
 @Preview
 @Composable
 private fun MinimalButtonPrev() {
-
     MinimalButton(iconId = R.drawable.core_ic_cloud, textId = R.string.core_button_text_message) {
         //Here will go the action when clicking on the button
     }
-
 }

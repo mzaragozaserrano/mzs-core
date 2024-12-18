@@ -2,6 +2,7 @@ package com.thecocktailapp.core.presentation.compose.components.utils
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
@@ -46,12 +47,9 @@ fun <T> MenuDrawerContent(
 ) {
     var currentPick by remember { mutableStateOf(defaultPick) }
     val coroutineScope = rememberCoroutineScope()
-
     ModalDrawerSheet(modifier = modifier) {
         Surface(color = MaterialTheme.colorScheme.background) {
-            Column(
-                horizontalAlignment = Alignment.Start
-            ) {
+            Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.Start) {
                 NormalBoldText(
                     modifier = Modifier.padding(end = 16.dp, start = 16.dp, top = 16.dp),
                     color = greetingTextColor,
