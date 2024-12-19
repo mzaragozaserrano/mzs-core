@@ -6,4 +6,12 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <style name="CoreItemMenu">
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
+    <style name="CoreToolbarTitle">
+        <item name="android:textSize">20sp</item>
+    </style>
+
 </resources>

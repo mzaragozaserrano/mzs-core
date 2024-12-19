@@ -5,7 +5,7 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.thecocktailapp.core.presentation.view.utils.GlideApp
+import com.mzs.core.presentation.utils.generic.GlideApp
 
 fun AppCompatImageView.loadImageFromUrl(@DrawableRes placeHolderId: Int, url: String) {
     GlideApp.with(context)

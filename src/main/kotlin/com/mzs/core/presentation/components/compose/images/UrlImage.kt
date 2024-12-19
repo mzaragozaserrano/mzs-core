@@ -1,4 +1,4 @@
-package com.mzs.core.presentation.components.images
+package com.mzs.core.presentation.components.compose.images
 
 import androidx.annotation.RawRes
 import androidx.compose.foundation.layout.padding
@@ -19,9 +19,9 @@ fun UrlImage(
     modifier: Modifier = Modifier,
     @RawRes animationId: Int? = null,
     contentDescription: String? = null,
+    contentScale: ContentScale,
     cornerRadius: Dp? = null,
     url: String,
-    contentScale: ContentScale = ContentScale.Crop,
 ) {
     SubcomposeAsyncImage(
         modifier = modifier,
@@ -49,5 +49,5 @@ fun UrlImage(
 @Preview
 @Composable
 private fun UrlImagePrev() {
-    UrlImage(url = "https://picsum.photos/200")
+    UrlImage(contentScale = ContentScale.Crop, url = "https://picsum.photos/200")
 }

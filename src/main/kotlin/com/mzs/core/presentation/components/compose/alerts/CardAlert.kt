@@ -1,4 +1,4 @@
-package com.mzs.core.presentation.components.alerts
+package com.mzs.core.presentation.components.compose.alerts
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.AlertDialog
@@ -13,8 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.mzs.core.presentation.components.buttons.PushedButton
+import com.mzs.core.presentation.components.compose.buttons.PushedButton
 
 @Composable
 fun CardAlert(
@@ -43,7 +42,7 @@ fun CardAlert(
                     buttonBackgroundColor = buttonBackgroundColor,
                     textColor = buttonTextColor,
                     text = buttonText,
-                    textPaddingVertical = 12.dp
+                    textStyle = MaterialTheme.typography.titleSmall
                 ) {
                     showDialog = false
                     onButtonClicked()
@@ -88,6 +87,6 @@ private fun CardAlertPrev() {
         titleTextColor = MaterialTheme.colorScheme.errorContainer,
         titleText = "Warning!"
     ) {
-        //Here will go the action when clicking on the button
+        //Here will go the action when clicking on the card
     }
 }

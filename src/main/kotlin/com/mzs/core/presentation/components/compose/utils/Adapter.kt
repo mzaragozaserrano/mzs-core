@@ -1,4 +1,4 @@
-package com.mzs.core.presentation.components.utils
+package com.mzs.core.presentation.components.compose.utils
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.LocalOverscrollConfiguration
@@ -23,12 +23,12 @@ fun <T> Adapter(
     modifier: Modifier = Modifier,
     arrangement: Arrangement.HorizontalOrVertical? = null,
     colorDivider: Color? = null,
-    contentPadding: Dp = 16.dp,
-    isScrollable: Boolean = true,
-    itemOrientation: ItemOrientation = ItemOrientation.Vertical,
+    contentPadding: Dp,
+    isScrollable: Boolean,
+    itemOrientation: ItemOrientation,
     lineModifier: Modifier = Modifier.padding(
-        horizontal = if (itemOrientation is ItemOrientation.Vertical) 16.dp else 0.dp,
-        vertical = if (itemOrientation is ItemOrientation.Horizontal) 16.dp else 0.dp,
+        horizontal = if (itemOrientation is ItemOrientation.Vertical) contentPadding else 0.dp,
+        vertical = if (itemOrientation is ItemOrientation.Horizontal) contentPadding else 0.dp,
     ),
     list: List<T>,
     item: @Composable (Int, T) -> Unit,
@@ -135,7 +135,11 @@ private fun <T> VerticalAdapter(
                 itemsIndexed(list) { index, item ->
                     item(index, item)
                     if (colorDivider != null && index < list.size - 1) {
-                        Line(modifier = lineModifier, color = colorDivider)
+                        Line(
+                            modifier = lineModifier,
+                            color = colorDivider,
+                            itemOrientation = ItemOrientation.Vertical
+                        )
                     }
                 }
             }
@@ -148,7 +152,11 @@ private fun <T> VerticalAdapter(
             list.forEachIndexed { index, item ->
                 item(index, item)
                 if (colorDivider != null && index < list.size - 1) {
-                    Line(modifier = lineModifier, color = colorDivider)
+                    Line(
+                        modifier = lineModifier,
+                        color = colorDivider,
+                        itemOrientation = ItemOrientation.Vertical
+                    )
                 }
             }
         }

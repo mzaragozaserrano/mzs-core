@@ -1,4 +1,4 @@
-package com.mzs.core.presentation.components.utils
+package com.mzs.core.presentation.components.compose.utils
 
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mzs.core.presentation.utils.generic.ItemOrientation
 
@@ -16,15 +15,14 @@ import com.mzs.core.presentation.utils.generic.ItemOrientation
 fun Line(
     modifier: Modifier = Modifier,
     color: Color,
-    itemOrientation: ItemOrientation = ItemOrientation.Vertical,
-    thickness: Dp = 1.dp,
+    itemOrientation: ItemOrientation,
 ) {
     when (itemOrientation) {
         is ItemOrientation.Horizontal -> {
             VerticalDivider(
                 modifier = modifier.fillMaxHeight(),
                 color = color,
-                thickness = thickness
+                thickness = 1.dp
             )
         }
 
@@ -32,7 +30,7 @@ fun Line(
             HorizontalDivider(
                 modifier = modifier.fillMaxWidth(),
                 color = color,
-                thickness = thickness
+                thickness = 1.dp
             )
         }
     }
@@ -41,5 +39,5 @@ fun Line(
 @Preview(showBackground = true)
 @Composable
 private fun LinePrev() {
-    Line(color = Color.Black)
+    Line(color = Color.Black, itemOrientation = ItemOrientation.Vertical)
 }

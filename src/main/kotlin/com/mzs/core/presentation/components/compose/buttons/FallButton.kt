@@ -1,4 +1,4 @@
-package com.mzs.core.presentation.components.buttons
+package com.mzs.core.presentation.components.compose.buttons
 
 import android.view.MotionEvent
 import androidx.compose.animation.AnimatedVisibility
@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,14 +26,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInteropFilter
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.mzs.core.R
-import com.mzs.core.presentation.components.images.ResourceImage
-import com.mzs.core.presentation.utils.generic.emptyLambda
-import com.thecocktailapp.core.presentation.compose.components.texts.NormalBoldText
+import com.mzs.core.presentation.components.compose.images.ResourceImage
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -40,8 +41,9 @@ fun FallButton(
     iconColor: Color,
     text: String,
     textColor: Color,
+    textStyle: TextStyle,
     onButtonClicked: () -> Unit,
-    onButtonPressed: () -> Unit = emptyLambda,
+    onButtonPressed: (() -> Unit)? = null,
 ) {
 
     var isPressed by remember { mutableStateOf(false) }
@@ -49,7 +51,7 @@ fun FallButton(
 
     val offset by animateDpAsState(
         animationSpec = tween(durationMillis = 300),
-        targetValue = if (isPressed) 25.dp else 0.dp,
+        targetValue = if (isPressed) 24.dp else 0.dp,
         label = ""
     )
 
@@ -62,7 +64,7 @@ fun FallButton(
                     when (it.action) {
                         MotionEvent.ACTION_DOWN -> {
                             isPressed = true
-                            onButtonPressed()
+                            onButtonPressed?.invoke()
                         }
 
                         MotionEvent.ACTION_UP -> {
@@ -88,18 +90,19 @@ fun FallButton(
                 ResourceImage(
                     iconId = R.drawable.core_ic_arrow_fall,
                     iconTint = iconColor,
-                    size = 18.dp
+                    size = 16.dp
                 )
-                NormalBoldText(
+                Text(
                     modifier = Modifier.padding(vertical = 16.dp),
                     color = textColor,
+                    style = textStyle,
                     text = text.uppercase(),
                     textAlign = TextAlign.Center
                 )
                 ResourceImage(
                     iconId = R.drawable.core_ic_arrow_fall,
                     iconTint = iconColor,
-                    size = 18.dp
+                    size = 16.dp
                 )
             }
         }
@@ -113,8 +116,9 @@ private fun FallButtonPrev() {
     FallButton(
         modifier = Modifier.fillMaxWidth(),
         iconColor = Color.Black,
-        textColor = Color.Black,
         text = "Accept",
+        textColor = Color.Black,
+        textStyle = MaterialTheme.typography.titleSmall,
         onButtonClicked = {
             //Here will go the action when clicking on the button
         }

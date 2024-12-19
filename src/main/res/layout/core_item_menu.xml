@@ -8,19 +8,19 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ic_menu"
+        style="@style/CoreItemMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:tint="@color/core_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/text_view_menu"
+        style="@style/CoreItemMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:textColor="@color/core_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/ic_menu"
         app:layout_constraintTop_toTopOf="parent"

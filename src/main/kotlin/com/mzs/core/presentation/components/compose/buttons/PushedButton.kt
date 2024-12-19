@@ -1,9 +1,11 @@
-package com.mzs.core.presentation.components.buttons
+package com.mzs.core.presentation.components.compose.buttons
 
 import android.view.MotionEvent
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,12 +18,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInteropFilter
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.mzs.core.presentation.components.backgrounds.RoundedBackground
-import com.thecocktailapp.core.presentation.compose.components.texts.SmallMediumText
+import com.mzs.core.presentation.components.compose.backgrounds.RoundedBackground
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -30,8 +31,7 @@ fun PushedButton(
     buttonBackgroundColor: Color,
     text: String,
     textColor: Color,
-    textPaddingHorizontal: Dp = 24.dp,
-    textPaddingVertical: Dp = 24.dp,
+    textStyle: TextStyle,
     onButtonClicked: () -> Unit,
 ) {
 
@@ -62,11 +62,12 @@ fun PushedButton(
         backgroundColor = buttonBackgroundColor,
         cornerRadius = 8.dp
     ) {
-        SmallMediumText(
+        Text(
             modifier = Modifier
-                .padding(horizontal = textPaddingHorizontal, vertical = textPaddingVertical)
+                .padding(all = 24.dp)
                 .align(alignment = Alignment.CenterHorizontally),
             color = textColor,
+            style = textStyle,
             text = text.uppercase(),
             textAlign = TextAlign.Center
         )
@@ -80,7 +81,8 @@ private fun PushedButtonPrev() {
     PushedButton(
         buttonBackgroundColor = Color.LightGray,
         textColor = Color.Black,
-        text = "Accept"
+        text = "Accept",
+        textStyle = MaterialTheme.typography.titleSmall
     ) {
         //Here will go the action when clicking on the button
     }

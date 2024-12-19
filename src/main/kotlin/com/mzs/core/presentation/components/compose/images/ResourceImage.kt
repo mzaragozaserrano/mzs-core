@@ -1,4 +1,4 @@
-package com.mzs.core.presentation.components.images
+package com.mzs.core.presentation.components.compose.images
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image

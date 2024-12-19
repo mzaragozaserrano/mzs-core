@@ -1,4 +1,4 @@
-package com.mzs.core.presentation.components.labels
+package com.mzs.core.presentation.components.compose.labels
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Arrangement
@@ -23,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mzs.core.R
-import com.mzs.core.presentation.components.images.ResourceImage
+import com.mzs.core.presentation.components.compose.images.ResourceImage
 
 @Composable
 fun WavyLabel(

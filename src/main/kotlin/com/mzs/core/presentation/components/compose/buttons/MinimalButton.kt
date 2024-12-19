@@ -1,4 +1,4 @@
-package com.mzs.core.presentation.components.buttons
+package com.mzs.core.presentation.components.compose.buttons
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.clickable
@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -18,9 +19,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mzs.core.R
-import com.mzs.core.presentation.components.backgrounds.RoundedBackground
-import com.mzs.core.presentation.components.images.ResourceImage
-import com.thecocktailapp.core.presentation.compose.components.texts.SmallText
+import com.mzs.core.presentation.components.compose.backgrounds.RoundedBackground
+import com.mzs.core.presentation.components.compose.images.ResourceImage
 
 @Composable
 fun MinimalButton(
@@ -28,7 +28,7 @@ fun MinimalButton(
     @DrawableRes iconId: Int,
     iconTint: Color? = null,
     text: String,
-    textColor: Color? = null,
+    textColor: Color,
     onButtonClicked: () -> Unit,
 ) {
     RoundedBackground(
@@ -61,7 +61,7 @@ fun MinimalButton(
                 iconTint = iconTint,
                 size = 36.dp
             )
-            SmallText(color = textColor ?: MaterialTheme.colorScheme.onPrimary, text = text)
+            Text(color = textColor, text = text)
         }
     }
 }
@@ -69,7 +69,7 @@ fun MinimalButton(
 @Preview
 @Composable
 private fun MinimalButtonPrev() {
-    MinimalButton(iconId = R.drawable.core_ic_cloud, text = "Accept") {
+    MinimalButton(iconId = R.drawable.core_ic_cloud, text = "Accept", textColor = Color.Black) {
         //Here will go the action when clicking on the button
     }
 }
