@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mzs.core.presentation.utils.generic.ItemOrientation
@@ -20,16 +21,16 @@ import com.mzs.core.presentation.utils.generic.ItemOrientation
 @Composable
 fun <T> Adapter(
     modifier: Modifier = Modifier,
+    arrangement: Arrangement.HorizontalOrVertical? = null,
+    colorDivider: Color? = null,
+    contentPadding: Dp = 16.dp,
+    isScrollable: Boolean = true,
     itemOrientation: ItemOrientation = ItemOrientation.Vertical,
     lineModifier: Modifier = Modifier.padding(
         horizontal = if (itemOrientation is ItemOrientation.Vertical) 16.dp else 0.dp,
         vertical = if (itemOrientation is ItemOrientation.Horizontal) 16.dp else 0.dp,
     ),
     list: List<T>,
-    isScrollable: Boolean = true,
-    showDivider: Boolean = false,
-    contentPadding: Dp = 16.dp,
-    arrangement: Arrangement.HorizontalOrVertical? = null,
     item: @Composable (Int, T) -> Unit,
 ) {
 
@@ -37,26 +38,26 @@ fun <T> Adapter(
         is ItemOrientation.Horizontal -> {
             HorizontalAdapter(
                 modifier = modifier,
+                arrangement = arrangement,
+                colorDivider = colorDivider,
+                contentPadding = PaddingValues(horizontal = contentPadding),
+                isScrollable = isScrollable,
                 lineModifier = lineModifier,
                 list = list,
-                contentPadding = PaddingValues(horizontal = contentPadding),
-                arrangement = arrangement,
-                isScrollable = isScrollable,
-                showDivider = showDivider,
-                content = item
+                item = item
             )
         }
 
         is ItemOrientation.Vertical -> {
             VerticalAdapter(
                 modifier = modifier,
+                arrangement = arrangement,
+                colorDivider = colorDivider,
+                contentPadding = PaddingValues(vertical = contentPadding),
+                isScrollable = isScrollable,
                 lineModifier = lineModifier,
                 list = list,
-                contentPadding = PaddingValues(vertical = contentPadding),
-                arrangement = arrangement,
-                isScrollable = isScrollable,
-                showDivider = showDivider,
-                content = item
+                item = item
             )
         }
     }
@@ -66,13 +67,13 @@ fun <T> Adapter(
 @Composable
 private fun <T> HorizontalAdapter(
     modifier: Modifier,
+    arrangement: Arrangement.HorizontalOrVertical?,
+    colorDivider: Color?,
+    contentPadding: PaddingValues,
+    isScrollable: Boolean,
     lineModifier: Modifier,
     list: List<T>,
-    contentPadding: PaddingValues,
-    arrangement: Arrangement.HorizontalOrVertical?,
-    isScrollable: Boolean,
-    showDivider: Boolean,
-    content: @Composable (Int, T) -> Unit,
+    item: @Composable (Int, T) -> Unit,
 ) {
     if (isScrollable) {
         CompositionLocalProvider(LocalOverscrollConfiguration provides null) {
@@ -82,10 +83,11 @@ private fun <T> HorizontalAdapter(
                 horizontalArrangement = arrangement ?: Arrangement.Start,
             ) {
                 itemsIndexed(list) { index, item ->
-                    content(index, item)
-                    if (showDivider && index < list.size - 1) {
+                    item(index, item)
+                    if (colorDivider != null && index < list.size - 1) {
                         Line(
                             modifier = lineModifier,
+                            color = colorDivider,
                             itemOrientation = ItemOrientation.Horizontal
                         )
                     }
@@ -98,10 +100,11 @@ private fun <T> HorizontalAdapter(
             horizontalArrangement = arrangement ?: Arrangement.Start,
         ) {
             list.forEachIndexed { index, item ->
-                content(index, item)
-                if (showDivider && index < list.size - 1) {
+                item(index, item)
+                if (colorDivider != null && index < list.size - 1) {
                     Line(
                         modifier = lineModifier,
+                        color = colorDivider,
                         itemOrientation = ItemOrientation.Horizontal
                     )
                 }
@@ -114,13 +117,13 @@ private fun <T> HorizontalAdapter(
 @Composable
 private fun <T> VerticalAdapter(
     modifier: Modifier,
+    arrangement: Arrangement.HorizontalOrVertical?,
+    colorDivider: Color?,
+    contentPadding: PaddingValues,
+    isScrollable: Boolean,
     lineModifier: Modifier,
     list: List<T>,
-    contentPadding: PaddingValues,
-    arrangement: Arrangement.HorizontalOrVertical?,
-    isScrollable: Boolean,
-    showDivider: Boolean,
-    content: @Composable (Int, T) -> Unit,
+    item: @Composable (Int, T) -> Unit,
 ) {
     if (isScrollable) {
         CompositionLocalProvider(LocalOverscrollConfiguration provides null) {
@@ -130,9 +133,9 @@ private fun <T> VerticalAdapter(
                 verticalArrangement = arrangement ?: Arrangement.Top,
             ) {
                 itemsIndexed(list) { index, item ->
-                    content(index, item)
-                    if (showDivider && index < list.size - 1) {
-                        Line(modifier = lineModifier)
+                    item(index, item)
+                    if (colorDivider != null && index < list.size - 1) {
+                        Line(modifier = lineModifier, color = colorDivider)
                     }
                 }
             }
@@ -143,9 +146,9 @@ private fun <T> VerticalAdapter(
             verticalArrangement = arrangement ?: Arrangement.Top,
         ) {
             list.forEachIndexed { index, item ->
-                content(index, item)
-                if (showDivider && index < list.size - 1) {
-                    Line(modifier = lineModifier)
+                item(index, item)
+                if (colorDivider != null && index < list.size - 1) {
+                    Line(modifier = lineModifier, color = colorDivider)
                 }
             }
         }

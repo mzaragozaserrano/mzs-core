@@ -15,24 +15,24 @@ import com.mzs.core.presentation.utils.generic.ItemOrientation
 @Composable
 fun Line(
     modifier: Modifier = Modifier,
-    thickness: Dp = 1.dp,
     color: Color,
     itemOrientation: ItemOrientation = ItemOrientation.Vertical,
+    thickness: Dp = 1.dp,
 ) {
     when (itemOrientation) {
         is ItemOrientation.Horizontal -> {
             VerticalDivider(
                 modifier = modifier.fillMaxHeight(),
-                thickness = thickness,
-                color = color
+                color = color,
+                thickness = thickness
             )
         }
 
         is ItemOrientation.Vertical -> {
             HorizontalDivider(
                 modifier = modifier.fillMaxWidth(),
-                thickness = thickness,
-                color = color
+                color = color,
+                thickness = thickness
             )
         }
     }
