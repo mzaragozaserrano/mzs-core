@@ -8,7 +8,7 @@ plugins {
 android {
 
     namespace = "com.mzs.core"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -41,7 +41,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
 
 }
@@ -49,12 +49,13 @@ android {
 dependencies {
 
     //----- ANDROIDX ----------/
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
     implementation(platform("androidx.compose:compose-bom:2024.12.01"))
     implementation("androidx.compose.material3:material3:1.3.1")
+    implementation("androidx.compose.runtime:runtime:1.4.3")
     implementation("androidx.compose.ui:ui:1.7.5")
     implementation("androidx.compose.ui:ui-tooling-preview:1.7.5")
     implementation("androidx.navigation:navigation-compose:2.8.5")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
 
     //----- COIL ----------/
     implementation("io.coil-kt:coil-compose:2.6.0")
