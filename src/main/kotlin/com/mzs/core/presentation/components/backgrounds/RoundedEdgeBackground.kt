@@ -6,13 +6,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.thecocktailapp.core.presentation.compose.components.texts.NormalText
 
 @Composable
 fun RoundedEdgeBackground(
@@ -42,7 +42,7 @@ private fun RoundedEdgeBackgroundPrev() {
         cornerRadius = 12.dp,
         strokeBorder = 1.dp
     ) {
-        NormalText(
+        Text(
             modifier = Modifier.padding(all = 16.dp),
             color = Color.Black,
             text = "This is a trial text"
