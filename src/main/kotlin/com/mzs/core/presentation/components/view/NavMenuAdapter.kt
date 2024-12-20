@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
-class NavMenuAdapter<Type, Binding : ViewBinding>(
+class NavMenuAdapter<Binding : ViewBinding>(
     private val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> Binding,
-    private val onBindItem: (Type, Binding) -> Unit,
-    private val onItemClicked: (Type) -> Unit,
-) : RecyclerView.Adapter<NavMenuAdapter.NavMenuViewHolder<Type, Binding>>() {
+    private val onBindItem: (Pair<Int, Int>, Binding) -> Unit,
+    private val onItemClicked: (Pair<Int, Int>) -> Unit,
+) : RecyclerView.Adapter<NavMenuAdapter.NavMenuViewHolder<Binding>>() {
 
-    var list: List<Type> = emptyList()
+    var list: List<Pair<Int, Int>> = emptyList()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): NavMenuViewHolder<Type, Binding> {
+    ): NavMenuViewHolder<Binding> {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = bindingInflater(layoutInflater, parent, false)
         return NavMenuViewHolder(binding)
@@ -24,7 +24,7 @@ class NavMenuAdapter<Type, Binding : ViewBinding>(
 
     override fun getItemCount(): Int = list.size
 
-    override fun onBindViewHolder(holder: NavMenuViewHolder<Type, Binding>, position: Int) {
+    override fun onBindViewHolder(holder: NavMenuViewHolder<Binding>, position: Int) {
         holder.bind(
             item = list[position],
             onBindItem = onBindItem,
@@ -32,12 +32,12 @@ class NavMenuAdapter<Type, Binding : ViewBinding>(
         )
     }
 
-    class NavMenuViewHolder<Type, Binding : ViewBinding>(private val binding: Binding) :
+    class NavMenuViewHolder<Binding : ViewBinding>(private val binding: Binding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            item: Type,
-            onBindItem: (Type, Binding) -> Unit,
-            onMenuItemSelected: (Type) -> Unit,
+            item: Pair<Int, Int>,
+            onBindItem: (Pair<Int, Int>, Binding) -> Unit,
+            onMenuItemSelected: (Pair<Int, Int>) -> Unit,
         ) {
             itemView.setOnClickListener { onMenuItemSelected(item) }
             onBindItem(item, binding)
