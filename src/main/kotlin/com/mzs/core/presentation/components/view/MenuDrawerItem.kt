@@ -33,7 +33,7 @@ fun MenuDrawerItem(
             .fillMaxWidth()
             .clickable { onItemClicked() }
             .padding(horizontal = 16.dp, vertical = 8.dp)
-            .conditional(testTag) { tag -> testTag(tag = tag) },
+            .conditional(condition = testTag) { tag -> testTag(tag = tag) },
         horizontalArrangement = Arrangement.spacedBy(space = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

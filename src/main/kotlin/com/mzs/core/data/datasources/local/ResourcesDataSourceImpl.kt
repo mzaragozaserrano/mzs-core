@@ -10,7 +10,7 @@ class ResourcesDataSourceImpl @Inject constructor(@ApplicationContext private va
 
     override fun getStringFromResource(@StringRes resId: Int): String = context.getString(resId)
 
-    override fun getStringOrResource(str: String?, @StringRes resId: Int): String =
+    override fun getStringOrResource(@StringRes resId: Int, str: String?): String =
         if (str.isNullOrEmpty()) {
             context.getString(resId)
         } else {

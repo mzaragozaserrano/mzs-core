@@ -29,7 +29,6 @@ abstract class CoreBaseFragment<State, Intent, Action, Result, VB : ViewBinding,
 
     protected abstract val binding: VB
     protected abstract val viewModel: VM
-    protected abstract fun renderView(state: State)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +55,10 @@ abstract class CoreBaseFragment<State, Intent, Action, Result, VB : ViewBinding,
         onBackPressedDispatcher(this)
     }
 
-    open fun VB.setUpListeners() {}
+    protected abstract fun renderView(state: State)
 
-    open fun onBackPressed() {}
+    protected fun onBackPressed() {}
+    protected fun VB.setUpListeners() {}
 
     fun emitAction(intent: Intent) {
         lifecycleScope.launch {

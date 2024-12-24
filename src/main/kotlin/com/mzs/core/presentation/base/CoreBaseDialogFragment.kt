@@ -34,7 +34,7 @@ abstract class CoreBaseDialogFragment<VB : ViewBinding> : DialogFragment() {
         }
     }
 
-    open fun VB.setUpView() {}
-    open fun VB.setUpListeners() {}
+    protected fun VB.setUpView() {}
+    protected fun VB.setUpListeners() {}
 
 }

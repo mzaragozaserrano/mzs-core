@@ -13,16 +13,16 @@ import kotlinx.serialization.json.Json
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
+inline fun <reified S : Any> NavGraphBuilder.screenNavigation(crossinline screen: @Composable () -> Unit) {
+    composable<S> { screen() }
+}
+
 inline fun <reified S : Any, reified T : Any> NavGraphBuilder.screenNavigationWithParameters(
     crossinline screen: @Composable (S) -> Unit,
 ) {
     composable<S>(createTypeMap<T>()) { backStackEntry ->
         screen(backStackEntry.toRoute<S>())
     }
-}
-
-inline fun <reified S : Any> NavGraphBuilder.screenNavigation(crossinline screen: @Composable () -> Unit) {
-    composable<S> { screen() }
 }
 
 interface ParameterScreen<T : Any> {

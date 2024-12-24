@@ -15,10 +15,6 @@ class EncryptedPreferences @Inject constructor(
     private val encryptionServices: EncryptionServices,
 ) {
 
-    fun deleteAllButResources() {
-        deleteAll()
-    }
-
     companion object {
         private const val APPLICATION_PREFERENCE_TAG = "ApplicationPreferences"
         private const val LOG_TAG = "PreferenceManager"
@@ -35,7 +31,7 @@ class EncryptedPreferences @Inject constructor(
     @Synchronized
     fun saveBoolean(tag: String, booleanValue: Boolean) {
         val booleanString: String = booleanValue.toString()
-        saveForm(tag, booleanString)
+        saveForm(tag = tag, stringValue = booleanString)
     }
 
     @Synchronized
@@ -46,7 +42,7 @@ class EncryptedPreferences @Inject constructor(
         var finalValue: Boolean = default
         if (value != null) {
             finalValue = try {
-                val decryptedValue = encryptionServices.decrypt(value)
+                val decryptedValue = encryptionServices.decrypt(data = value)
                 decryptedValue.toBoolean()
             } catch (e: Exception) {
                 default
@@ -60,7 +56,7 @@ class EncryptedPreferences @Inject constructor(
         stringValue?.let {
             val settings =
                 context.getSharedPreferences(APPLICATION_PREFERENCE_TAG, Context.MODE_PRIVATE)
-            val value = encryptionServices.encrypt(stringValue)
+            val value = encryptionServices.encrypt(data = stringValue)
             val editor = settings.edit()
             editor.putString(tag, value)
             editor.apply()
@@ -75,7 +71,7 @@ class EncryptedPreferences @Inject constructor(
         var finalValue: String? = null
         if (value != null) {
             finalValue = try {
-                val decryptedValue = encryptionServices.decrypt(value)
+                val decryptedValue = encryptionServices.decrypt(data = value)
                 decryptedValue
             } catch (e: Exception) {
                 null
@@ -91,7 +87,7 @@ class EncryptedPreferences @Inject constructor(
         val value = settings.getString(tag, default)
         requireNotNull(value)
         val finalValue = try {
-            val decryptedValue = encryptionServices.decrypt(value)
+            val decryptedValue = encryptionServices.decrypt(data = value)
             decryptedValue
         } catch (e: Exception) {
             default
@@ -110,7 +106,6 @@ class EncryptedPreferences @Inject constructor(
         } catch (e: IOException) {
             Log.w(LOG_TAG, "Exception saveBytes IOException" + e.message, e)
         }
-
     }
 
     @Synchronized
@@ -126,7 +121,6 @@ class EncryptedPreferences @Inject constructor(
         } catch (e: IOException) {
             Log.w(LOG_TAG, "Exception getBytes IOException" + e.message, e)
         }
-
         return result
     }
 
@@ -140,14 +134,11 @@ class EncryptedPreferences @Inject constructor(
         } catch (e: IOException) {
             Log.w(LOG_TAG, "Exception saveObject IOException" + e.message, e)
         }
-
     }
 
     @Synchronized
     fun getObject(formName: String): Any? {
-
         var result: Any? = null
-
         try {
             val file = context.openFileInput(formName)
             val obj = ObjectInputStream(file)
@@ -159,14 +150,13 @@ class EncryptedPreferences @Inject constructor(
         } catch (e: ClassNotFoundException) {
             Log.w(LOG_TAG, "Exception getObject ClassNotFoundException" + e.message, e)
         }
-
         return result
     }
 
     @Synchronized
     fun saveInt(tag: String, intValue: Int) {
         val integerString: String = intValue.toString()
-        saveForm(tag, integerString)
+        saveForm(tag = tag, stringValue = integerString)
     }
 
     @Synchronized
@@ -177,7 +167,7 @@ class EncryptedPreferences @Inject constructor(
         var finalValue: Int = default
         if (value != null) {
             finalValue = try {
-                val decryptedValue = encryptionServices.decrypt(value)
+                val decryptedValue = encryptionServices.decrypt(data = value)
                 decryptedValue.toInt()
             } catch (e: Exception) {
                 default
@@ -190,6 +180,10 @@ class EncryptedPreferences @Inject constructor(
         preferenceName?.let {
             getPreferenceEditor().remove(it).commit()
         }
+    }
+
+    fun deleteAllButResources() {
+        deleteAll()
     }
 
     @Synchronized

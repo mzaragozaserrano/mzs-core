@@ -28,9 +28,9 @@ internal class ActivityViewBindingProperty<T : ViewBinding>(
     override fun getValue(thisRef: ComponentActivity, property: KProperty<*>): T {
         checkIsMainThread()
         viewBinding?.let { return it }
-        val view: View = thisRef.requireViewByIdCompat(rootViewId)
-        thisRef.lifecycle.addObserver(lifecycleObserver)
-        return viewBinder.bind(view).also { viewBinding = it }
+        val view: View = thisRef.requireViewByIdCompat(viewId = rootViewId)
+        thisRef.lifecycle.addObserver(observer = lifecycleObserver)
+        return viewBinder.bind(view = view).also { viewBinding = it }
     }
 
     private inner class BindingLifecycleObserver : DefaultLifecycleObserver {
@@ -39,7 +39,7 @@ internal class ActivityViewBindingProperty<T : ViewBinding>(
 
         @MainThread
         override fun onDestroy(owner: LifecycleOwner) {
-            owner.lifecycle.removeObserver(this)
+            owner.lifecycle.removeObserver(observer = this)
             mainHandler.post {
                 viewBinding = null
             }
@@ -53,7 +53,10 @@ internal class ActivityViewBindingProperty<T : ViewBinding>(
 inline fun <reified T : ViewBinding> ComponentActivity.viewBinding(
     @IdRes rootViewId: Int,
 ): ReadOnlyProperty<ComponentActivity, T> {
-    return ActivityViewBindingProperty(rootViewId, DefaultViewBinder(T::class.java))
+    return ActivityViewBindingProperty(
+        rootViewId = rootViewId,
+        viewBinder = DefaultViewBinder(viewBindingClass = T::class.java)
+    )
 }
 
 @Suppress("unused")
@@ -61,5 +64,8 @@ inline fun <T : ViewBinding> ComponentActivity.viewBinding(
     @IdRes rootViewId: Int,
     crossinline bindView: (View) -> T,
 ): ReadOnlyProperty<ComponentActivity, T> {
-    return ActivityViewBindingProperty(rootViewId, viewBinder(bindView))
+    return ActivityViewBindingProperty(
+        rootViewId = rootViewId,
+        viewBinder = viewBinder(bindView = bindView)
+    )
 }

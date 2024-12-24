@@ -1,6 +1,6 @@
 package com.mzs.core.presentation.utils.generic
 
 sealed class ItemOrientation {
-    object Horizontal : ItemOrientation()
-    object Vertical : ItemOrientation()
+    data object Horizontal : ItemOrientation()
+    data object Vertical : ItemOrientation()
 }

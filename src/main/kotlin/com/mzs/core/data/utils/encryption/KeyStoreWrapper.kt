@@ -16,8 +16,8 @@ class KeyStoreWrapper @Inject constructor() {
 
     fun createAndroidKeyStoreSymmetricKey(
         alias: String,
-        userAuthenticationRequired: Boolean = false,
         invalidatedByBiometricEnrollment: Boolean = true,
+        userAuthenticationRequired: Boolean = false,
         userAuthenticationValidWhileOnBody: Boolean = true,
     ): SecretKey {
         val keyGenerator =

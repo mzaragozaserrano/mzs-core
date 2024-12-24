@@ -8,35 +8,35 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 
 @Suppress("UNCHECKED_CAST")
-abstract class FlowUseCase<in P, out R, out E>(
-    private val networkError: E,
+abstract class FlowUseCase<in Params, out Response, out Error>(
+    private val networkError: Error,
     private val networkRepository: NetworkRepository,
-) where R : Any {
+) where Response : Any {
 
-    abstract suspend fun run(params: P): Flow<R>
+    abstract suspend fun run(params: Params): Flow<Response>
 
-    suspend operator fun invoke(params: P): Flow<R> =
+    suspend operator fun invoke(params: Params): Flow<Response> =
         if (networkRepository.isConnected()) {
             run(params).flowOn(Dispatchers.IO)
         } else {
-            (Result.Response.Error(networkError) as R).toFlowResult()
+            (Result.Response.Error(networkError) as Response).toFlowResult()
         }
 
 }
 
 @Suppress("UNCHECKED_CAST")
-abstract class FlowUseCaseNoParams<out R, out E>(
-    private val networkError: E,
+abstract class FlowUseCaseNoParams<out Response, out Error>(
+    private val networkError: Error,
     private val networkRepository: NetworkRepository,
-) where R : Any {
+) where Response : Any {
 
-    abstract suspend fun run(): Flow<R>
+    abstract suspend fun run(): Flow<Response>
 
-    suspend operator fun invoke(): Flow<R> =
+    suspend operator fun invoke(): Flow<Response> =
         if (networkRepository.isConnected()) {
             run().flowOn(Dispatchers.IO)
         } else {
-            (Result.Response.Error(networkError) as R).toFlowResult()
+            (Result.Response.Error(networkError) as Response).toFlowResult()
         }
 
 }

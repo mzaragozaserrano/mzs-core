@@ -27,7 +27,7 @@ internal class FragmentViewBindingProperty<T : ViewBinding>(
         this.viewBinding?.let { return it }
         val view = thisRef.requireView()
         thisRef.viewLifecycleOwner.lifecycle.addObserver(lifecycleObserver)
-        return viewBinder.bind(view).also { vb -> this.viewBinding = vb }
+        return viewBinder.bind(view = view).also { vb -> this.viewBinding = vb }
     }
 
     private inner class BindingLifecycleObserver : DefaultLifecycleObserver {
@@ -46,12 +46,12 @@ internal class FragmentViewBindingProperty<T : ViewBinding>(
 
 @Suppress("unused")
 inline fun <reified T : ViewBinding> Fragment.viewBinding(): ReadOnlyProperty<Fragment, T> {
-    return FragmentViewBindingProperty(DefaultViewBinder(T::class.java))
+    return FragmentViewBindingProperty(viewBinder = DefaultViewBinder(viewBindingClass = T::class.java))
 }
 
 @Suppress("unused")
 inline fun <T : ViewBinding> Fragment.viewBinding(
     crossinline bindView: (View) -> T,
 ): ReadOnlyProperty<Fragment, T> {
-    return FragmentViewBindingProperty(viewBinder(bindView))
+    return FragmentViewBindingProperty(viewBinder = viewBinder(bindView = bindView))
 }

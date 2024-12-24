@@ -2,8 +2,10 @@ package com.mzs.core.presentation.components.compose.images
 
 import androidx.annotation.RawRes
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -13,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import coil.transform.RoundedCornersTransformation
+import com.mzs.core.presentation.utils.extensions.conditional
 
 @Composable
 fun UrlImage(

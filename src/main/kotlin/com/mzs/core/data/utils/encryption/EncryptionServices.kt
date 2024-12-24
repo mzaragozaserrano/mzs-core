@@ -20,25 +20,33 @@ class EncryptionServices @Inject constructor(private val keyStoreWrapper: KeySto
     }
 
     fun encrypt(data: String): String {
-        return encryptWithAndroidSymmetricKey(data)
+        return encryptWithAndroidSymmetricKey(data = data)
     }
 
     fun decrypt(data: String): String {
-        return decryptWithAndroidSymmetricKey(data)
+        return decryptWithAndroidSymmetricKey(data = data)
     }
 
     private fun createAndroidSymmetricKey() {
-        keyStoreWrapper.createAndroidKeyStoreSymmetricKey(MASTER_KEY)
+        keyStoreWrapper.createAndroidKeyStoreSymmetricKey(alias = MASTER_KEY)
     }
 
     private fun encryptWithAndroidSymmetricKey(data: String): String {
-        val masterKey = keyStoreWrapper.getAndroidKeyStoreSymmetricKey(MASTER_KEY)
-        return CipherWrapper(CipherWrapper.TRANSFORMATION_SYMMETRIC).encrypt(data, masterKey, true)
+        val masterKey = keyStoreWrapper.getAndroidKeyStoreSymmetricKey(alias = MASTER_KEY)
+        return CipherWrapper(transformation = CipherWrapper.TRANSFORMATION_SYMMETRIC).encrypt(
+            data = data,
+            key = masterKey,
+            useInitializationVector = true
+        )
     }
 
     private fun decryptWithAndroidSymmetricKey(data: String): String {
-        val masterKey = keyStoreWrapper.getAndroidKeyStoreSymmetricKey(MASTER_KEY)
-        return CipherWrapper(CipherWrapper.TRANSFORMATION_SYMMETRIC).decrypt(data, masterKey, true)
+        val masterKey = keyStoreWrapper.getAndroidKeyStoreSymmetricKey(alias = MASTER_KEY)
+        return CipherWrapper(transformation = CipherWrapper.TRANSFORMATION_SYMMETRIC).decrypt(
+            data = data,
+            key = masterKey,
+            useInitializationVector = true
+        )
     }
 
 }
