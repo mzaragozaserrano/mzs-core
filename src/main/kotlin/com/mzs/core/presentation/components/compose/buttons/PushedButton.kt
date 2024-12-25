@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
@@ -39,6 +40,7 @@ import com.mzs.core.presentation.utils.extensions.conditional
 fun PushedButton(
     modifier: Modifier = Modifier,
     buttonBackgroundColor: Color,
+    buttonBackgroundLoadingColor: Color,
     durationMillisBlockingButton: Int? = null,
     text: String,
     textColor: Color,
@@ -58,7 +60,6 @@ fun PushedButton(
 
     //Loading animation
     val progress = remember { Animatable(initialValue = 0f) }
-    var textSize by remember { mutableStateOf(value = IntSize.Zero) }
 
     LaunchedEffect(key1 = isLaunchingAction, key2 = progress) {
         if (durationMillisBlockingButton != null) {
@@ -113,33 +114,33 @@ fun PushedButton(
             }
             .clip(shape = RoundedCornerShape(size = 8.dp))
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(height = textSize.height.dp)
-                .background(color = if (progress.value == 0f) buttonBackgroundColor else Color.LightGray)
-        )
-        Box(
-            modifier = Modifier
-                .fillMaxWidth(fraction = progress.value)
-                .height(height = textSize.height.dp)
-                .background(color = buttonBackgroundColor)
-        )
         if (progress.isRunning) {
-            CircularProgressIndicator(
+            Box(
                 modifier = Modifier
-                    .size(size = 32.dp)
-                    .align(alignment = Alignment.Center),
-                color = textColor.copy(alpha = 0.2f)
-            )
+                    .fillMaxWidth()
+                    .background(buttonBackgroundLoadingColor)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(fraction = progress.value)
+                        .height(height = 40.dp)
+                        .background(color = buttonBackgroundColor)
+                        .padding(vertical = 8.dp)
+                )
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .size(size = 32.dp)
+                        .align(alignment = Alignment.Center),
+                    color = textColor.copy(alpha = 0.2f)
+                )
+            }
         } else {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(alignment = Alignment.Center)
-                    .onGloballyPositioned { layoutCoordinates ->
-                        textSize = layoutCoordinates.size
-                    },
+                    .background(color = buttonBackgroundColor)
+                    .padding(vertical = 8.dp),
                 color = textColor,
                 style = textStyle,
                 text = text.uppercase(),
@@ -155,6 +156,7 @@ fun PushedButton(
 private fun PushedButtonPrev() {
     PushedButton(
         buttonBackgroundColor = Color.Red,
+        buttonBackgroundLoadingColor = Color.LightGray,
         durationMillisBlockingButton = 3000,
         textColor = Color.Black,
         text = "Accept",
