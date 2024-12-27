@@ -40,7 +40,6 @@ import com.mzs.core.presentation.utils.extensions.conditional
 fun PushedButton(
     modifier: Modifier = Modifier,
     buttonBackgroundColor: Color,
-    buttonBackgroundLoadingColor: Color,
     durationMillisBlockingButton: Int? = null,
     text: String,
     textColor: Color,
@@ -50,9 +49,9 @@ fun PushedButton(
 
     //Pressed animation
     var buttonSize by remember { mutableStateOf(value = IntSize.Zero) }
-    var isPressed by remember { mutableStateOf(value = false) }
-    var isLaunchingAction by remember { mutableStateOf(value = false) }
     var isClickAvailable by remember { mutableStateOf(value = true) }
+    var isLaunchingAction by remember { mutableStateOf(value = false) }
+    var isPressed by remember { mutableStateOf(value = false) }
     val scale = animateFloatAsState(
         targetValue = if (isPressed) 0.93f else 1f,
         label = ""
@@ -112,42 +111,44 @@ fun PushedButton(
             .onGloballyPositioned { layoutCoordinates ->
                 buttonSize = layoutCoordinates.size
             }
-            .clip(shape = RoundedCornerShape(size = 8.dp))
-    ) {
-        if (progress.isRunning) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(buttonBackgroundLoadingColor)
-            ) {
+            .clip(shape = RoundedCornerShape(size = 8.dp)),
+        content = {
+            if (progress.isRunning) {
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth(fraction = progress.value)
-                        .height(height = 40.dp)
-                        .background(color = buttonBackgroundColor)
-                        .padding(vertical = 8.dp)
+                        .fillMaxWidth()
+                        .background(color = buttonBackgroundColor.copy(alpha = 0.2f)),
+                    content = {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth(fraction = progress.value)
+                                .height(height = 40.dp)
+                                .background(color = buttonBackgroundColor)
+                                .padding(vertical = 8.dp)
+                        )
+                        CircularProgressIndicator(
+                            modifier = Modifier
+                                .size(size = 32.dp)
+                                .align(alignment = Alignment.Center),
+                            color = textColor.copy(alpha = 0.2f)
+                        )
+                    }
                 )
-                CircularProgressIndicator(
+            } else {
+                Text(
                     modifier = Modifier
-                        .size(size = 32.dp)
-                        .align(alignment = Alignment.Center),
-                    color = textColor.copy(alpha = 0.2f)
+                        .fillMaxWidth()
+                        .align(alignment = Alignment.Center)
+                        .background(color = buttonBackgroundColor)
+                        .padding(vertical = 8.dp),
+                    color = textColor,
+                    style = textStyle,
+                    text = text.uppercase(),
+                    textAlign = TextAlign.Center
                 )
             }
-        } else {
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(alignment = Alignment.Center)
-                    .background(color = buttonBackgroundColor)
-                    .padding(vertical = 8.dp),
-                color = textColor,
-                style = textStyle,
-                text = text.uppercase(),
-                textAlign = TextAlign.Center
-            )
         }
-    }
+    )
 
 }
 
@@ -156,12 +157,10 @@ fun PushedButton(
 private fun PushedButtonPrev() {
     PushedButton(
         buttonBackgroundColor = Color.Red,
-        buttonBackgroundLoadingColor = Color.LightGray,
         durationMillisBlockingButton = 3000,
-        textColor = Color.Black,
         text = "Accept",
-        textStyle = MaterialTheme.typography.titleMedium
-    ) {
-        //Here will go the action when clicking on the button
-    }
+        textColor = Color.Black,
+        textStyle = MaterialTheme.typography.titleSmall,
+        onButtonClicked = { /*Here will go the action when clicking on the button*/ }
+    )
 }

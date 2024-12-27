@@ -1,5 +1,7 @@
 package com.mzs.core.presentation.components.compose.cards
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
@@ -18,20 +20,21 @@ fun RoundedCard(
     backgroundColor: Color,
     cornerRadius: Dp,
     shadowElevation: Dp,
-    content: @Composable () -> Unit,
+    onCardClicked: () -> Unit,
+    content: @Composable ColumnScope.() -> Unit
 ) {
     Surface(
-        modifier = modifier,
+        modifier = modifier.clickable { onCardClicked() },
         shadowElevation = shadowElevation,
-        shape = RoundedCornerShape(size = cornerRadius)
-    ) {
-        RoundedBackground(
-            backgroundColor = backgroundColor,
-            cornerRadius = cornerRadius
-        ) {
-            content()
+        shape = RoundedCornerShape(size = cornerRadius),
+        content = {
+            RoundedBackground(
+                backgroundColor = backgroundColor,
+                cornerRadius = cornerRadius,
+                content = content
+            )
         }
-    }
+    )
 }
 
 @Preview(showBackground = true)
@@ -41,12 +44,14 @@ private fun RoundedCardPrev() {
         modifier = Modifier.padding(all = 16.dp),
         backgroundColor = Color.White,
         cornerRadius = 12.dp,
-        shadowElevation = 10.dp
-    ) {
-        Text(
-            modifier = Modifier.padding(all = 16.dp),
-            color = Color.Black,
-            text = "This is a trial text"
-        )
-    }
+        shadowElevation = 10.dp,
+        onCardClicked = { /*Here will go the action when clicking on the card*/ },
+        content = {
+            Text(
+                modifier = Modifier.padding(all = 16.dp),
+                color = Color.Black,
+                text = "This is a trial text"
+            )
+        }
+    )
 }

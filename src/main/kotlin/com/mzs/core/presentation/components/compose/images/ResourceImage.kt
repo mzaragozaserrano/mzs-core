@@ -16,14 +16,14 @@ fun ResourceImage(
     contentDescription: String? = null,
     @DrawableRes iconId: Int,
     iconTint: Color? = null,
-    size: Dp,
+    size: Dp
 ) {
     Image(
         modifier = modifier.size(size = size),
-        contentDescription = contentDescription,
         colorFilter = iconTint?.let { color ->
             ColorFilter.tint(color = color)
         },
+        contentDescription = contentDescription,
         painter = painterResource(id = iconId)
     )
 }

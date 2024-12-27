@@ -34,12 +34,13 @@ private fun RoundedBackgroundPrev() {
     RoundedBackground(
         modifier = Modifier.padding(all = 16.dp),
         backgroundColor = Color.White,
-        cornerRadius = 12.dp
-    ) {
-        Text(
-            modifier = Modifier.padding(all = 16.dp),
-            color = Color.Black,
-            text = "This is a trial text"
-        )
-    }
+        cornerRadius = 12.dp,
+        content = {
+            Text(
+                modifier = Modifier.padding(all = 16.dp),
+                color = Color.Black,
+                text = "This is a trial text"
+            )
+        }
+    )
 }

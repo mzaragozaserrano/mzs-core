@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.Center
@@ -18,6 +19,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -34,6 +36,7 @@ fun WavyLabel(
     iconTint: Color,
     text: String,
     textColor: Color,
+    textStyle: TextStyle
 ) {
     val imageSize: Dp = 12.dp
     Card(
@@ -42,39 +45,43 @@ fun WavyLabel(
         shape = RoundedCornerShape(
             bottomEnd = imageSize,
             topStart = imageSize
-        )
-    ) {
-        Row(
-            modifier = Modifier.height(intrinsicSize = IntrinsicSize.Max),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = CenterVertically
-        ) {
-            Card(
-                modifier = Modifier.aspectRatio(ratio = 1f),
-                colors = CardDefaults.cardColors(containerColor = iconBackgroundColor),
-                shape = RoundedCornerShape(
-                    bottomEnd = imageSize,
-                    topEnd = imageSize,
-                    topStart = imageSize
-                )
-            ) {
-                Box(contentAlignment = Center) {
-                    ResourceImage(
-                        modifier = Modifier.padding(all = 6.dp),
-                        iconTint = iconTint,
-                        iconId = iconId,
-                        size = imageSize
+        ),
+        content = {
+            Row(
+                modifier = Modifier.height(intrinsicSize = IntrinsicSize.Max),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = CenterVertically,
+                content = {
+                    Card(
+                        modifier = Modifier.aspectRatio(ratio = 1f),
+                        colors = CardDefaults.cardColors(containerColor = iconBackgroundColor),
+                        shape = RoundedCornerShape(
+                            bottomEnd = imageSize,
+                            topEnd = imageSize,
+                            topStart = imageSize
+                        ),
+                        content = {
+                            Box(contentAlignment = Center, content = {
+                                ResourceImage(
+                                    modifier = Modifier.padding(all = 6.dp),
+                                    iconTint = iconTint,
+                                    iconId = iconId,
+                                    size = imageSize
+                                )
+                            })
+                        }
+                    )
+                    Text(
+                        modifier = Modifier.padding(horizontal = 12.dp),
+                        color = textColor,
+                        text = text,
+                        textAlign = TextAlign.Center,
+                        style = textStyle
                     )
                 }
-            }
-            Text(
-                modifier = Modifier.padding(horizontal = 12.dp),
-                color = textColor,
-                text = text,
-                textAlign = TextAlign.Center
             )
         }
-    }
+    )
 
 }
 
@@ -86,7 +93,8 @@ private fun WavyLabelPrev() {
         iconBackgroundColor = Color.White,
         iconId = R.drawable.core_ic_cloud,
         iconTint = Color.Black,
+        text = "Accept",
         textColor = Color.Black,
-        text = "Accept"
+        textStyle = MaterialTheme.typography.titleSmall
     )
 }

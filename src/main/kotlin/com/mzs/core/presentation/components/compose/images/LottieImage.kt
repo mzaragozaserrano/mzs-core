@@ -10,11 +10,15 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
-fun LottieImage(modifier: Modifier = Modifier, @RawRes animationId: Int) {
-    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(animationId))
+fun LottieImage(
+    modifier: Modifier = Modifier,
+    @RawRes animationId: Int,
+    iterations: Int = LottieConstants.IterateForever
+) {
+    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(resId = animationId))
     LottieAnimation(
         modifier = modifier,
         composition = composition,
-        iterations = LottieConstants.IterateForever
+        iterations = iterations
     )
 }

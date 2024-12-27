@@ -1,5 +1,7 @@
 package com.mzs.core.presentation.components.compose.cards
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
@@ -17,40 +19,45 @@ fun RoundedEdgeCard(
     modifier: Modifier = Modifier,
     backgroundColor: Color,
     borderColor: Color,
+    borderWidth: Dp,
     cornerRadius: Dp,
     shadowElevation: Dp,
-    strokeBorder: Dp,
-    content: @Composable () -> Unit,
+    onCardClicked: () -> Unit,
+    content: @Composable ColumnScope.() -> Unit
 ) {
     Surface(
-        modifier = modifier,
+        modifier = modifier.clickable { onCardClicked() },
         shadowElevation = shadowElevation,
-        shape = RoundedCornerShape(size = cornerRadius)
-    ) {
-        RoundedEdgeBackground(
-            backgroundColor = backgroundColor,
-            borderColor = borderColor,
-            cornerRadius = cornerRadius,
-            strokeBorder = strokeBorder,
-        ) {
-            content()
+        shape = RoundedCornerShape(size = cornerRadius),
+        content = {
+            RoundedEdgeBackground(
+                backgroundColor = backgroundColor,
+                borderColor = borderColor,
+                borderWidth = borderWidth,
+                cornerRadius = cornerRadius,
+                content = content
+            )
         }
-    }
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun RoundedCardPrev() {
-    RoundedCard(
+    RoundedEdgeCard(
         modifier = Modifier.padding(all = 16.dp),
         backgroundColor = Color.White,
+        borderColor = Color.LightGray,
+        borderWidth = 1.dp,
         cornerRadius = 12.dp,
-        shadowElevation = 10.dp
-    ) {
-        Text(
-            modifier = Modifier.padding(all = 16.dp),
-            color = Color.Black,
-            text = "This is a trial text"
-        )
-    }
+        shadowElevation = 10.dp,
+        onCardClicked = { /*Here will go the action when clicking on the card*/ },
+        content = {
+            Text(
+                modifier = Modifier.padding(all = 16.dp),
+                color = Color.Black,
+                text = "This is a trial text"
+            )
+        }
+    )
 }

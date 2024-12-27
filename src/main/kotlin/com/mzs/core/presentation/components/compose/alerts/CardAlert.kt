@@ -16,15 +16,16 @@ fun CardAlert(
     modifier: Modifier = Modifier,
     alertBackgroundColor: Color,
     buttonBackgroundColor: Color,
-    buttonTextColor: Color,
     buttonText: String,
+    buttonTextColor: Color,
     messageStyle: TextStyle,
-    messageTextColor: Color,
     messageText: String,
+    messageTextColor: Color,
     titleStyle: TextStyle,
     titleText: String,
     titleTextColor: Color,
     onButtonClicked: () -> Unit,
+    onDismissRequest: (() -> Unit)? = null
 ) {
     AlertDialog(
         modifier = modifier,
@@ -32,12 +33,11 @@ fun CardAlert(
             PushedButton(
                 modifier = Modifier.fillMaxWidth(),
                 buttonBackgroundColor = buttonBackgroundColor,
-                textColor = buttonTextColor,
                 text = buttonText,
-                textStyle = MaterialTheme.typography.titleSmall
-            ) {
-                onButtonClicked()
-            }
+                textColor = buttonTextColor,
+                textStyle = MaterialTheme.typography.titleSmall,
+                onButtonClicked = onButtonClicked
+            )
         },
         containerColor = alertBackgroundColor,
         text = {
@@ -57,7 +57,9 @@ fun CardAlert(
                 text = titleText.uppercase()
             )
         },
-        onDismissRequest = { }
+        onDismissRequest = {
+            onDismissRequest?.invoke()
+        }
     )
 }
 
@@ -67,15 +69,14 @@ private fun CardAlertPrev() {
     CardAlert(
         alertBackgroundColor = MaterialTheme.colorScheme.background,
         buttonBackgroundColor = MaterialTheme.colorScheme.errorContainer,
-        buttonTextColor = MaterialTheme.colorScheme.background,
         buttonText = "Accept",
+        buttonTextColor = MaterialTheme.colorScheme.background,
         messageStyle = MaterialTheme.typography.bodyMedium,
-        messageTextColor = MaterialTheme.colorScheme.onBackground,
         messageText = "This is an alert card",
+        messageTextColor = MaterialTheme.colorScheme.onBackground,
         titleStyle = MaterialTheme.typography.titleMedium,
+        titleText = "Warning!",
         titleTextColor = MaterialTheme.colorScheme.errorContainer,
-        titleText = "Warning!"
-    ) {
-        //Here will go the action when clicking on the card
-    }
+        onButtonClicked = { /*Here will go the action when clicking on the card*/ }
+    )
 }

@@ -62,7 +62,7 @@ fun MenuDrawerContent(
                     contentPadding = 16.dp,
                     isScrollable = false,
                     itemOrientation = ItemOrientation.Vertical,
-                    list = screens
+                    items = screens
                 ) { _, item ->
                     MenuDrawerItem(
                         modifier = modifierScreen,

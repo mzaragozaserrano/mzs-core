@@ -19,14 +19,14 @@ fun RoundedEdgeBackground(
     modifier: Modifier = Modifier,
     backgroundColor: Color,
     borderColor: Color,
+    borderWidth: Dp,
     cornerRadius: Dp,
-    strokeBorder: Dp,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Card(
         shape = RoundedCornerShape(size = cornerRadius),
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
-        border = BorderStroke(color = borderColor, width = strokeBorder),
+        border = BorderStroke(color = borderColor, width = borderWidth),
         modifier = modifier,
         content = content
     )
@@ -39,13 +39,14 @@ private fun RoundedEdgeBackgroundPrev() {
         modifier = Modifier.padding(all = 16.dp),
         backgroundColor = Color.White,
         borderColor = Color.Black,
+        borderWidth = 1.dp,
         cornerRadius = 12.dp,
-        strokeBorder = 1.dp
-    ) {
-        Text(
-            modifier = Modifier.padding(all = 16.dp),
-            color = Color.Black,
-            text = "This is a trial text"
-        )
-    }
+        content = {
+            Text(
+                modifier = Modifier.padding(all = 16.dp),
+                color = Color.Black,
+                text = "This is a trial text"
+            )
+        }
+    )
 }
