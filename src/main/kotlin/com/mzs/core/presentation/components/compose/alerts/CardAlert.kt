@@ -18,6 +18,7 @@ fun CardAlert(
     buttonBackgroundColor: Color,
     buttonText: String,
     buttonTextColor: Color,
+    durationMillisBlockingButton: Int? = null,
     messageStyle: TextStyle,
     messageText: String,
     messageTextColor: Color,
@@ -33,6 +34,7 @@ fun CardAlert(
             PushedButton(
                 modifier = Modifier.fillMaxWidth(),
                 buttonBackgroundColor = buttonBackgroundColor,
+                durationMillisBlockingButton = durationMillisBlockingButton,
                 text = buttonText,
                 textColor = buttonTextColor,
                 textStyle = MaterialTheme.typography.titleSmall,
@@ -71,6 +73,7 @@ private fun CardAlertPrev() {
         buttonBackgroundColor = MaterialTheme.colorScheme.errorContainer,
         buttonText = "Accept",
         buttonTextColor = MaterialTheme.colorScheme.background,
+        durationMillisBlockingButton = 3000,
         messageStyle = MaterialTheme.typography.bodyMedium,
         messageText = "This is an alert card",
         messageTextColor = MaterialTheme.colorScheme.onBackground,

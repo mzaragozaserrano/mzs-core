@@ -65,18 +65,19 @@ fun FallButton(
                 .clip(shape = RoundedCornerShape(bottomEnd = 8.dp, bottomStart = 8.dp))
                 .pointerInteropFilter { motionEvent ->
                     when (motionEvent.action) {
+                        MotionEvent.ACTION_CANCEL -> {
+                            isPressed = false
+                        }
                         MotionEvent.ACTION_DOWN -> {
                             isPressed = true
                         }
 
                         MotionEvent.ACTION_MOVE -> {
-                            if (isPressed) {
-                                val x = motionEvent.x.toInt()
-                                val y = motionEvent.y.toInt()
-                                isPressed =
-                                    x in 0 until buttonSize.width && y in 0 until buttonSize.height
-                                isClickAvailable = isPressed
-                            }
+                            val x = motionEvent.x.toInt()
+                            val y = motionEvent.y.toInt()
+                            isPressed =
+                                x in 0 until buttonSize.width && y in 0 until buttonSize.height
+                            isClickAvailable = isPressed
                         }
 
                         MotionEvent.ACTION_UP -> {

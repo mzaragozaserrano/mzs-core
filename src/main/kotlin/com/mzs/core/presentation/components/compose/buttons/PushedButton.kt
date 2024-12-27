@@ -1,5 +1,6 @@
 package com.mzs.core.presentation.components.compose.buttons
 
+import android.util.Log
 import android.view.MotionEvent
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.animateFloatAsState
@@ -59,18 +60,20 @@ fun PushedButton(
 
     //Loading animation
     val progress = remember { Animatable(initialValue = 0f) }
+    var textSize by remember { mutableStateOf(value = IntSize.Zero) }
 
-    LaunchedEffect(key1 = isLaunchingAction, key2 = progress) {
-        if (durationMillisBlockingButton != null) {
-            if (isLaunchingAction) {
-                progress.animateTo(
-                    targetValue = 1f,
-                    animationSpec = tween(durationMillis = durationMillisBlockingButton)
-                )
-            }
-            if (progress.value == 1f) {
-                progress.snapTo(targetValue = 0f)
+    LaunchedEffect(isLaunchingAction) {
+        when {
+            durationMillisBlockingButton != null && isLaunchingAction -> {
+                progress.animateTo(1f, animationSpec = tween(durationMillisBlockingButton))
+                progress.snapTo(0f)
                 isLaunchingAction = false
+                onButtonClicked()
+            }
+
+            isLaunchingAction -> {
+                isLaunchingAction = false
+                onButtonClicked()
             }
         }
     }
@@ -81,25 +84,25 @@ fun PushedButton(
             .conditional(condition = progress.isRunning.not() || durationMillisBlockingButton == null) {
                 pointerInteropFilter { motionEvent ->
                     when (motionEvent.action) {
+                        MotionEvent.ACTION_CANCEL -> {
+                            isPressed = false
+                        }
                         MotionEvent.ACTION_DOWN -> {
                             isPressed = true
                         }
 
                         MotionEvent.ACTION_MOVE -> {
-                            if (isPressed) {
-                                val x = motionEvent.x.toInt()
-                                val y = motionEvent.y.toInt()
-                                isPressed =
-                                    x in 0 until buttonSize.width && y in 0 until buttonSize.height
-                                isClickAvailable = isPressed
-                            }
+                            val x = motionEvent.x.toInt()
+                            val y = motionEvent.y.toInt()
+                            isPressed =
+                                x in 0 until buttonSize.width && y in 0 until buttonSize.height
+                            isClickAvailable = isPressed
                         }
 
                         MotionEvent.ACTION_UP -> {
                             if (isClickAvailable) {
                                 isPressed = false
                                 isLaunchingAction = true
-                                onButtonClicked()
                             } else {
                                 isClickAvailable = true
                             }
@@ -113,40 +116,41 @@ fun PushedButton(
             }
             .clip(shape = RoundedCornerShape(size = 8.dp)),
         content = {
-            if (progress.isRunning) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(color = buttonBackgroundColor.copy(alpha = 0.2f)),
-                    content = {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth(fraction = progress.value)
-                                .height(height = 40.dp)
-                                .background(color = buttonBackgroundColor)
-                                .padding(vertical = 8.dp)
-                        )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(color = buttonBackgroundColor.copy(alpha = 0.2f)),
+                content = {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(fraction = if (progress.isRunning) progress.value else 1f)
+                            .height(height = (textSize.height.dp / 2) + 8.dp)
+                            .background(color = buttonBackgroundColor)
+                    )
+                    if (progress.isRunning) {
                         CircularProgressIndicator(
                             modifier = Modifier
-                                .size(size = 32.dp)
+                                .size(size = 24.dp)
                                 .align(alignment = Alignment.Center),
                             color = textColor.copy(alpha = 0.2f)
                         )
+                    } else {
+                        Text(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .align(alignment = Alignment.Center)
+                                .padding(vertical = 8.dp)
+                                .onGloballyPositioned { layoutCoordinates ->
+                                    textSize = layoutCoordinates.size
+                                },
+                            color = textColor,
+                            style = textStyle,
+                            text = text.uppercase(),
+                            textAlign = TextAlign.Center
+                        )
                     }
-                )
-            } else {
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .align(alignment = Alignment.Center)
-                        .background(color = buttonBackgroundColor)
-                        .padding(vertical = 8.dp),
-                    color = textColor,
-                    style = textStyle,
-                    text = text.uppercase(),
-                    textAlign = TextAlign.Center
-                )
-            }
+                }
+            )
         }
     )
 
@@ -157,7 +161,7 @@ fun PushedButton(
 private fun PushedButtonPrev() {
     PushedButton(
         buttonBackgroundColor = Color.Red,
-        durationMillisBlockingButton = 3000,
+        durationMillisBlockingButton = null,
         text = "Accept",
         textColor = Color.Black,
         textStyle = MaterialTheme.typography.titleSmall,
