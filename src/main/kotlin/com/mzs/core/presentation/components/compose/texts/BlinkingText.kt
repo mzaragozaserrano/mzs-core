@@ -16,12 +16,14 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun BlinkingText(
     modifier: Modifier = Modifier,
     color: Color,
+    fontWeight: FontWeight? = null,
     text: String,
     textStyle: TextStyle
 ) {
@@ -54,6 +56,7 @@ fun BlinkingText(
             .alpha(alpha = alpha)
             .scale(scale = scale),
         color = color,
+        fontWeight = fontWeight,
         text = text,
         style = textStyle
     )
