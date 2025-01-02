@@ -88,7 +88,7 @@ abstract class CoreBaseActivity<State, Intent, Action, Result, VB : ViewBinding,
     }
 
     fun showProgressDialog() {
-        if (!progressDialog.isShowing && loadingRaw != null) {
+        if (progressDialog.isShowing.not() && loadingRaw != null) {
             animation.playAnimation()
             progressDialog.show()
         }

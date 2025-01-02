@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import com.mzs.core.presentation.utils.generic.emptyText
 
 @Composable
 fun BlinkingText(
@@ -30,7 +31,7 @@ fun BlinkingText(
 
     val isBlinking by remember { mutableStateOf(value = true) }
 
-    val infiniteTransition = rememberInfiniteTransition(label = "")
+    val infiniteTransition = rememberInfiniteTransition(label = emptyText)
     val alpha by infiniteTransition.animateFloat(
         animationSpec = infiniteRepeatable(
             animation = tween(durationMillis = 500),
@@ -38,7 +39,7 @@ fun BlinkingText(
         ),
         initialValue = 1f,
         targetValue = if (isBlinking) 0.3f else 1f,
-        label = "",
+        label = emptyText,
     )
 
     val scale by infiniteTransition.animateFloat(
@@ -48,7 +49,7 @@ fun BlinkingText(
         ),
         initialValue = 1f,
         targetValue = if (isBlinking) 0.95f else 1f,
-        label = "",
+        label = emptyText,
     )
 
     Text(

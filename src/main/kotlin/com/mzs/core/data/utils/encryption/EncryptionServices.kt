@@ -10,7 +10,7 @@ class EncryptionServices @Inject constructor(private val keyStoreWrapper: KeySto
     }
 
     fun createMasterKey() {
-        if (!isSigningKey()) {
+        if (isSigningKey().not()) {
             createAndroidSymmetricKey()
         }
     }

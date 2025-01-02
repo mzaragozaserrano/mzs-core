@@ -41,7 +41,7 @@ fun MenuDrawerContent(
     onClick: (Pair<Int, Int>) -> Unit,
 ) {
 
-    var currentScreen by remember { mutableStateOf(initScreen) }
+    var currentScreen by remember { mutableStateOf(value = initScreen) }
     val coroutineScope = rememberCoroutineScope()
 
     ModalDrawerSheet(modifier = modifier) {

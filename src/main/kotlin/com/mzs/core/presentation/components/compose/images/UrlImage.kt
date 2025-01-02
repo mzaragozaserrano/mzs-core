@@ -10,7 +10,9 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
+import coil.request.CachePolicy
 import coil.request.ImageRequest
 import coil.transform.RoundedCornersTransformation
 
@@ -21,6 +23,8 @@ fun UrlImage(
     contentDescription: String? = null,
     contentScale: ContentScale,
     cornerRadius: Dp? = null,
+    onLoading: ((AsyncImagePainter.State.Loading) -> Unit)? = null,
+    onSuccess: ((AsyncImagePainter.State.Success) -> Unit)? = null,
     url: String,
 ) {
     SubcomposeAsyncImage(
@@ -39,10 +43,12 @@ fun UrlImage(
         },
         model = ImageRequest.Builder(context = LocalContext.current)
             .data(data = url)
-            .crossfade(enable = true)
             .transformations(cornerRadius?.let { RoundedCornersTransformation(radius = LocalDensity.current.density * cornerRadius.value) }
                 ?: RoundedCornersTransformation(radius = 0f))
-            .build()
+            .memoryCachePolicy(policy = CachePolicy.ENABLED)
+            .build(),
+        onLoading = onLoading,
+        onSuccess = onSuccess
     )
 }
 

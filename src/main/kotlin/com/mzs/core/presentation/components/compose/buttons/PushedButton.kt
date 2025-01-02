@@ -35,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.mzs.core.presentation.utils.extensions.conditional
+import com.mzs.core.presentation.utils.generic.emptyText
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -55,7 +56,7 @@ fun PushedButton(
     var isPressed by remember { mutableStateOf(value = false) }
     val scale = animateFloatAsState(
         targetValue = if (isPressed) 0.93f else 1f,
-        label = ""
+        label = emptyText
     )
 
     //Loading animation
