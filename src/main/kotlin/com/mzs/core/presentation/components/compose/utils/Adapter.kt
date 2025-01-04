@@ -9,6 +9,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -24,7 +28,8 @@ fun <T> Adapter(
     arrangement: Arrangement.HorizontalOrVertical? = null,
     colorDivider: Color? = null,
     contentPadding: Dp,
-    isScrollable: Boolean,
+    gridCells: GridCells? = null,
+    isScrollable: Boolean = true,
     itemOrientation: ItemOrientation,
     lineModifier: Modifier = Modifier.padding(
         horizontal = if (itemOrientation is ItemOrientation.Vertical) contentPadding else 0.dp,
@@ -41,10 +46,11 @@ fun <T> Adapter(
                 arrangement = arrangement,
                 colorDivider = colorDivider,
                 contentPadding = PaddingValues(horizontal = contentPadding),
+                gridCells = gridCells,
                 isScrollable = isScrollable,
                 lineModifier = lineModifier,
-                items = items,
-                item = item
+                item = item,
+                items = items
             )
         }
 
@@ -54,10 +60,11 @@ fun <T> Adapter(
                 arrangement = arrangement,
                 colorDivider = colorDivider,
                 contentPadding = PaddingValues(vertical = contentPadding),
+                gridCells = gridCells,
                 isScrollable = isScrollable,
                 lineModifier = lineModifier,
-                items = items,
-                item = item
+                item = item,
+                items = items
             )
         }
     }
@@ -70,41 +77,54 @@ private fun <T> HorizontalAdapter(
     arrangement: Arrangement.HorizontalOrVertical?,
     colorDivider: Color?,
     contentPadding: PaddingValues,
+    gridCells: GridCells?,
     isScrollable: Boolean,
     lineModifier: Modifier,
     items: List<T>,
     item: @Composable (Int, T) -> Unit,
 ) {
-    if (isScrollable) {
-        CompositionLocalProvider(value = LocalOverscrollConfiguration provides null) {
-            LazyRow(
-                modifier = modifier,
-                contentPadding = contentPadding,
-                horizontalArrangement = arrangement ?: Arrangement.Start,
-                content = {
-                    itemsIndexed(items = items) { index, item ->
-                        item(index, item)
-                        if (colorDivider != null && index < items.size - 1) {
-                            Line(
-                                modifier = lineModifier,
-                                color = colorDivider,
-                                itemOrientation = ItemOrientation.Horizontal
-                            )
+    if (gridCells != null) {
+        LazyHorizontalGrid(
+            modifier = modifier,
+            rows = gridCells,
+            content = {
+                itemsIndexed(items = items) { index, item ->
+                    item(index, item)
+                }
+            }
+        )
+    } else {
+        if (isScrollable) {
+            CompositionLocalProvider(value = LocalOverscrollConfiguration provides null) {
+                LazyRow(
+                    modifier = modifier,
+                    contentPadding = contentPadding,
+                    horizontalArrangement = arrangement ?: Arrangement.Start,
+                    content = {
+                        itemsIndexed(items = items) { index, item ->
+                            item(index, item)
+                            if (colorDivider != null && index < items.size - 1) {
+                                Line(
+                                    modifier = lineModifier,
+                                    color = colorDivider,
+                                    itemOrientation = ItemOrientation.Horizontal
+                                )
+                            }
                         }
                     }
-                }
-            )
-        }
-    } else {
-        Row(modifier = modifier, horizontalArrangement = arrangement ?: Arrangement.Start) {
-            items.forEachIndexed { index, item ->
-                item(index, item)
-                if (colorDivider != null && index < items.size - 1) {
-                    Line(
-                        modifier = lineModifier,
-                        color = colorDivider,
-                        itemOrientation = ItemOrientation.Horizontal
-                    )
+                )
+            }
+        } else {
+            Row(modifier = modifier, horizontalArrangement = arrangement ?: Arrangement.Start) {
+                items.forEachIndexed { index, item ->
+                    item(index, item)
+                    if (colorDivider != null && index < items.size - 1) {
+                        Line(
+                            modifier = lineModifier,
+                            color = colorDivider,
+                            itemOrientation = ItemOrientation.Horizontal
+                        )
+                    }
                 }
             }
         }
@@ -118,41 +138,54 @@ private fun <T> VerticalAdapter(
     arrangement: Arrangement.HorizontalOrVertical?,
     colorDivider: Color?,
     contentPadding: PaddingValues,
+    gridCells: GridCells?,
     isScrollable: Boolean,
     lineModifier: Modifier,
     items: List<T>,
     item: @Composable (Int, T) -> Unit,
 ) {
-    if (isScrollable) {
-        CompositionLocalProvider(value = LocalOverscrollConfiguration provides null) {
-            LazyColumn(
-                modifier = modifier,
-                contentPadding = contentPadding,
-                verticalArrangement = arrangement ?: Arrangement.Top,
-                content = {
-                    itemsIndexed(items = items) { index, item ->
-                        item(index, item)
-                        if (colorDivider != null && index < items.size - 1) {
-                            Line(
-                                modifier = lineModifier,
-                                color = colorDivider,
-                                itemOrientation = ItemOrientation.Vertical
-                            )
+    if (gridCells != null) {
+        LazyVerticalGrid(
+            modifier = modifier,
+            columns = gridCells,
+            content = {
+                itemsIndexed(items = items) { index, item ->
+                    item(index, item)
+                }
+            }
+        )
+    } else {
+        if (isScrollable) {
+            CompositionLocalProvider(value = LocalOverscrollConfiguration provides null) {
+                LazyColumn(
+                    modifier = modifier,
+                    contentPadding = contentPadding,
+                    verticalArrangement = arrangement ?: Arrangement.Top,
+                    content = {
+                        itemsIndexed(items = items) { index, item ->
+                            item(index, item)
+                            if (colorDivider != null && index < items.size - 1) {
+                                Line(
+                                    modifier = lineModifier,
+                                    color = colorDivider,
+                                    itemOrientation = ItemOrientation.Vertical
+                                )
+                            }
                         }
                     }
-                }
-            )
-        }
-    } else {
-        Column(modifier = modifier, verticalArrangement = arrangement ?: Arrangement.Top) {
-            items.forEachIndexed { index, item ->
-                item(index, item)
-                if (colorDivider != null && index < items.size - 1) {
-                    Line(
-                        modifier = lineModifier,
-                        color = colorDivider,
-                        itemOrientation = ItemOrientation.Vertical
-                    )
+                )
+            }
+        } else {
+            Column(modifier = modifier, verticalArrangement = arrangement ?: Arrangement.Top) {
+                items.forEachIndexed { index, item ->
+                    item(index, item)
+                    if (colorDivider != null && index < items.size - 1) {
+                        Line(
+                            modifier = lineModifier,
+                            color = colorDivider,
+                            itemOrientation = ItemOrientation.Vertical
+                        )
+                    }
                 }
             }
         }
