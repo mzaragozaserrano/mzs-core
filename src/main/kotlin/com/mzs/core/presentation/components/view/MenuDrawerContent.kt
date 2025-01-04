@@ -22,6 +22,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mzs.core.presentation.components.compose.utils.Adapter
 import com.mzs.core.presentation.utils.generic.ItemOrientation
+import com.mzs.core.presentation.utils.generic.emptyText
+import com.mzs.core.presentation.vo.MenuItemVO
 import kotlinx.coroutines.launch
 
 @Composable
@@ -34,11 +36,11 @@ fun MenuDrawerContent(
     greetingTextColor: Color,
     @StringRes greetingTextId: Int,
     iconTint: Color,
-    initScreen: Pair<Int, Int>,
-    screens: List<Pair<Int, Int>>,
-    testTag: String = "",
+    initScreen: MenuItemVO,
+    screens: List<MenuItemVO>,
+    testTag: String = emptyText,
     textColor: Color,
-    onClick: (Pair<Int, Int>) -> Unit,
+    onMenuItemClicked: (MenuItemVO) -> Unit,
 ) {
 
     var currentScreen by remember { mutableStateOf(value = initScreen) }
@@ -62,25 +64,27 @@ fun MenuDrawerContent(
                     contentPadding = 16.dp,
                     isScrollable = false,
                     itemOrientation = ItemOrientation.Vertical,
+                    item = { _, item ->
+                        MenuDrawerItem(
+                            modifier = modifierScreen,
+                            iconId = item.iconId,
+                            iconTint = iconTint,
+                            testTag = testTag,
+                            textColor = textColor,
+                            titleId = item.titleId,
+                            onItemClicked = {
+                                if (currentScreen != item || currentScreen == initScreen) {
+                                    currentScreen = item
+                                    onMenuItemClicked(currentScreen)
+                                }
+                                coroutineScope.launch {
+                                    drawerState.close()
+                                }
+                            }
+                        )
+                    },
                     items = screens
-                ) { _, item ->
-                    MenuDrawerItem(
-                        modifier = modifierScreen,
-                        iconId = item.first,
-                        iconTint = iconTint,
-                        testTag = testTag,
-                        textColor = textColor,
-                        titleId = item.second
-                    ) {
-                        if (currentScreen != item || currentScreen == initScreen) {
-                            currentScreen = item
-                            onClick(currentScreen)
-                        }
-                        coroutineScope.launch {
-                            drawerState.close()
-                        }
-                    }
-                }
+                )
             }
         }
     }
