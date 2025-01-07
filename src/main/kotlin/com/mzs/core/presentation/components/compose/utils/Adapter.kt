@@ -31,6 +31,7 @@ fun <T> Adapter(
     gridCells: GridCells? = null,
     isScrollable: Boolean = true,
     itemOrientation: ItemOrientation,
+    key: ((index: Int, item: T) -> Any)? = null,
     lineModifier: Modifier = Modifier.padding(
         horizontal = if (itemOrientation is ItemOrientation.Vertical) contentPadding else 0.dp,
         vertical = if (itemOrientation is ItemOrientation.Horizontal) contentPadding else 0.dp,
@@ -48,6 +49,7 @@ fun <T> Adapter(
                 contentPadding = PaddingValues(horizontal = contentPadding),
                 gridCells = gridCells,
                 isScrollable = isScrollable,
+                key = key,
                 lineModifier = lineModifier,
                 item = item,
                 items = items
@@ -62,6 +64,7 @@ fun <T> Adapter(
                 contentPadding = PaddingValues(vertical = contentPadding),
                 gridCells = gridCells,
                 isScrollable = isScrollable,
+                key = key,
                 lineModifier = lineModifier,
                 item = item,
                 items = items
@@ -79,6 +82,7 @@ private fun <T> HorizontalAdapter(
     contentPadding: PaddingValues,
     gridCells: GridCells?,
     isScrollable: Boolean,
+    key: ((index: Int, item: T) -> Any)?,
     lineModifier: Modifier,
     items: List<T>,
     item: @Composable (Int, T) -> Unit,
@@ -88,7 +92,7 @@ private fun <T> HorizontalAdapter(
             modifier = modifier,
             rows = gridCells,
             content = {
-                itemsIndexed(items = items) { index, item ->
+                itemsIndexed(items = items, key = key) { index, item ->
                     item(index, item)
                 }
             }
@@ -101,7 +105,7 @@ private fun <T> HorizontalAdapter(
                     contentPadding = contentPadding,
                     horizontalArrangement = arrangement ?: Arrangement.Start,
                     content = {
-                        itemsIndexed(items = items) { index, item ->
+                        itemsIndexed(items = items, key = key) { index, item ->
                             item(index, item)
                             if (colorDivider != null && index < items.size - 1) {
                                 Line(
@@ -140,6 +144,7 @@ private fun <T> VerticalAdapter(
     contentPadding: PaddingValues,
     gridCells: GridCells?,
     isScrollable: Boolean,
+    key: ((index: Int, item: T) -> Any)?,
     lineModifier: Modifier,
     items: List<T>,
     item: @Composable (Int, T) -> Unit,
@@ -149,7 +154,7 @@ private fun <T> VerticalAdapter(
             modifier = modifier,
             columns = gridCells,
             content = {
-                itemsIndexed(items = items) { index, item ->
+                itemsIndexed(items = items, key = key) { index, item ->
                     item(index, item)
                 }
             }
@@ -162,7 +167,7 @@ private fun <T> VerticalAdapter(
                     contentPadding = contentPadding,
                     verticalArrangement = arrangement ?: Arrangement.Top,
                     content = {
-                        itemsIndexed(items = items) { index, item ->
+                        itemsIndexed(items = items, key = key) { index, item ->
                             item(index, item)
                             if (colorDivider != null && index < items.size - 1) {
                                 Line(
