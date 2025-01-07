@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.SavedStateHandle
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -13,8 +14,8 @@ import kotlinx.serialization.json.Json
 import kotlin.reflect.KType
 import kotlin.reflect.typeOf
 
-inline fun <reified Screen : Any> NavGraphBuilder.screenNavigation(crossinline screen: @Composable () -> Unit) {
-    composable<Screen> { screen() }
+inline fun <reified Screen : Any> NavGraphBuilder.screenNavigation(crossinline screen: @Composable (NavBackStackEntry) -> Unit) {
+    composable<Screen> { entry -> screen(entry) }
 }
 
 inline fun <reified Screen : Any, reified Type : Any> NavGraphBuilder.screenNavigationWithParameters(
