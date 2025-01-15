@@ -1,6 +1,5 @@
 plugins {
     id("com.android.library")
-    id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
 }
@@ -63,16 +62,15 @@ dependencies {
     //----- COROUTINES ----------/
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 
-    //----- DAGGER ----------/
-    implementation("com.google.dagger:hilt-android:2.49")
-    kapt("com.google.dagger:hilt-android-compiler:2.49")
-
     //----- GLIDE ----------/
     implementation("com.github.bumptech.glide:glide:4.11.0")
     kapt("com.github.bumptech.glide:compiler:4.11.0")
 
     //----- JSON ----------/
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+
+    //----- KOIN ----------/
+    implementation("io.insert-koin:koin-android:4.0.0")
 
     //-----  LOTTIE ----------/
     implementation("com.airbnb.android:lottie:6.4.0")

@@ -5,9 +5,8 @@ import android.security.keystore.KeyProperties
 import java.security.KeyStore
 import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
-import javax.inject.Inject
 
-class KeyStoreWrapper @Inject constructor() {
+class KeyStoreWrapper {
 
     private val keyStore: KeyStore = createAndroidKeyStore()
 

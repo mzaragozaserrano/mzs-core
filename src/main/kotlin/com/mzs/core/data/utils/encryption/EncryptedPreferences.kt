@@ -3,15 +3,13 @@ package com.mzs.core.data.utils.encryption
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
-import javax.inject.Inject
 
-class EncryptedPreferences @Inject constructor(
-    @ApplicationContext private val context: Context,
+class EncryptedPreferences(
+    private val context: Context,
     private val encryptionServices: EncryptionServices,
 ) {
 

@@ -1,8 +1,6 @@
 package com.mzs.core.data.utils.encryption
 
-import javax.inject.Inject
-
-class EncryptionServices @Inject constructor(private val keyStoreWrapper: KeyStoreWrapper) {
+class EncryptionServices(private val keyStoreWrapper: KeyStoreWrapper) {
 
     companion object {
         const val MASTER_KEY = "MASTER_KEY"
