@@ -1,6 +1,5 @@
 package com.mzs.core.presentation.components.compose.buttons
 
-import android.util.Log
 import android.view.MotionEvent
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.animateFloatAsState
@@ -34,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mzs.core.presentation.utils.extensions.conditional
 import com.mzs.core.presentation.utils.generic.emptyText
 
@@ -88,6 +88,7 @@ fun PushedButton(
                         MotionEvent.ACTION_CANCEL -> {
                             isPressed = false
                         }
+
                         MotionEvent.ACTION_DOWN -> {
                             isPressed = true
                         }
@@ -125,7 +126,7 @@ fun PushedButton(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(fraction = if (progress.isRunning) progress.value else 1f)
-                            .height(height = (textSize.height.dp / 2) + 8.dp)
+                            .height(height = (textSize.height.dp / 2) + 16.dp)
                             .background(color = buttonBackgroundColor)
                     )
                     if (progress.isRunning) {
@@ -140,11 +141,12 @@ fun PushedButton(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .align(alignment = Alignment.Center)
-                                .padding(vertical = 8.dp)
+                                .padding(vertical = 12.dp)
                                 .onGloballyPositioned { layoutCoordinates ->
                                     textSize = layoutCoordinates.size
                                 },
                             color = textColor,
+                            fontSize = 18.sp,
                             style = textStyle,
                             text = text.uppercase(),
                             textAlign = TextAlign.Center
@@ -162,7 +164,7 @@ fun PushedButton(
 private fun PushedButtonPrev() {
     PushedButton(
         buttonBackgroundColor = Color.Red,
-        durationMillisBlockingButton = null,
+        durationMillisBlockingButton = 3000,
         text = "Accept",
         textColor = Color.Black,
         textStyle = MaterialTheme.typography.titleSmall,
