@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/button_background"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/core_background_wavy_label"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/icon_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/core_background_icon_wavy_label"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/label_icon"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            tools:src="@drawable/core_ic_cloud"
+            tools:tint="@android:color/white" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/label_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_weight="1"
+        android:textSize="14sp"
+        tools:text="Poción adulta"
+        tools:textColor="@android:color/white" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
