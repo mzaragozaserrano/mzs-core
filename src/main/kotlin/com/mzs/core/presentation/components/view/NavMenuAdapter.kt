@@ -4,14 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.mzs.core.presentation.vo.MenuItemVO
 
 class NavMenuAdapter<Binding : ViewBinding>(
     private val bindingInflater: (LayoutInflater, ViewGroup, Boolean) -> Binding,
-    private val onBindItem: (Pair<Int, Int>, Binding) -> Unit,
-    private val onItemClicked: (Pair<Int, Int>) -> Unit,
+    private val onBindItem: (MenuItemVO, Binding) -> Unit,
+    private val onItemClicked: (MenuItemVO) -> Unit,
 ) : RecyclerView.Adapter<NavMenuAdapter.NavMenuViewHolder<Binding>>() {
 
-    var list: List<Pair<Int, Int>> = emptyList()
+    var list: List<MenuItemVO> = emptyList()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -35,9 +36,9 @@ class NavMenuAdapter<Binding : ViewBinding>(
     class NavMenuViewHolder<Binding : ViewBinding>(private val binding: Binding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            item: Pair<Int, Int>,
-            onBindItem: (Pair<Int, Int>, Binding) -> Unit,
-            onMenuItemSelected: (Pair<Int, Int>) -> Unit,
+            item: MenuItemVO,
+            onBindItem: (MenuItemVO, Binding) -> Unit,
+            onMenuItemSelected: (MenuItemVO) -> Unit,
         ) {
             itemView.setOnClickListener { onMenuItemSelected(item) }
             onBindItem(item, binding)

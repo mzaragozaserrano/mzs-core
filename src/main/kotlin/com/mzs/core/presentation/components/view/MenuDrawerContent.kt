@@ -71,7 +71,7 @@ fun MenuDrawerContent(
                             iconTint = iconTint,
                             testTag = testTag,
                             textColor = textColor,
-                            titleId = item.titleId,
+                            title = stringResource(id = item.titleId),
                             onItemClicked = {
                                 if (currentScreen != item || currentScreen == initScreen) {
                                     currentScreen = item
