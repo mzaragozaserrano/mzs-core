@@ -12,12 +12,6 @@ import kotlinx.coroutines.launch
 
 abstract class CoreMVVMViewModel<State> : ViewModel() {
 
-    private val _uiState by lazy { MutableStateFlow(value = createInitialState()) }
-    val uiState = _uiState.asStateFlow()
-
-    private val _navigationCompose = Channel<Any?>(capacity = Channel.BUFFERED)
-    val navigationCompose: Flow<Any?> = _navigationCompose.receiveAsFlow()
-
     protected abstract fun createInitialState(): State
 
     protected fun onEmitNavigation(element: Any?) {
@@ -29,6 +23,12 @@ abstract class CoreMVVMViewModel<State> : ViewModel() {
     protected fun onUpdateUiState(update: State.() -> State) {
         _uiState.update { it.update() }
     }
+
+    private val _uiState by lazy { MutableStateFlow(value = createInitialState()) }
+    val uiState = _uiState.asStateFlow()
+
+    private val _navigationCompose = Channel<Any?>(capacity = Channel.BUFFERED)
+    val navigationCompose: Flow<Any?> = _navigationCompose.receiveAsFlow()
 
     fun getViewModelState(): State = _uiState.value
 

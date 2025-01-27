@@ -14,6 +14,11 @@ import kotlinx.coroutines.launch
 
 abstract class CoreMVIViewModel<State, Intent, Action, Result> : ViewModel() {
 
+    protected abstract fun createInitialState(): State
+    protected abstract fun Intent.mapToAction(): Action
+    protected abstract suspend fun processAction(action: Action): Flow<Result>
+    protected abstract fun Result.mapToState(): State
+
     private val _mutableViewState by lazy { MutableStateFlow(createInitialState()) }
     val mutableViewState: StateFlow<State> get() = _mutableViewState.asStateFlow()
 
@@ -21,6 +26,10 @@ abstract class CoreMVIViewModel<State, Intent, Action, Result> : ViewModel() {
 
     init {
         handleIntent()
+    }
+
+    private fun collectState(state: State) {
+        _mutableViewState.value = state
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -31,15 +40,6 @@ abstract class CoreMVIViewModel<State, Intent, Action, Result> : ViewModel() {
                 .flatMapLatest { processAction(it) }
                 .collect { collectState(it.mapToState()) }
         }
-    }
-
-    protected abstract fun createInitialState(): State
-    protected abstract fun Intent.mapToAction(): Action
-    protected abstract suspend fun processAction(action: Action): Flow<Result>
-    protected abstract fun Result.mapToState(): State
-
-    private fun collectState(state: State) {
-        _mutableViewState.value = state
     }
 
 }

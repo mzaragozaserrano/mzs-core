@@ -20,10 +20,12 @@ import kotlinx.coroutines.launch
 abstract class CoreBaseActivity<State, Intent, Action, Result, VB : ViewBinding, VM : CoreMVIViewModel<State, Intent, Action, Result>> :
     AppCompatActivity() {
 
-    protected var loadingRaw: Int? = null
-
     protected abstract val binding: VB
     protected abstract val viewModel: VM
+    protected abstract fun renderView(state: State)
+
+    open var loadingRaw: Int? = null
+    open fun VB.setUpView() {}
 
     private val animationLayoutInflater: View by lazy {
         View.inflate(applicationContext, R.layout.core_layout_loading, null)
@@ -55,10 +57,6 @@ abstract class CoreBaseActivity<State, Intent, Action, Result, VB : ViewBinding,
         }
         setContentView(binding.root)
     }
-
-    protected abstract fun renderView(state: State)
-
-    protected fun VB.setUpView() {}
 
     fun <T> clearAndNavigateToNewActivity(className: Class<T>, bundle: Bundle? = null) {
         val intent = Intent(this, className)

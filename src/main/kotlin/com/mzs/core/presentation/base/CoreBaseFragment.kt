@@ -57,8 +57,8 @@ abstract class CoreBaseFragment<State, Intent, Action, Result, VB : ViewBinding,
 
     protected abstract fun renderView(state: State)
 
-    protected fun onBackPressed() {}
-    protected fun VB.setUpListeners() {}
+    open fun onBackPressed() {}
+    open fun VB.setUpListeners() {}
 
     fun emitAction(intent: Intent) {
         lifecycleScope.launch {
