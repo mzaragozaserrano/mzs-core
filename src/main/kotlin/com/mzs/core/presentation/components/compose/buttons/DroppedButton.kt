@@ -30,23 +30,24 @@ import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mzs.core.R
 import com.mzs.core.presentation.components.compose.images.ResourceImage
 import com.mzs.core.presentation.utils.generic.emptyText
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun FallButton(
+fun DroppedButton(
     modifier: Modifier = Modifier,
     buttonContentColor: Color,
     text: String,
     textStyle: TextStyle,
     onButtonClicked: (() -> Unit)? = null,
-    invisibleContent: @Composable () -> Unit
+    invisibleContent: @Composable () -> Unit,
 ) {
 
     var buttonSize by remember { mutableStateOf(value = IntSize.Zero) }
@@ -131,6 +132,7 @@ fun FallButton(
                             Text(
                                 modifier = Modifier.padding(vertical = 16.dp),
                                 color = buttonContentColor,
+                                fontSize = 18.sp,
                                 style = textStyle,
                                 text = text.uppercase(),
                                 textAlign = TextAlign.Center
@@ -149,10 +151,10 @@ fun FallButton(
 
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
-private fun FallButtonPrev() {
-    FallButton(
+private fun DroppedButtonPrev() {
+    DroppedButton(
         modifier = Modifier.fillMaxWidth(),
         buttonContentColor = Color.Black,
         text = "Accept",

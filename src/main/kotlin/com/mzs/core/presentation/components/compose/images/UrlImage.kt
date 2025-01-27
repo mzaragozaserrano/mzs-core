@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
@@ -52,7 +52,7 @@ fun UrlImage(
     )
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun UrlImagePrev() {
     UrlImage(contentScale = ContentScale.Crop, url = "https://picsum.photos/200")

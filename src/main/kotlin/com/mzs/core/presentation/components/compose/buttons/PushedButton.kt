@@ -30,7 +30,7 @@ import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -159,7 +159,7 @@ fun PushedButton(
 
 }
 
-@Preview(apiLevel = 34)
+@PreviewLightDark
 @Composable
 private fun PushedButtonPrev() {
     PushedButton(

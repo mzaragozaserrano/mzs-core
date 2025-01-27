@@ -21,9 +21,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mzs.core.R
 import com.mzs.core.presentation.components.compose.images.ResourceImage
 
@@ -61,19 +62,23 @@ fun WavyLabel(
                             topStart = imageSize
                         ),
                         content = {
-                            Box(contentAlignment = Center, content = {
-                                ResourceImage(
-                                    modifier = Modifier.padding(all = 6.dp),
-                                    iconTint = iconTint,
-                                    iconId = iconId,
-                                    size = imageSize
-                                )
-                            })
+                            Box(
+                                contentAlignment = Center,
+                                content = {
+                                    ResourceImage(
+                                        modifier = Modifier.padding(all = 6.dp),
+                                        iconTint = iconTint,
+                                        iconId = iconId,
+                                        size = imageSize
+                                    )
+                                }
+                            )
                         }
                     )
                     Text(
                         modifier = Modifier.padding(horizontal = 12.dp),
                         color = textColor,
+                        fontSize = 14.sp,
                         text = text,
                         textAlign = TextAlign.Center,
                         style = textStyle
@@ -85,7 +90,7 @@ fun WavyLabel(
 
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun WavyLabelPrev() {
     WavyLabel(
