@@ -2,6 +2,7 @@ package com.mzs.core.data.datasources.local
 
 import android.content.Context
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 
 class ResourcesDataSourceImpl(private val context: Context) : ResourcesDataSource {
 
@@ -9,7 +10,7 @@ class ResourcesDataSourceImpl(private val context: Context) : ResourcesDataSourc
 
     override fun getStringOrResource(@StringRes resId: Int, str: String?): String =
         if (str.isNullOrEmpty()) {
-            context.getString(resId)
+            ContextCompat.getString(context, resId)
         } else {
             str
         }
