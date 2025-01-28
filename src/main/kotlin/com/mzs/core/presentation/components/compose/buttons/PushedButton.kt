@@ -49,7 +49,6 @@ fun PushedButton(
     onButtonClicked: () -> Unit
 ) {
 
-    //Pressed animation
     var buttonSize by remember { mutableStateOf(value = IntSize.Zero) }
     var isClickAvailable by remember { mutableStateOf(value = true) }
     var isLaunchingAction by remember { mutableStateOf(value = false) }
@@ -59,7 +58,6 @@ fun PushedButton(
         label = emptyText
     )
 
-    //Loading animation
     val progress = remember { Animatable(initialValue = 0f) }
     var textSize by remember { mutableStateOf(value = IntSize.Zero) }
 

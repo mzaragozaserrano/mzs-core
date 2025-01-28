@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.mzs.core.R
 import com.mzs.core.presentation.components.compose.images.ResourceImage
 import com.mzs.core.presentation.utils.extensions.conditional
@@ -38,8 +39,8 @@ fun MenuDrawerItem(
         horizontalArrangement = Arrangement.spacedBy(space = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        ResourceImage(iconId = iconId, iconTint = iconTint, size = 24.dp)
-        Text(color = textColor, text = title)
+        ResourceImage(iconId = iconId, iconTint = iconTint, size = 18.dp)
+        Text(color = textColor, fontSize = 16.sp, text = title)
     }
 }
 

@@ -16,6 +16,7 @@ fun CardAlert(
     modifier: Modifier = Modifier,
     alertBackgroundColor: Color,
     buttonBackgroundColor: Color,
+    buttonStyle: TextStyle,
     buttonText: String,
     buttonTextColor: Color,
     durationMillisBlockingButton: Int? = null,
@@ -26,7 +27,7 @@ fun CardAlert(
     titleText: String,
     titleTextColor: Color,
     onButtonClicked: () -> Unit,
-    onDismissRequest: (() -> Unit)? = null
+    onDismissRequest: (() -> Unit)? = null,
 ) {
     AlertDialog(
         modifier = modifier,
@@ -37,7 +38,7 @@ fun CardAlert(
                 durationMillisBlockingButton = durationMillisBlockingButton,
                 text = buttonText,
                 textColor = buttonTextColor,
-                textStyle = MaterialTheme.typography.titleSmall,
+                textStyle = buttonStyle,
                 onButtonClicked = onButtonClicked
             )
         },
@@ -71,6 +72,7 @@ private fun CardAlertPrev() {
     CardAlert(
         alertBackgroundColor = MaterialTheme.colorScheme.background,
         buttonBackgroundColor = MaterialTheme.colorScheme.errorContainer,
+        buttonStyle = MaterialTheme.typography.labelLarge,
         buttonText = "Accept",
         buttonTextColor = MaterialTheme.colorScheme.background,
         durationMillisBlockingButton = 3000,

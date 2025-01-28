@@ -52,11 +52,13 @@ fun MenuDrawerContent(
                 Text(
                     modifier = Modifier.padding(end = 16.dp, start = 16.dp, top = 16.dp),
                     color = greetingTextColor,
+                    style = MaterialTheme.typography.headlineSmall,
                     text = stringResource(id = greetingTextId)
                 )
                 Text(
                     modifier = Modifier.padding(horizontal = 16.dp),
                     color = dateTextColor,
+                    style = MaterialTheme.typography.titleMedium,
                     text = date
                 )
                 Adapter(

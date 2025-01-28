@@ -41,7 +41,12 @@ fun WavyLabel(
 ) {
     val imageSize: Dp = 12.dp
     Card(
-        modifier = modifier.clip(RoundedCornerShape(bottomEnd = imageSize, topStart = imageSize)),
+        modifier = modifier.clip(
+            shape = RoundedCornerShape(
+                bottomEnd = imageSize,
+                topStart = imageSize
+            )
+        ),
         colors = CardDefaults.cardColors(containerColor = buttonBackgroundColor),
         shape = RoundedCornerShape(
             bottomEnd = imageSize,

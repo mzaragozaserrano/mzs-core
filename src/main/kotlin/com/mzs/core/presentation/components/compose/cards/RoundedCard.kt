@@ -8,6 +8,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
@@ -21,10 +22,12 @@ fun RoundedCard(
     cornerRadius: Dp,
     shadowElevation: Dp,
     onCardClicked: () -> Unit,
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     Surface(
-        modifier = modifier.clickable { onCardClicked() },
+        modifier = modifier
+            .clip(shape = RoundedCornerShape(size = cornerRadius))
+            .clickable { onCardClicked() },
         shadowElevation = shadowElevation,
         shape = RoundedCornerShape(size = cornerRadius),
         content = {
