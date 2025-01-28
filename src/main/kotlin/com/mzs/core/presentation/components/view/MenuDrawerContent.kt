@@ -19,6 +19,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mzs.core.presentation.components.compose.utils.Adapter
 import com.mzs.core.presentation.utils.generic.ItemOrientation
@@ -31,15 +33,19 @@ fun MenuDrawerContent(
     modifier: Modifier = Modifier,
     modifierScreen: Modifier = Modifier,
     date: String,
+    dateStyle: TextStyle,
     dateTextColor: Color,
     drawerState: DrawerState,
+    greetingStyle: TextStyle,
     greetingTextColor: Color,
     @StringRes greetingTextId: Int,
+    iconSize: Dp,
     iconTint: Color,
     initScreen: MenuItemVO,
     screens: List<MenuItemVO>,
     testTag: String = emptyText,
     textColor: Color,
+    titleStyle: TextStyle,
     onMenuItemClicked: (MenuItemVO) -> Unit,
 ) {
 
@@ -52,13 +58,13 @@ fun MenuDrawerContent(
                 Text(
                     modifier = Modifier.padding(end = 16.dp, start = 16.dp, top = 16.dp),
                     color = greetingTextColor,
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = greetingStyle,
                     text = stringResource(id = greetingTextId)
                 )
                 Text(
                     modifier = Modifier.padding(horizontal = 16.dp),
                     color = dateTextColor,
-                    style = MaterialTheme.typography.titleMedium,
+                    style = dateStyle,
                     text = date
                 )
                 Adapter(
@@ -70,10 +76,12 @@ fun MenuDrawerContent(
                         MenuDrawerItem(
                             modifier = modifierScreen,
                             iconId = item.iconId,
+                            iconSize = iconSize,
                             iconTint = iconTint,
                             testTag = testTag,
                             textColor = textColor,
                             title = stringResource(id = item.titleId),
+                            titleStyle = titleStyle,
                             onItemClicked = {
                                 if (currentScreen != item || currentScreen == initScreen) {
                                     currentScreen = item
