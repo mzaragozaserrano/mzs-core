@@ -117,7 +117,7 @@ fun PushedButton(
             .onGloballyPositioned { layoutCoordinates ->
                 buttonSize = layoutCoordinates.size
             }
-            .clip(shape = RoundedCornerShape(size = 16.dp)),
+            .clip(shape = RoundedCornerShape(size = 8.dp)),
         content = {
             Box(
                 modifier = Modifier
