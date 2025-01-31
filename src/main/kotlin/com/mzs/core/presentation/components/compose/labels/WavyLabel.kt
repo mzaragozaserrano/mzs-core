@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -37,7 +38,7 @@ fun WavyLabel(
     iconTint: Color,
     text: String,
     textColor: Color,
-    textStyle: TextStyle
+    textStyle: TextStyle,
 ) {
     val imageSize: Dp = 12.dp
     Card(
@@ -84,6 +85,8 @@ fun WavyLabel(
                         modifier = Modifier.padding(horizontal = 12.dp),
                         color = textColor,
                         fontSize = 14.sp,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
                         text = text,
                         textAlign = TextAlign.Center,
                         style = textStyle

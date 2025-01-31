@@ -30,6 +30,7 @@ import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
@@ -54,50 +55,17 @@ fun DroppedButton(
     var isClickAvailable by remember { mutableStateOf(value = true) }
     var isLaunchingAction by remember { mutableStateOf(value = false) }
     var isPressed by remember { mutableStateOf(value = false) }
-    var isVisible by remember { mutableStateOf(value = true) }
 
     val offset by animateDpAsState(
         animationSpec = tween(durationMillis = 300),
         targetValue = if (isPressed) 24.dp else 0.dp,
-        label = ""
+        label = emptyText
     )
 
     Card(
-        modifier = modifier
-            .offset { IntOffset(x = 0, y = offset.value.toInt()) }
-            .pointerInteropFilter { motionEvent ->
-                when (motionEvent.action) {
-                    MotionEvent.ACTION_CANCEL -> {
-                        isPressed = false
-                    }
-
-                    MotionEvent.ACTION_DOWN -> {
-                        isPressed = true
-                    }
-
-                    MotionEvent.ACTION_MOVE -> {
-                        val x = motionEvent.x.toInt()
-                        val y = motionEvent.y.toInt()
-                        isPressed =
-                            x in 0 until buttonSize.width && y in 0 until buttonSize.height
-                        isClickAvailable = isPressed
-                    }
-
-                    MotionEvent.ACTION_UP -> {
-                        if (isClickAvailable) {
-                            isVisible = false
-                            isLaunchingAction = true
-                            onButtonClicked?.invoke()
-                        } else {
-                            isClickAvailable = true
-                        }
-                    }
-                }
-                true
-            }
-            .onGloballyPositioned { layoutCoordinates ->
-                buttonSize = layoutCoordinates.size
-            },
+        modifier = modifier.onGloballyPositioned { layoutCoordinates ->
+            buttonSize = layoutCoordinates.size
+        },
         colors = CardDefaults.cardColors(containerColor = Color.Transparent),
         content = {
             AnimatedContent(
@@ -111,44 +79,78 @@ fun DroppedButton(
                                 fadeOut(animationSpec = tween(300))
                     }
                 },
-                label = emptyText
-            ) { isPressed ->
-                if (isPressed) {
-                    invisibleContent()
-                } else {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 12.dp)
-                            .align(alignment = Alignment.CenterHorizontally),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                        content = {
-                            ResourceImage(
-                                iconId = R.drawable.core_ic_arrow_fall,
-                                iconTint = buttonContentColor,
-                                size = 16.dp
-                            )
-                            Text(
-                                modifier = Modifier.padding(vertical = 16.dp),
-                                color = buttonContentColor,
-                                fontSize = 18.sp,
-                                style = textStyle,
-                                text = text.uppercase(),
-                                textAlign = TextAlign.Center
-                            )
-                            ResourceImage(
-                                iconId = R.drawable.core_ic_arrow_fall,
-                                iconTint = buttonContentColor,
-                                size = 16.dp
-                            )
-                        }
-                    )
+                label = emptyText,
+                content = { showInvisibleContent ->
+                    if (showInvisibleContent) {
+                        invisibleContent()
+                    } else {
+                        Row(
+                            modifier = Modifier
+                                .offset { IntOffset(x = 0, y = offset.value.toInt()) }
+                                .pointerInteropFilter { motionEvent ->
+                                    when (motionEvent.action) {
+                                        MotionEvent.ACTION_CANCEL -> {
+                                            isPressed = false
+                                        }
+
+                                        MotionEvent.ACTION_DOWN -> {
+                                            isPressed = true
+                                        }
+
+                                        MotionEvent.ACTION_MOVE -> {
+                                            val x = motionEvent.x.toInt()
+                                            val y = motionEvent.y.toInt()
+                                            isPressed =
+                                                x in 0 until buttonSize.width && y in 0 until buttonSize.height
+                                            isClickAvailable = isPressed
+                                        }
+
+                                        MotionEvent.ACTION_UP -> {
+                                            if (isClickAvailable) {
+                                                isLaunchingAction = true
+                                                onButtonClicked?.invoke()
+                                            } else {
+                                                isClickAvailable = true
+                                            }
+                                        }
+                                    }
+                                    true
+                                }
+                                .fillMaxWidth()
+                                .align(alignment = Alignment.CenterHorizontally)
+                                .padding(horizontal = 16.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically,
+                            content = {
+                                ResourceImage(
+                                    iconId = R.drawable.core_ic_arrow_fall,
+                                    iconTint = buttonContentColor,
+                                    size = 16.dp
+                                )
+                                Text(
+                                    modifier = Modifier
+                                        .weight(weight = 1f)
+                                        .padding(all = 16.dp),
+                                    color = buttonContentColor,
+                                    fontSize = 18.sp,
+                                    maxLines = 2,
+                                    overflow = TextOverflow.Ellipsis,
+                                    style = textStyle,
+                                    text = text.uppercase(),
+                                    textAlign = TextAlign.Center
+                                )
+                                ResourceImage(
+                                    iconId = R.drawable.core_ic_arrow_fall,
+                                    iconTint = buttonContentColor,
+                                    size = 16.dp
+                                )
+                            }
+                        )
+                    }
                 }
-            }
+            )
         }
     )
-
 }
 
 @PreviewLightDark
