@@ -64,7 +64,10 @@ fun PushedButton(
     LaunchedEffect(isLaunchingAction) {
         when {
             durationMillisBlockingButton != null && isLaunchingAction -> {
-                progress.animateTo(1f, animationSpec = tween(durationMillisBlockingButton))
+                progress.animateTo(
+                    1f,
+                    animationSpec = tween(durationMillis = durationMillisBlockingButton)
+                )
                 progress.snapTo(0f)
                 isLaunchingAction = false
                 onButtonClicked()
@@ -114,7 +117,7 @@ fun PushedButton(
             .onGloballyPositioned { layoutCoordinates ->
                 buttonSize = layoutCoordinates.size
             }
-            .clip(shape = RoundedCornerShape(size = 8.dp)),
+            .clip(shape = RoundedCornerShape(size = 16.dp)),
         content = {
             Box(
                 modifier = Modifier
