@@ -27,7 +27,7 @@ fun <T> Adapter(
     modifier: Modifier = Modifier,
     arrangement: Arrangement.HorizontalOrVertical? = null,
     colorDivider: Color? = null,
-    contentPadding: Dp,
+    contentPadding: Dp = 0.dp,
     gridCells: GridCells? = null,
     isScrollable: Boolean = true,
     itemOrientation: ItemOrientation,
