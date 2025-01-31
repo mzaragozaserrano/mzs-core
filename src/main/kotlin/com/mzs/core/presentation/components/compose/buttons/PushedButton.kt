@@ -65,7 +65,7 @@ fun PushedButton(
         when {
             durationMillisBlockingButton != null && isLaunchingAction -> {
                 progress.animateTo(
-                    1f,
+                    targetValue = 1f,
                     animationSpec = tween(durationMillis = durationMillisBlockingButton)
                 )
                 progress.snapTo(0f)
