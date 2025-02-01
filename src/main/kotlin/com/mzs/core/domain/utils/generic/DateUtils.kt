@@ -1,5 +1,6 @@
 package com.mzs.core.domain.utils.generic
 
+import android.util.Log
 import com.mzs.core.R
 import com.mzs.core.data.datasources.local.ResourcesDataSource
 import java.text.SimpleDateFormat
@@ -26,7 +27,7 @@ class DateUtils(private val resourcesDataSource: ResourcesDataSource) {
 
     fun convertStringToLocalDate(dateString: String, format: String): LocalDate? {
         return try {
-            val formatter = DateTimeFormatter.ofPattern(format)
+            val formatter = DateTimeFormatter.ofPattern(format, Locale.getDefault())
             LocalDate.parse(dateString, formatter)
         } catch (e: Exception) {
             null
