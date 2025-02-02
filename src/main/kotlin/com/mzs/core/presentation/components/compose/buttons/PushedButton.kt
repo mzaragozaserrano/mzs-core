@@ -43,6 +43,7 @@ fun PushedButton(
     modifier: Modifier = Modifier,
     buttonBackgroundColor: Color,
     durationMillisBlockingButton: Int? = null,
+    enabled: Boolean = true,
     text: String,
     textColor: Color,
     textStyle: TextStyle,
@@ -85,37 +86,39 @@ fun PushedButton(
 
     Box(
         modifier = modifier
-            .scale(scale = scale.value)
-            .conditional(condition = progress.isRunning.not() || durationMillisBlockingButton == null) {
-                pointerInteropFilter { motionEvent ->
-                    when (motionEvent.action) {
-                        MotionEvent.ACTION_CANCEL -> {
-                            isPressed = false
-                        }
+            .conditional(enabled) {
+                scale(scale = scale.value)
+                    .conditional(condition = progress.isRunning.not() || durationMillisBlockingButton == null) {
+                        pointerInteropFilter { motionEvent ->
+                            when (motionEvent.action) {
+                                MotionEvent.ACTION_CANCEL -> {
+                                    isPressed = false
+                                }
 
-                        MotionEvent.ACTION_DOWN -> {
-                            isPressed = true
-                        }
+                                MotionEvent.ACTION_DOWN -> {
+                                    isPressed = true
+                                }
 
-                        MotionEvent.ACTION_MOVE -> {
-                            val x = motionEvent.x.toInt()
-                            val y = motionEvent.y.toInt()
-                            isPressed =
-                                x in 0 until buttonSize.width && y in 0 until buttonSize.height
-                            isClickAvailable = isPressed
-                        }
+                                MotionEvent.ACTION_MOVE -> {
+                                    val x = motionEvent.x.toInt()
+                                    val y = motionEvent.y.toInt()
+                                    isPressed =
+                                        x in 0 until buttonSize.width && y in 0 until buttonSize.height
+                                    isClickAvailable = isPressed
+                                }
 
-                        MotionEvent.ACTION_UP -> {
-                            if (isClickAvailable) {
-                                isPressed = false
-                                isLaunchingAction = true
-                            } else {
-                                isClickAvailable = true
+                                MotionEvent.ACTION_UP -> {
+                                    if (isClickAvailable) {
+                                        isPressed = false
+                                        isLaunchingAction = true
+                                    } else {
+                                        isClickAvailable = true
+                                    }
+                                }
                             }
+                            true
                         }
                     }
-                    true
-                }
             }
             .onGloballyPositioned { layoutCoordinates ->
                 buttonSize = layoutCoordinates.size
@@ -125,20 +128,26 @@ fun PushedButton(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(color = buttonBackgroundColor.copy(alpha = 0.2f)),
+                    .background(color = buttonBackgroundColor.copy(alpha = 0.25f)),
                 content = {
                     Box(
                         modifier = Modifier
                             .fillMaxWidth(fraction = if (progress.isRunning) progress.value else 1f)
                             .height(height = (textSize.height.dp / 2) + 16.dp)
-                            .background(color = buttonBackgroundColor)
+                            .background(
+                                color = if (enabled) {
+                                    buttonBackgroundColor
+                                } else {
+                                    buttonBackgroundColor.copy(alpha = 0.25f)
+                                }
+                            )
                     )
                     if (progress.isRunning) {
                         CircularProgressIndicator(
                             modifier = Modifier
                                 .size(size = 24.dp)
                                 .align(alignment = Alignment.Center),
-                            color = textColor.copy(alpha = 0.2f)
+                            color = textColor.copy(alpha = 0.25f)
                         )
                     } else {
                         Text(
@@ -149,7 +158,11 @@ fun PushedButton(
                                 .onGloballyPositioned { layoutCoordinates ->
                                     textSize = layoutCoordinates.size
                                 },
-                            color = textColor,
+                            color = if (enabled) {
+                                textColor
+                            } else {
+                                textColor.copy(alpha = 0.25f)
+                            },
                             fontSize = 18.sp,
                             style = textStyle,
                             text = text.uppercase(),
