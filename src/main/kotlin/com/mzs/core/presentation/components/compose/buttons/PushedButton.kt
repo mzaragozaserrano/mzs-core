@@ -46,7 +46,7 @@ fun PushedButton(
     text: String,
     textColor: Color,
     textStyle: TextStyle,
-    onButtonClicked: () -> Unit
+    onButtonClicked: () -> Unit,
 ) {
 
     var buttonSize by remember { mutableStateOf(value = IntSize.Zero) }
@@ -61,24 +61,27 @@ fun PushedButton(
     val progress = remember { Animatable(initialValue = 0f) }
     var textSize by remember { mutableStateOf(value = IntSize.Zero) }
 
-    LaunchedEffect(isLaunchingAction) {
-        when {
-            durationMillisBlockingButton != null && isLaunchingAction -> {
-                progress.animateTo(
-                    targetValue = 1f,
-                    animationSpec = tween(durationMillis = durationMillisBlockingButton)
-                )
-                progress.snapTo(0f)
-                isLaunchingAction = false
-                onButtonClicked()
-            }
+    LaunchedEffect(
+        key1 = isLaunchingAction,
+        block = {
+            when {
+                durationMillisBlockingButton != null && isLaunchingAction -> {
+                    progress.animateTo(
+                        targetValue = 1f,
+                        animationSpec = tween(durationMillis = durationMillisBlockingButton)
+                    )
+                    progress.snapTo(0f)
+                    isLaunchingAction = false
+                    onButtonClicked()
+                }
 
-            isLaunchingAction -> {
-                isLaunchingAction = false
-                onButtonClicked()
+                isLaunchingAction -> {
+                    isLaunchingAction = false
+                    onButtonClicked()
+                }
             }
         }
-    }
+    )
 
     Box(
         modifier = modifier
