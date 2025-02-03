@@ -1,6 +1,7 @@
 package com.mzs.core.presentation.components.compose.images
 
 import androidx.annotation.RawRes
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -34,7 +35,9 @@ fun UrlImage(
         loading = if (animationId != null) {
             {
                 LottieImage(
-                    modifier = Modifier.padding(all = 16.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(all = 64.dp),
                     animationId = animationId
                 )
             }
